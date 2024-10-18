@@ -8,6 +8,7 @@
       <Footer />
     </div>
     <ScrollToTop />
+    <AIChatButton />
     <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
       <div class="absolute top-10 left-10 w-20 h-20 bg-accent opacity-10 rounded-full"></div>
       <div class="absolute bottom-20 right-20 w-40 h-40 bg-secondary opacity-20 rounded-full"></div>
@@ -19,6 +20,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import ScrollToTop from '~/components/ScrollToTop.vue'
+import AIChatButton from '~/components/AIChatButton.vue'
 import { useLangStore } from '~/stores/lang'
 import { useI18n } from 'vue-i18n'
 

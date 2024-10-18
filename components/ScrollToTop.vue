@@ -1,11 +1,13 @@
 <template>
-  <transition name="bounce">
-    <button v-show="showButton" @click="scrollToTop" class="fixed bottom-8 right-8 bg-accent hover:bg-white text-white hover:text-accent rounded-full p-3 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300 ease-in-out transform group-hover:translate-y-[-2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-      </svg>
-    </button>
-  </transition>
+  <div class="fixed bottom-4 right-4">
+    <transition name="bounce">
+      <button v-show="showButton" @click="scrollToTop" class="bg-accent hover:bg-white text-white hover:text-accent rounded-full p-3 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300 ease-in-out transform group-hover:translate-y-[-2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </button>
+    </transition>
+  </div>
 </template>
 
 <script setup>

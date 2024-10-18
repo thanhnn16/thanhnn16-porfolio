@@ -33,4 +33,7 @@ export default defineNuxtConfig({
   plugins: [
     { src: '~/plugins/gsap.client.js', mode: 'client' }
   ],
+  nitro: {
+    preset: 'node-server'
+  },
 })
