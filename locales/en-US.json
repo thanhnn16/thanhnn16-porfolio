@@ -163,6 +163,10 @@
   "projectNotFound": "Project not found.",
   "aiChat": "AI Chat",
   "enterMessage": "Enter message...",
-  "askAboutMe": "Want to know more about me? Ask Thanh Con!",
-  "thinking": "Thinking..."
+  "askAboutMe": "Want to know more about me? Ask Thành Con!",
+  "thinking": "Thinking...",
+  "restartChat": "Restart Chat",
+  "startChatPrompt": "Start chatting with Thành Con!",
+  "presetMessageVi": "Xin chào, tôi muốn biết thêm về Thành.",
+  "presetMessageEn": "Hello, I want to know more about Thành."
 }

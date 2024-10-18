@@ -27,9 +27,9 @@
   "webDevelopment": "Phát triển Web",
   "mobileDevelopment": "Phát triển Ứng dụng Di động",
   "uiUxDesign": "Thiết kế UI/UX",
-  "html5Description": "Ngôn ngữ đ",
+  "html5Description": "Ngôn ngữ đánh dấu tiêu chuẩn để tạo cấu trúc và nội dung trang web.",
   "cssDescription": "Ngôn ngữ tạo kiểu để thiết kế giao diện và bố cục trang web.",
-  "javascriptDescription": "Ngôn ngữ lập",
+  "javascriptDescription": "Ngôn ngữ lập trình tạo các tính năng tương tác cho trang web.",
   "nuxtjsDescription": "Framework cho xây dựng ứng dụng web hiện đại và hiệu suất cao.",
   "laravelDescription": "Framework PHP mạnh mẽ cho phát triển ứng dụng web server-side.",
   "reactNativeDescription": "Framework cho phát triển ứng dụng di động đa nền tảng sử dụng JavaScript.",
@@ -164,5 +164,9 @@
   "aiChat": "AI Chat",
   "enterMessage": "Nhập tin nhắn...",
   "askAboutMe": "Muốn biết thêm về tôi? Hỏi Thành Con nhé!",
-  "thinking": "Đang suy nghĩ..."
+  "thinking": "Đang suy nghĩ...",
+  "restartChat": "Bắt đầu lại",
+  "startChatPrompt": "Bắt đầu trò chuyện với Thành Con!",
+  "presetMessageVi": "Xin chào, tôi muốn biết thêm về Thành.",
+  "presetMessageEn": "Hello, I want to know more about Thành."
 }

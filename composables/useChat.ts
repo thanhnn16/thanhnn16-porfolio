@@ -14,12 +14,14 @@ export function useChat() {
 
     try {
       console.log('Sending message to server:', message)
+      console.log('Current chat history:', chatHistory.value)
+      
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, chatHistory: chatHistory.value }),
       })
 
       console.log('Server response status:', response.status)
@@ -40,8 +42,9 @@ export function useChat() {
 
       console.log('Parsed server response:', data)
       
-      if (data.response) {
+      if (data.response && data.response.trim() !== '') {
         chatHistory.value.push({ text: data.response, isUser: false })
+        return data.response
       } else if (data.error) {
         throw new Error(data.error)
       } else {
@@ -49,8 +52,13 @@ export function useChat() {
       }
     } catch (err) {
       console.error('Error sending message:', err)
-      error.value = `Xin lỗi, có lỗi xảy ra: ${err.message}`
+      if (err.message.includes('Hệ thống đang quá tải')) {
+        error.value = 'Hệ thống đang quá tải. Vui lòng thử lại sau ít phút.'
+      } else {
+        error.value = `Xin lỗi, có lỗi xảy ra: ${err.message}`
+      }
       chatHistory.value.push({ text: error.value, isUser: false })
+      throw err
     } finally {
       isLoading.value = false
     }
