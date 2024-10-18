@@ -8,16 +8,15 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
-        file: 'en.json'
+        file: 'en-US.json'
       },
       {
         code: 'vi',
-        file: 'vi.json'
+        file: 'vi-VN.json'
       }
     ],
-    defaultLocale: 'en',
-    strategy: 'prefix_except_default',
-    lazy: true,
+    defaultLocale: 'vi',
+    strategy: 'no_prefix',
     langDir: 'locales',
   },
   app: {

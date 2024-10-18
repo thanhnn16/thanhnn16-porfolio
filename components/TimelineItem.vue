@@ -1,5 +1,5 @@
 <template>
-  <div class="timeline-item group relative py-8">
+  <div class="timeline-item group relative py-8" :key="item.id">
     <div class="timeline-line"></div>
     <div class="timeline-content flex items-center">
       <div class="w-1/2 pr-8 text-right">

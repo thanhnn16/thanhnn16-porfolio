@@ -81,7 +81,7 @@ import { useI18n } from 'vue-i18n'
 
 const langStore = useLangStore()
 const { currentLang } = storeToRefs(langStore)
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 
 const isDropdownOpen = ref(false)
 const isScrolled = ref(false)
@@ -108,6 +108,8 @@ const changeLang = (lang) => {
   console.log('Changing language to:', lang)
   langStore.setLang(lang)
   locale.value = lang
+  console.log('Language changed. Current language:', langStore.currentLang)
+  console.log('I18n locale after change:', locale.value)
   isDropdownOpen.value = false
 }
 

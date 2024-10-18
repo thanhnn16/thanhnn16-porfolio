@@ -160,5 +160,9 @@
   "projectFeatures": "Features",
   "projectChallenges": "Challenges",
   "projectOutcome": "Outcome",
-  "projectNotFound": "Project not found."
+  "projectNotFound": "Project not found.",
+  "aiChat": "AI Chat",
+  "enterMessage": "Enter message...",
+  "askAboutMe": "Want to know more about me? Ask Thanh Con!",
+  "thinking": "Thinking..."
 }

@@ -3,7 +3,7 @@
     <div class="parallax-container h-screen">
       <div class="parallax-bg"></div>
       <section class="relative h-full flex items-center justify-center overflow-hidden">
-        <div class="container mx-auto text-center relative z-10">
+        <div class="container mx-auto text-center relative z-5">
           <h1 class="text-6xl font-bold mb-6 text-dark">
             <span class="typing-effect"></span>
           </h1>
@@ -67,7 +67,7 @@
         <div class="timeline">
           <TimelineItem 
             v-for="item in timelineItems" 
-            :key="item.date"  
+            :key="item.id"  
             :item="item"
           />
         </div>
@@ -98,13 +98,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, computed } from 'vue'
+import { ref, onMounted, nextTick, computed, watch } from 'vue'
+import { useLangStore } from '@/stores/lang'
 
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger, $TextPlugin: TextPlugin } = useNuxtApp()
 
 const { t } = useI18n()
+const langStore = useLangStore()
 
-const featuredProjects = ref([
+const featuredProjects = computed(() => [
   {
     id: 1,
     name: t('project1Name'),
@@ -148,7 +150,7 @@ const scrollToContact = () => {
   }
 }
 
-const skillCategories = [
+const skillCategories = computed(() => [
   {
     title: t('webDevelopment'),
     skills: [
@@ -176,9 +178,9 @@ const skillCategories = [
       { name: t('prototype'), description: t('prototypeDescription'), level: 75 },
     ]
   }
-]
+])
 
-const education = ref([
+const education = computed(() => [
   {
     title: t('fptPolytechnic'),
     date: t('fptPolytechnicPeriod'),
@@ -191,32 +193,37 @@ const education = ref([
   }
 ])
 
-const awards = ref([
+const awards = computed(() => [
   {
+    id: 1,
     title: t('top150ExcellentStudents'),
     organization: t('fptPolytechnic'),
     date: '2023 & 2024',
     description: t('top150ExcellentStudentsDescription'),
   },
   {
+    id: 2,
     title: t('fiveAwardsInSixSemesters'),
     organization: t('fptPolytechnic'),
     date: '2023 & 2024',
     description: t('fiveAwardsInSixSemestersDescription'),
   },
   {
+    id: 3,
     title: t('top50ExcellentLeaders'),
     organization: t('fptPolytechnic'),
     date: t('july2023'),
     description: t('top50ExcellentLeadersDescription'),
   },
   {
+    id: 4,
     title: t('secondPrizeMobileAppChallenge'),
     organization: t('fptPolytechnic'),
     date: t('july2023'),
     description: t('secondPrizeMobileAppChallengeDescription'),
   },
   {
+    id: 5,
     title: t('mostOutstandingActiveStudent'),
     organization: t('fptPolytechnic'),
     date: t('october2024'),
@@ -225,11 +232,11 @@ const awards = ref([
 ])
 
 const timelineItems = computed(() => {
-  const items = [...education.value, ...awards.value].sort((a, b) => new Date(b.date) - new Date(a.date))
-  return items.map(item => ({
-    ...item,
-    isAward: !!item.organization
-  }))
+  const items = [
+    ...education.value.map((item, index) => ({ ...item, id: `edu_${index}`, isAward: false })),
+    ...awards.value.map(item => ({ ...item, isAward: true }))
+  ].sort((a, b) => new Date(b.date) - new Date(a.date))
+  return items
 })
 
 const checkScroll = () => {
@@ -245,62 +252,40 @@ const checkScroll = () => {
   })
 }
 
+const typingText = computed(() => `${t('greeting', { name: t('yourName') })}`)
+
+const typingAnimation = ref(null)
+
+function updateTypingEffect() {
+  if (typingAnimation.value) {
+    typingAnimation.value.kill()
+  }
+  
+  gsap.set('.typing-effect', { text: '' })
+  typingAnimation.value = gsap.to('.typing-effect', {
+    duration: 2,
+    text: typingText.value,
+    ease: "none",
+  })
+}
+
 onMounted(async () => {
   if (process.client) {
     await nextTick()
     initGSAPAnimations()
     initIntersectionObserver()
+    updateTypingEffect()
   }
 })
 
+watch(() => langStore.currentLang, () => {
+  nextTick(() => {
+    updateTypingEffect()
+  })
+})
+
 function initGSAPAnimations() {
-  if (!gsap) return; // Kiểm tra xem gsap có tồn tại không
-
-  // Typing effect animation
-  const typingText = `${t('greeting', { name: t('yourName') })}`
-  gsap.to('.typing-effect', {
-    duration: 2,
-    text: typingText,
-    ease: "none",
-  })
-
-  // Parallax effect for background
-  gsap.to('.parallax-bg', {
-    yPercent: 50,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".parallax-container",
-      start: "top top",
-      end: "bottom top",
-      scrub: true
-    }
-  })
-
-  // Fade in animations for sections
-  gsap.utils.toArray('.fade-in-section').forEach((section, i) => {
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top bottom-=100",
-      toggleClass: "active",
-      once: true
-    })
-  })
-
-  // Skill bar animation
-  gsap.utils.toArray('.skill-item').forEach((item) => {
-    const bar = item.querySelector('.bg-accent')
-    if (bar) {
-      gsap.to(bar, {
-        width: bar.style.width,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: item,
-          start: "top bottom-=50",
-        }
-      })
-    }
-  })
+  if (!gsap) return;
 }
 
 function initIntersectionObserver() {
@@ -524,3 +509,7 @@ function initIntersectionObserver() {
   @apply bg-yellow-50 rounded-lg p-4 shadow-md;
 }
 </style>
+
+
+
+

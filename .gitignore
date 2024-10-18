@@ -22,3 +22,28 @@ logs
 .env
 .env.*
 !.env.example
+
+
+# Nuxt build outputs
+.nuxt/
+
+# Nuxt cache
+.cache/
+
+# Nuxt data
+.data/
+
+# Nuxt generated files
+.nuxt/
+
+# Nuxt cache
+.cache/
+
+# Nuxt data
+.data/
+
+
+
+# Vercel
+.vercel/
+    

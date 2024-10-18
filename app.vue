@@ -9,38 +9,35 @@
     </div>
     <ScrollToTop />
     <AIChatButton />
-    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
-      <div class="absolute top-10 left-10 w-20 h-20 bg-accent opacity-10 rounded-full"></div>
-      <div class="absolute bottom-20 right-20 w-40 h-40 bg-secondary opacity-20 rounded-full"></div>
-      <div class="absolute top-1/2 left-1/4 w-60 h-2 bg-muted opacity-10 transform -rotate-45"></div>
-    </div>
+    <!-- <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+      <div class="absolute top-10 left-10 w-20 h-20 bg-accent opacity-5 rounded-full"></div>
+      <div class="absolute bottom-20 right-20 w-24 h-24 bg-muted opacity-5 rounded-full"></div>
+      <div class="absolute top-1/2 left-1/4 w-32 h-2 bg-primary opacity-5 transform -rotate-45"></div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import ScrollToTop from '~/components/ScrollToTop.vue'
 import AIChatButton from '~/components/AIChatButton.vue'
 import { useLangStore } from '~/stores/lang'
 import { useI18n } from 'vue-i18n'
 
 const langStore = useLangStore()
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 
 onMounted(() => {
+  console.log('App mounted. Current language:', langStore.currentLang)
+  console.log('I18n locale:', locale.value)
   langStore.initLang()
-  locale.value = langStore.currentLang
-  document.body.classList.add('hide-scrollbar')
+  console.log('Language initialized. Current language:', langStore.currentLang)
+  console.log('I18n locale after init:', locale.value)
+})
 
-  // Thêm hiệu ứng smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault()
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
-      })
-    })
-  })
+watch(() => langStore.currentLang, (newLang) => {
+  console.log('Language changed to:', newLang)
+  console.log('I18n locale after change:', locale.value)
 })
 </script>
 

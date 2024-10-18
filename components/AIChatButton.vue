@@ -1,11 +1,11 @@
 <template>
   <div class="fixed bottom-20 right-4 flex flex-col items-end">
     <Transition name="slide-fade">
-      <div v-if="showChat" class="mb-4 w-full max-w-md">
-        <div class="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200 flex flex-col" style="max-height: 50vh;">
+      <div v-if="showChat" class="mb-4 w-full max-w-md z-99999">
+        <div class="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200 flex flex-col" style="max-height: 60vh; max-width: 80vw;">
           <!-- Chat header -->
           <div class="flex justify-between items-center p-4 bg-gradient-to-r from-primary to-accent text-white">
-            <h2 class="text-xl font-bold">AI Chat</h2>
+            <h2 class="text-xl font-bold">{{ $t('aiChat') }}</h2>
             <button @click="toggleChat" class="text-white hover:text-gray-200 transition-colors duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -24,7 +24,7 @@
             </div>
             <div v-if="isLoading" class="text-center">
               <span class="inline-block px-4 py-2 bg-gray-200 text-gray-700 rounded-full animate-pulse">
-                Đang suy nghĩ...
+                {{ $t('thinking') }}
               </span>
             </div>
           </div>
@@ -35,7 +35,7 @@
                 v-model="userInput"
                 @keyup.enter="handleSendMessage"
                 type="text"
-                placeholder="Nhập tin nhắn..."
+                :placeholder="$t('enterMessage')"
                 :disabled="isLoading"
                 class="flex-grow border-2 border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
@@ -44,7 +44,7 @@
                 :disabled="isLoading"
                 class="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-r-full hover:opacity-90 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
               >
-                Gửi
+                {{ $t('send') }}
               </button>
             </div>
           </div>
@@ -57,7 +57,7 @@
       class="bg-gradient-to-r from-ai-button to-ai-button-dark text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 relative focus:outline-none focus:ring-2 focus:ring-ai-button"
       :class="{ 'animate-pulse': !showChat }"
     >
-      <span class="sr-only">AI Chat</span>
+      <span class="sr-only">{{ $t('aiChat') }}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -81,14 +81,15 @@
       v-if="showBalloon"
       class="absolute bottom-full right-0 mb-2 p-2 bg-white rounded-lg shadow-md animate-bounce"
     >
-      <p class="text-sm font-semibold">Muốn biết thêm về tôi? Hỏi Thành Con nhé!</p>
+      <p class="text-sm font-semibold">{{ $t('askAboutMe') }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, watch } from 'vue'
 import { useChat } from '~/composables/useChat'
+import { useI18n } from 'vue-i18n'
 
 const showChat = ref(false)
 const showBalloon = ref(true)
@@ -96,10 +97,16 @@ const userInput = ref('')
 const chatContainer = ref(null)
 
 const { chatHistory, isLoading, error, sendMessage } = useChat()
+const { t } = useI18n()
 
 const toggleChat = () => {
   showChat.value = !showChat.value
   showBalloon.value = false
+  if (showChat.value) {
+    nextTick(() => {
+      scrollToBottom()
+    })
+  }
 }
 
 const handleSendMessage = async () => {
@@ -108,9 +115,6 @@ const handleSendMessage = async () => {
   const message = userInput.value
   userInput.value = ''
   await sendMessage(message)
-  
-  await nextTick()
-  scrollToBottom()
 }
 
 const scrollToBottom = () => {
@@ -118,6 +122,12 @@ const scrollToBottom = () => {
     chatContainer.value.scrollTop = chatContainer.value.scrollHeight
   }
 }
+
+watch(chatHistory, () => {
+  nextTick(() => {
+    scrollToBottom()
+  })
+}, { deep: true })
 
 onMounted(() => {
   setTimeout(() => {

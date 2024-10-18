@@ -160,5 +160,9 @@
   "projectFeatures": "Tính năng",
   "projectChallenges": "Khó khăn",
   "projectOutcome": "Kết quả",
-  "projectNotFound": "Dự án không tồn tại."
+  "projectNotFound": "Dự án không tồn tại.",
+  "aiChat": "AI Chat",
+  "enterMessage": "Nhập tin nhắn...",
+  "askAboutMe": "Muốn biết thêm về tôi? Hỏi Thành Con nhé!",
+  "thinking": "Đang suy nghĩ..."
 }
