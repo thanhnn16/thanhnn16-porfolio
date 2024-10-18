@@ -5,45 +5,42 @@
       <section class="relative h-full flex items-center justify-center overflow-hidden">
         <div class="container mx-auto text-center relative z-10">
           <h1 class="text-6xl font-bold mb-6 text-dark">
-            <span class="typing-effect">{{ typedText }}</span>
+            <span class="typing-effect"></span>
           </h1>
           <p class="text-2xl mb-10 text-dark">{{ $t('profession') }}</p>
-          <a href="#contact" @click.prevent="scrollToContact" class="btn-primary hover:scale-105 transform transition duration-300">
+          <a href="#contact" @click.prevent="scrollToContact"
+            class="btn-primary hover:scale-105 transform transition duration-300">
             {{ $t('contactMe') }}
           </a>
         </div>
       </section>
     </div>
 
-    <!-- About Me Section -->
-    <section class="container mx-auto">
+    <section class="fade-in-section min-h-screen py-20">
       <h2 class="section-title">{{ $t('about') }}</h2>
       <div class="flex flex-col md:flex-row items-center gap-12">
-        <img src="https://placehold.co/300x300" :alt="$t('yourName')" class="rounded-full w-64 h-64 object-cover shadow-lg">
+        <img src="@/assets/images/avatar.png" :alt="$t('yourName')"
+          class="rounded-full w-64 h-64 object-cover shadow-lg">
         <div>
           <p class="text-lg text-muted mb-6">
-            {{ $t('aboutDescription') }}
+            {{ $t('indexAboutDescription') }}
           </p>
           <a href="/about" class="btn-secondary">{{ $t('readMoreAboutMe') }}</a>
         </div>
       </div>
     </section>
 
-    <!-- Featured Projects Section -->
-    <section class="bg-light py-20">
-      <div class="container mx-auto">
-        <h2 class="section-title">{{ $t('featuredProjects') }}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ProjectCard v-for="project in featuredProjects" :key="project.id" :project="project" />
-        </div>
-        <div class="text-center mt-12">
-          <a href="/projects" class="btn-secondary">{{ $t('viewAllProjects') }}</a>
-        </div>
+    <section class="fade-in-section min-h-screen py-20 bg-light">
+      <h2 class="section-title">{{ $t('featuredProjects') }}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <ProjectCard v-for="project in featuredProjects" :key="project.id" :project="project" />
+      </div>
+      <div class="text-center mt-12">
+        <a href="/projects" class="btn-secondary">{{ $t('viewAllProjects') }}</a>
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-16">
+    <section id="skills" class="fade-in-section min-h-screen py-20">
       <h2 class="section-title">{{ $t('skills') }}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div v-for="category in skillCategories" :key="category.title" class="skill-category">
@@ -63,36 +60,21 @@
       </div>
     </section>
 
-    <!-- Education and Certifications Section -->
-    <section class="bg-light py-20">
-      <div class="container mx-auto">
-        <h2 class="section-title">{{ $t('educationAndAwards') }}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-white p-8 rounded-lg shadow-soft">
-            <h3 class="text-xl font-semibold text-dark mb-4">{{ $t('education') }}</h3>
-            <div v-for="edu in education" :key="edu.school" class="mb-4">
-              <h4 class="text-lg font-medium text-dark">{{ edu.school }}</h4>
-              <p class="text-muted">{{ edu.major }}</p>
-              <p class="text-sm text-accent">{{ edu.period }}</p>
-              <p v-if="edu.gpa" class="text-sm text-secondary">{{ $t('gpa') }}: {{ edu.gpa }}</p>
-            </div>
-          </div>
-          <div class="bg-white p-8 rounded-lg shadow-soft">
-            <h3 class="text-xl font-semibold text-dark mb-4">{{ $t('awards') }}</h3>
-            <ul class="space-y-4">
-              <li v-for="award in awards" :key="award.title" class="border-b border-muted pb-4 last:border-b-0 last:pb-0">
-                <h4 class="font-medium text-dark">{{ award.title }}</h4>
-                <p class="text-sm text-muted">{{ award.organization }}</p>
-                <p class="text-sm text-accent">{{ award.date }}</p>
-              </li>
-            </ul>
-          </div>
+    <section class="fade-in-section min-h-screen py-20 bg-light">
+      <h2 class="section-title">{{ $t('educationAndAwards') }}</h2>
+      <p class="text-center text-muted mb-8">{{ $t('hoverToViewDetails') }}</p>
+      <div class="max-w-4xl mx-auto">
+        <div class="timeline">
+          <TimelineItem 
+            v-for="item in timelineItems" 
+            :key="item.date"  
+            :item="item"
+          />
         </div>
       </div>
     </section>
 
-    <!-- Contact Form Section -->
-    <section id="contact" class="container mx-auto">
+    <section id="contact" class="fade-in-section min-h-screen py-20">
       <h2 class="section-title">{{ $t('contactMe') }}</h2>
       <form @submit.prevent="submitForm" class="max-w-lg mx-auto space-y-6">
         <div>
@@ -111,13 +93,14 @@
       </form>
     </section>
 
-    <section v-for="(section, index) in sections" :key="index" class="fade-in-section" :class="{ 'is-visible': section.isVisible }">
-      <!-- Nội dung của từng section -->
-    </section>
+
   </div>
 </template>
+
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, nextTick, computed } from 'vue'
+
+const { $gsap: gsap, $ScrollTrigger: ScrollTrigger, $TextPlugin: TextPlugin } = useNuxtApp()
 
 const { t } = useI18n()
 
@@ -197,16 +180,14 @@ const skillCategories = [
 
 const education = ref([
   {
-    school: t('fptPolytechnic'),
-    major: t('mobileAppDevelopment'),
-    period: t('fptPolytechnicPeriod'),
-    gpa: '9.4'
+    title: t('fptPolytechnic'),
+    date: t('fptPolytechnicPeriod'),
+    description: `${t('mobileAppDevelopment')} - ${t('gpa')}: 9.4`,
   },
   {
-    school: t('hoChiMinhOpenUniversity'),
-    major: t('japanese'),
-    period: t('hoChiMinhOpenUniversityPeriod'),
-    gpa: t('academicResultsReserved')
+    title: t('hoChiMinhOpenUniversity'),
+    date: t('hoChiMinhOpenUniversityPeriod'),
+    description: `${t('japanese')} - ${t('academicResultsReserved')}`,
   }
 ])
 
@@ -214,77 +195,130 @@ const awards = ref([
   {
     title: t('top150ExcellentStudents'),
     organization: t('fptPolytechnic'),
-    date: '2023 & 2024'
+    date: '2023 & 2024',
+    description: t('top150ExcellentStudentsDescription'),
   },
   {
     title: t('fiveAwardsInSixSemesters'),
     organization: t('fptPolytechnic'),
-    date: '2023 & 2024'
+    date: '2023 & 2024',
+    description: t('fiveAwardsInSixSemestersDescription'),
   },
   {
     title: t('top50ExcellentLeaders'),
     organization: t('fptPolytechnic'),
-    date: t('july2023')
+    date: t('july2023'),
+    description: t('top50ExcellentLeadersDescription'),
   },
   {
     title: t('secondPrizeMobileAppChallenge'),
     organization: t('fptPolytechnic'),
-    date: t('july2023')
+    date: t('july2023'),
+    description: t('secondPrizeMobileAppChallengeDescription'),
   },
   {
     title: t('mostOutstandingActiveStudent'),
     organization: t('fptPolytechnic'),
-    date: t('october2024')
+    date: t('october2024'),
+    description: t('mostOutstandingActiveStudentDescription'),
   }
 ])
 
-const sections = ref([
-  { isVisible: false },
-  { isVisible: false },
-  { isVisible: false },
-  { isVisible: false },
-  { isVisible: false },
-])
+const timelineItems = computed(() => {
+  const items = [...education.value, ...awards.value].sort((a, b) => new Date(b.date) - new Date(a.date))
+  return items.map(item => ({
+    ...item,
+    isAward: !!item.organization
+  }))
+})
 
 const checkScroll = () => {
-  sections.value.forEach((section, index) => {
-    const sectionElement = document.querySelectorAll('.fade-in-section')[index]
-    if (sectionElement) {
-      const rect = sectionElement.getBoundingClientRect()
-      const isVisible = rect.top <= window.innerHeight * 0.75 && rect.bottom >= 0
-      section.isVisible = isVisible
+  sections.value.forEach((section) => {
+    const sectionTop = section.getBoundingClientRect().top
+    const sectionBottom = section.getBoundingClientRect().bottom
+
+    if (sectionTop < window.innerHeight && sectionBottom >= 0) {
+      section.classList.add('is-visible')
+    } else {
+      section.classList.remove('is-visible')
     }
   })
 }
-const handleParallax = () => {
-  const parallaxBg = document.querySelector('.parallax-bg')
-  if (parallaxBg) {
-    const scrollPosition = window.scrollY
-    parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`
-  }
-}
 
-onMounted(() => {
-  window.addEventListener('scroll', handleParallax)
-  window.addEventListener('scroll', checkScroll)
-  checkScroll()
-  typeText()
+onMounted(async () => {
+  if (process.client) {
+    await nextTick()
+    initGSAPAnimations()
+    initIntersectionObserver()
+  }
 })
 
-const typedText = ref('')
-const fullText = t('greeting', { name: t('yourName') })
+function initGSAPAnimations() {
+  if (!gsap) return; // Kiểm tra xem gsap có tồn tại không
 
-const typeText = async () => {
-  for (let i = 0; i <= fullText.length; i++) {
-    typedText.value = fullText.slice(0, i)
-    await new Promise(resolve => setTimeout(resolve, 100))
-  }
+  // Typing effect animation
+  const typingText = `${t('greeting', { name: t('yourName') })}`
+  gsap.to('.typing-effect', {
+    duration: 2,
+    text: typingText,
+    ease: "none",
+  })
+
+  // Parallax effect for background
+  gsap.to('.parallax-bg', {
+    yPercent: 50,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".parallax-container",
+      start: "top top",
+      end: "bottom top",
+      scrub: true
+    }
+  })
+
+  // Fade in animations for sections
+  gsap.utils.toArray('.fade-in-section').forEach((section, i) => {
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top bottom-=100",
+      toggleClass: "active",
+      once: true
+    })
+  })
+
+  // Skill bar animation
+  gsap.utils.toArray('.skill-item').forEach((item) => {
+    const bar = item.querySelector('.bg-accent')
+    if (bar) {
+      gsap.to(bar, {
+        width: bar.style.width,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top bottom-=50",
+        }
+      })
+    }
+  })
 }
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleParallax)
-  window.removeEventListener('scroll', checkScroll)
-})
+function initIntersectionObserver() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible')
+      } else {
+        entry.target.classList.remove('is-visible')
+      }
+    })
+  }, {
+    threshold: 0.1
+  })
+
+  const sections = document.querySelectorAll('.fade-in-section')
+  sections.forEach(section => observer.observe(section))
+}
 </script>
 
 <style scoped>
@@ -310,7 +344,8 @@ onUnmounted(() => {
 
 .form-input {
   @apply w-full px-4 py-3 border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition duration-300;
-  background-color: white; /* Đặt màu nền mặc định */
+  background-color: white;
+  /* Đặt màu nền mặc định */
 }
 
 /* Loại bỏ màu nền vàng khi tự động điền */
@@ -350,7 +385,7 @@ onUnmounted(() => {
 
 .fade-in-section {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(50px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
@@ -365,8 +400,8 @@ onUnmounted(() => {
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .typing-effect::after {
@@ -375,13 +410,21 @@ onUnmounted(() => {
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 .parallax-container {
   position: relative;
   overflow: hidden;
+  height: 100vh;
 }
 
 .parallax-bg {
@@ -390,7 +433,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('https://picsum.photos/2560/1440'); /* Sử dụng hình mẫu từ Lorem Picsum */
+  background-image: url('https://picsum.photos/2560/1440');
   background-size: cover;
   background-position: center;
   transform: translateY(0);
@@ -398,5 +441,86 @@ onUnmounted(() => {
   will-change: transform;
 }
 
+.content-sections {
+  position: relative;
+  z-index: 1;
+  background-color: white;
+}
 
+/* Thêm một số hiệu ứng CSS bổ sung */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.skill-category {
+  transition: transform 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+}
+
+.btn-primary,
+.btn-secondary {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Thêm hiệu ứng loading spinner */
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Thêm class cho animation */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline {
+  @apply relative;
+}
+
+.award-item .timeline-dot {
+  @apply bg-yellow-500;
+}
+
+.award-item h4 {
+  @apply text-yellow-600 font-bold;
+}
+
+.award-item .timeline-content {
+  @apply bg-yellow-50 rounded-lg p-4 shadow-md;
+}
 </style>

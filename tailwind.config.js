@@ -15,7 +15,7 @@ module.exports = {
         'accent': '#3182CE',
         'accent-dark': '#2C5282',
         'secondary': '#718096',
-        'muted': '#CBD5E0',
+        'muted': '#4A5568',
       },
       fontFamily: {
         sans: ['Roboto', 'Noto Sans', 'sans-serif'],

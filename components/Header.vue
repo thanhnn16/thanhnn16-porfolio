@@ -41,8 +41,8 @@
       
       <!-- Menu di động -->
       <div v-if="isMobileMenuOpen" class="md:hidden mt-4">
-        <ul class="flex flex-col space-y-4">
-          <li v-for="(item, index) in navItems" :key="index">
+        <ul class="flex flex-col space-y-4 items-center">
+          <li v-for="(item, index) in navItems" :key="index" class="w-full text-center">
             <NuxtLink :to="item.path" class="nav-link block" 
                       :class="[isScrolled ? 'text-white' : 'text-blue-900', 
                                { 'active': $route.path === item.path }]"
@@ -51,16 +51,18 @@
             </NuxtLink>
           </li>
         </ul>
-        <div class="mt-4">
-          <button @click="toggleMobileLangDropdown" class="flex items-center space-x-2 p-2 border rounded-md bg-gray-100 hover:bg-gray-200 transition duration-300 w-full">
+        <div class="mt-4 flex justify-center">
+          <button @click="toggleMobileLangDropdown" class="flex items-center justify-center space-x-2 p-2 border rounded-md bg-gray-100 hover:bg-gray-200 transition duration-300 w-full max-w-xs">
             <Icon :name="getFlagIcon(currentLang)" class="w-6 h-4" />
             <span class="font-medium">{{ getLangLabel(currentLang) }}</span>
             <Icon name="heroicons:chevron-down" class="w-4 h-4 ml-1" />
           </button>
-          <div v-if="isMobileLangDropdownOpen" class="mt-2 w-full bg-white border rounded-md shadow-lg">
+        </div>
+        <div v-if="isMobileLangDropdownOpen" class="mt-2 w-full flex justify-center">
+          <div class="bg-white border rounded-md shadow-lg max-w-xs w-full">
             <button v-for="lang in availableLangs" :key="lang.code"
                     @click="changeLangMobile(lang.code)" 
-                    class="flex items-center space-x-2 w-full p-2 hover:bg-gray-100 transition duration-300">
+                    class="flex items-center justify-center space-x-2 w-full p-2 hover:bg-gray-100 transition duration-300">
               <Icon :name="getFlagIcon(lang.code)" class="w-6 h-4" />
               <span>{{ lang.label }}</span>
             </button>
@@ -72,13 +74,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useLangStore } from '~/stores/lang'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 
 const langStore = useLangStore()
 const { currentLang } = storeToRefs(langStore)
+const { locale } = useI18n()
 
 const isDropdownOpen = ref(false)
 const isScrolled = ref(false)
@@ -102,12 +105,15 @@ const closeMobileMenu = () => {
 }
 
 const changeLang = (lang) => {
+  console.log('Changing language to:', lang)
   langStore.setLang(lang)
+  locale.value = lang
   isDropdownOpen.value = false
 }
 
 const changeLangMobile = (lang) => {
   langStore.setLang(lang)
+  locale.value = lang
   isMobileLangDropdownOpen.value = false
   isMobileMenuOpen.value = false
 }
@@ -124,6 +130,7 @@ const navItems = [
   { name: 'home', path: '/' },
   { name: 'about', path: '/about' },
   { name: 'skills', path: '/skills' },
+  { name: 'projects', path: '/projects' },
   { name: 'contact', path: '/contact' }
 ]
 
@@ -141,9 +148,8 @@ const getLangLabel = (code) => {
   return lang ? lang.label : code.toUpperCase()
 }
 
-const { locale } = useI18n()
-
 watch(currentLang, (newLang) => {
+  console.log('Current language changed to:', newLang)
   locale.value = newLang
 })
 

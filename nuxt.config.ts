@@ -3,17 +3,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   ssr: true,
-  modules: ['@pinia/nuxt', '@nuxtjs/i18n', '@nuxtjs/tailwindcss', '@nuxt/icon'],
+  modules: ['@pinia/nuxt', '@nuxtjs/i18n', '@nuxtjs/tailwindcss', '@nuxt/icon', 'vue3-carousel-nuxt'],
   i18n: {
     locales: [
       {
         code: 'en',
-        language: 'English',
         file: 'en.json'
       },
       {
         code: 'vi',
-        language: 'Tiếng Việt',
         file: 'vi.json'
       }
     ],
@@ -32,4 +30,7 @@ export default defineNuxtConfig({
       ]
     }
   },
+  plugins: [
+    { src: '~/plugins/gsap.client.js', mode: 'client' }
+  ],
 })
