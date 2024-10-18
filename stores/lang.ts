@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export const useLangStore = defineStore('lang', () => {
   const currentLang = ref('vi')
-  const { locale, t } = useI18n()
+  const { locale } = useI18n()
 
   function setLang(lang: string) {
     console.log('Setting language to:', lang)
@@ -21,18 +21,5 @@ export const useLangStore = defineStore('lang', () => {
     setLang(savedLang)
   }
 
-  watch(locale, (newLocale) => {
-    console.log('I18n locale changed to:', newLocale)
-    if (newLocale !== currentLang.value) {
-      console.log('Syncing store language with I18n locale')
-      currentLang.value = newLocale
-    }
-  })
-
-  const changeLang = (lang: string) => {
-    setLang(lang)
-    locale.value = lang
-  }
-
-  return { currentLang, setLang, initLang, changeLang }
+  return { currentLang, setLang, initLang }
 })

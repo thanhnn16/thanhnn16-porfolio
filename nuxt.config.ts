@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     defaultLocale: 'vi',
     strategy: 'no_prefix',
     langDir: 'locales',
+    detectBrowserLanguage: false,
   },
   app: {
     head: {

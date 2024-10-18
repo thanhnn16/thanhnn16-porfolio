@@ -34,6 +34,8 @@ onUnmounted(() => {
   const scrollContainer = document.querySelector('.overflow-y-auto')
   scrollContainer.removeEventListener('scroll', checkScroll)
 })
+
+defineExpose({ scrollToTop })
 </script>
 
 <style scoped>

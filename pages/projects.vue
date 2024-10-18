@@ -20,14 +20,14 @@ const projects = ref([
     id: 1,
     name: 'Đừng Quên Em',
     description: t('projectDungQuenEmDescription'),
-    image: '/path/to/image1.jpg',
+    image: 'https://placehold.co/600x400',
     type: t('mobileApp')
   },
   {
     id: 2,
     name: 'Bông Tuyết Trắng',
     description: t('projectBongTuyetTrangDescription'),
-    image: '/path/to/image2.jpg',
+    image: 'https://placehold.co/600x400',
     type: t('mobileApp')
   },
   // Thêm các dự án khác ở đây

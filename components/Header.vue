@@ -8,11 +8,12 @@
         <!-- Menu cho màn hình lớn -->
         <ul class="hidden md:flex space-x-8">
           <li v-for="(item, index) in navItems" :key="index">
-            <NuxtLink :to="item.path" class="nav-link" 
-                      :class="[isScrolled ? 'text-white' : 'text-blue-900', 
-                               { 'active': $route.path === item.path }]">
+            <a @click.prevent="navigateToPage(item.path)" 
+               class="nav-link cursor-pointer" 
+               :class="[isScrolled ? 'text-white' : 'text-blue-900', 
+                        { 'active': $route.path === item.path }]">
               {{ $t(item.name) }}
-            </NuxtLink>
+            </a>
           </li>
         </ul>
         
@@ -43,12 +44,13 @@
       <div v-if="isMobileMenuOpen" class="md:hidden mt-4">
         <ul class="flex flex-col space-y-4 items-center">
           <li v-for="(item, index) in navItems" :key="index" class="w-full text-center">
-            <NuxtLink :to="item.path" class="nav-link block" 
-                      :class="[isScrolled ? 'text-white' : 'text-blue-900', 
-                               { 'active': $route.path === item.path }]"
-                      @click="closeMobileMenu">
+            <a @click.prevent="navigateToPage(item.path)" 
+               class="nav-link block cursor-pointer" 
+               :class="[isScrolled ? 'text-white' : 'text-blue-900', 
+                        { 'active': $route.path === item.path }]"
+               @click="closeMobileMenu">
               {{ $t(item.name) }}
-            </NuxtLink>
+            </a>
           </li>
         </ul>
         <div class="mt-4 flex justify-center">
@@ -70,14 +72,20 @@
         </div>
       </div>
     </nav>
+    <ScrollToTop ref="scrollToTopRef" />
   </header>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useLangStore } from '~/stores/lang'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { useNuxtApp } from '#app'
+
+const router = useRouter()
+const { $scrollToTop } = useNuxtApp()
 
 const langStore = useLangStore()
 const { currentLang } = storeToRefs(langStore)
@@ -102,6 +110,7 @@ const toggleMobileLangDropdown = () => {
 
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
+  scrollToTop()
 }
 
 const changeLang = (lang) => {
@@ -155,6 +164,38 @@ watch(currentLang, (newLang) => {
   locale.value = newLang
 })
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+
+// Thêm hàm này để xử lý việc chuyển trang
+const handleRouteChange = (to, from) => {
+  if (to.path !== from.path) {
+    scrollToTop()
+  }
+}
+
+// Lắng nghe sự kiện thay đổi route
+router.afterEach((to, from) => {
+  handleRouteChange(to, from)
+})
+
+const navigateToPage = (path) => {
+  console.log('navigateToPage called with path:', path)
+  router.push(path)
+  closeMobileMenu()
+  nextTick(() => {
+    if (scrollToTopRef.value) {
+      scrollToTopRef.value.scrollToTop()
+    }
+  })
+}
+
+const scrollToTopRef = ref(null)
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   langStore.initLang()
@@ -162,6 +203,14 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+})
+
+// Thêm hook onBeforeRouteUpdate
+router.beforeEach((to, from, next) => {
+  if (to.path !== from.path) {
+    window.scrollTo(0, 0)
+  }
+  next()
 })
 </script>
 

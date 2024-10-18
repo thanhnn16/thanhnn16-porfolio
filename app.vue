@@ -7,7 +7,7 @@
       </main>
       <Footer />
     </div>
-    <ScrollToTop />
+    <ScrollToTop ref="scrollToTopRef" />
     <AIChatButton />
     <!-- <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
       <div class="absolute top-10 left-10 w-20 h-20 bg-accent opacity-5 rounded-full"></div>
@@ -18,14 +18,18 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, ref } from 'vue'
 import ScrollToTop from '~/components/ScrollToTop.vue'
 import AIChatButton from '~/components/AIChatButton.vue'
 import { useLangStore } from '~/stores/lang'
 import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
 
 const langStore = useLangStore()
-const { locale, t } = useI18n()
+const { locale } = useI18n()
+const route = useRoute()
+const router = useRouter()
+const scrollToTopRef = ref(null)
 
 onMounted(() => {
   console.log('App mounted. Current language:', langStore.currentLang)
@@ -35,10 +39,17 @@ onMounted(() => {
   console.log('I18n locale after init:', locale.value)
 })
 
-watch(() => langStore.currentLang, (newLang) => {
-  console.log('Language changed to:', newLang)
-  console.log('I18n locale after change:', locale.value)
-})
+// Thêm watcher cho route
+watch(
+  () => route.path,
+  () => {
+    nextTick(() => {
+      if (scrollToTopRef.value) {
+        scrollToTopRef.value.scrollToTop()
+      }
+    })
+  }
+)
 </script>
 
 <style>
