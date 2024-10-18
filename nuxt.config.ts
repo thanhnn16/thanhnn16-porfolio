@@ -34,6 +34,6 @@ export default defineNuxtConfig({
     { src: '~/plugins/gsap.client.js', mode: 'client' }
   ],
   nitro: {
-    preset: 'node-server'
+    preset: 'vercel'
   },
 })
