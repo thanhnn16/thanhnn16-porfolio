@@ -1,4 +1,4 @@
-const messages = {
+export default {
   welcome: "Welcome to my portfolio",
   about: {
     title: "About Me",
@@ -51,7 +51,7 @@ const messages = {
   personalInfo: {
     name: "Nong Nguyen Thanh",
     role: "Mobile & Web Developer | AI Enthusiast",
-    email: "thanhnn16.work@gmail.com",
+    email: "thanhnn16.work[at]gmail.com",
     phone: "+84 879 159 499",
     location: "Go Vap District, Ho Chi Minh City",
     birthDate: "01/06/1999"
@@ -139,7 +139,7 @@ const messages = {
       },
       email: {
         label: "Email",
-        placeholder: "your@email.com",
+        placeholder: "your[at]email.com",
         required: "Email is required",
         invalid: "Please enter a valid email",
         maxLength: "Email cannot exceed 100 characters"
@@ -261,6 +261,4 @@ const messages = {
   restartChat: "Restart Chat",
   askAboutMe: "Ask me anything about Thanh!",
   scroll_to_top: 'Scroll to top'
-} as const
-
-export default messages
+}

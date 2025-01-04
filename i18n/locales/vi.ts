@@ -1,4 +1,4 @@
-const messages = {
+export default {
   welcome: "Chào mừng đến với portfolio của tôi",
   about: {
     title: "Về Tôi",
@@ -51,7 +51,7 @@ const messages = {
   personalInfo: {
     name: "Nông Nguyễn Thành",
     role: "Lập trình viên Mobile & Web | AI Enthusiast",
-    email: "thanhnn16.work@gmail.com",
+    email: "thanhnn16.work[at]gmail.com",
     phone: "+84 879 159 499",
     location: "Quận Gò Vấp, TP. Hồ Chí Minh",
     birthDate: "01/06/1999"
@@ -139,7 +139,7 @@ const messages = {
       },
       email: {
         label: "Email",
-        placeholder: "your@email.com",
+        placeholder: "your[at]email.com",
         required: "Email là bắt buộc",
         invalid: "Vui lòng nhập email hợp lệ",
         maxLength: "Email không được vượt quá 100 ký tự"
@@ -261,6 +261,4 @@ const messages = {
   restartChat: "Bắt đầu lại",
   askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!",
   scroll_to_top: 'Cuộn lên đầu trang'
-} as const
-
-export default messages
+}
