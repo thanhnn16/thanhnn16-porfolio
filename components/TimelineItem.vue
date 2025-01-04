@@ -15,7 +15,7 @@
       <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
         <span class="text-primary-500 font-bold">{{ item.year }}</span>
         <h3 class="text-xl font-bold mt-2">{{ item.title }}</h3>
-        <p class="text-gray-600 dark:text-gray-400 mt-1">{{ item.company }}</p>
+        <p class="text-gray-600 dark:text-gray-400 mt-1">{{ item.institution }}</p>
         <p class="mt-4">{{ item.description }}</p>
       </div>
 
@@ -33,7 +33,7 @@ interface TimelineItem {
   id: number
   year: string
   title: string
-  company: string
+  institution: string
   description: string
 }
 

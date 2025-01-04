@@ -38,8 +38,20 @@
                 </div>
                 <div>
                   <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('contact.info.email') }}</p>
-                  <a href="mailto:your@email.com" class="font-medium hover:text-primary-500">
-                    your@email.com
+                  <a :href="`mailto:${contactInfo.email}`" class="font-medium hover:text-primary-500">
+                    {{ contactInfo.email }}
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center">
+                  <Icon name="heroicons:phone" class="w-6 h-6 text-primary-500" />
+                </div>
+                <div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('contact.info.phone') }}</p>
+                  <a :href="`tel:${contactInfo.phone}`" class="font-medium hover:text-primary-500">
+                    {{ contactInfo.phone }}
                   </a>
                 </div>
               </div>
@@ -50,7 +62,7 @@
                 </div>
                 <div>
                   <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('contact.info.location.label') }}</p>
-                  <p class="font-medium">{{ t('contact.info.location.value') }}</p>
+                  <p class="font-medium">{{ contactInfo.location }}</p>
                 </div>
               </div>
             </div>
@@ -58,15 +70,16 @@
             <!-- Social Links -->
             <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
               <h3 class="font-bold mb-4">{{ t('contact.followMe') }}</h3>
-              <div class="flex gap-4">
+              <div class="flex flex-wrap gap-4">
                 <a 
                   v-for="social in socialLinks" 
                   :key="social.name"
                   :href="social.url"
                   target="_blank"
-                  class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-colors"
+                  class="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary-500 hover:text-white transition-colors"
                 >
                   <Icon :name="social.icon" class="w-5 h-5" />
+                  <span class="text-sm">{{ social.name }}</span>
                 </a>
               </div>
             </div>
@@ -206,15 +219,36 @@ const showSuccessModal = ref(false)
 const socialLinks = [
   {
     name: 'GitHub',
-    url: 'https://github.com/yourusername',
-    icon: 'heroicons:code-bracket'
+    url: 'https://github.com/thanhnn16',
+    icon: 'mdi:github'
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/yourusername',
-    icon: 'heroicons:link'
+    url: 'https://www.linkedin.com/in/thanhnn16/',
+    icon: 'mdi:linkedin'
+  },
+  {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/thanhnn16',
+    icon: 'mdi:facebook'
+  },
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/thanhnn16',
+    icon: 'mdi:instagram'
+  },
+  {
+    name: 'YouTube',
+    url: 'https://www.youtube.com/@thanhnn16',
+    icon: 'mdi:youtube'
   }
 ]
+
+const contactInfo = {
+  email: 'thanhnn16.work@gmail.com',
+  phone: '+84 879 159 499',
+  location: 'Gò Vấp, TP.HCM'
+}
 
 const validateForm = () => {
   let isValid = true

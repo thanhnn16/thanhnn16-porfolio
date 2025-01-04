@@ -85,6 +85,84 @@ Portfolio này được tạo ra nhằm:
 - **Bông Tuyết Trắng**
   - [Source Code](https://github.com/thanhnn16/bongtuyettrang)
 
+# 🛠 Thông tin kỹ thuật Portfolio
+## Tech Stack
+- **Framework:** Nuxt 3
+- **Package Manager:** Bun
+- **UI Components:** Nuxt UI
+- **Icons:** Nuxt Icons
+- **Styling:** TailwindCSS
+- **Modules:**
+  - @nuxt/ui
+  - @nuxt/image
+  - @nuxtjs/color-mode
+  - @nuxtjs/google-fonts
+  - nuxt-icon
+
+## Project Structure
+```
+├── .github/               # GitHub workflows and config
+├── .nuxt/                # Nuxt build files
+├── .output/              # Output files
+├── assets/               # Static assets
+│   ├── css/             # CSS files
+│   └── images/          # Images
+├── components/           # Reusable components
+│   ├── A11ySkipLink.vue     # Accessibility skip link
+│   ├── AIChatButton.vue     # AI Chat button
+│   ├── ContactForm.vue      # Contact form
+│   ├── ErrorAlert.vue       # Error alert
+│   ├── ErrorBoundary.vue    # Error boundary
+│   ├── LanguageSwitch.vue   # Language switcher
+│   ├── MobileMenu.vue       # Mobile menu
+│   ├── ProjectCard.vue      # Project card
+│   ├── ProjectCardSkeleton.vue  # Project card skeleton
+│   ├── PWAPrompt.vue        # PWA installation prompt
+│   ├── ScrollToTop.vue      # Scroll to top button
+│   ├── SkillCard.vue        # Skill card
+│   ├── TheFooter.vue        # Footer component
+│   ├── TheHeader.vue        # Header component
+│   └── TimelineItem.vue     # Timeline item
+├── composables/          # Composable functions
+│   ├── useAnalytics.ts      # Analytics hooks
+│   ├── useChat.ts          # Chat functionality
+│   ├── useErrorHandler.ts   # Error handling
+│   ├── useHoverEffect.ts    # Hover effects
+│   ├── useOptimizedImage.ts # Image optimization
+│   ├── usePerformance.ts    # Performance tracking
+│   ├── usePWA.ts           # PWA functionality
+│   ├── useSecurity.ts      # Security features
+│   └── useUserTracking.ts   # User tracking
+├── layouts/              # Page layouts
+├── middleware/           # Middleware functions
+├── pages/                # Application pages
+│   ├── about.vue           # About page
+│   ├── contact.vue         # Contact page
+│   ├── index.vue           # Home page
+│   ├── projects.vue        # Projects list
+│   ├── projects/           # Project details
+│   └── skills.vue          # Skills page
+├── plugins/              # Nuxt plugins
+├── public/               # Public assets
+├── server/               # API endpoints
+├── stores/               # Pinia stores
+├── test/                 # Unit tests
+├── utils/                # Utility functions
+├── .env                  # Environment variables
+├── app.vue               # App entry
+├── i18n.config.ts        # i18n configuration
+├── nuxt.config.ts        # Nuxt configuration
+├── tailwind.config.js    # Tailwind configuration
+├── tsconfig.json         # TypeScript configuration
+└── vitest.setup.ts       # Vitest setup
+```
+
+## Performance
+- Fully Static Site
+- SEO Optimized
+- Mobile Responsive
+- Dark/Light Mode
+- Fast Loading Times
 
 ## English
 
@@ -172,3 +250,82 @@ This portfolio was created to:
   - [Source Code](https://github.com/thanhnn16/allure-spa-customer)
 - **White Snow**
   - [Source Code](https://github.com/thanhnn16/bongtuyettrang)
+
+# 🛠 Portfolio Technical Details
+## Tech Stack
+- **Framework:** Nuxt 3
+- **Package Manager:** Bun
+- **UI Components:** Nuxt UI
+- **Icons:** Nuxt Icons
+- **Styling:** TailwindCSS
+- **Modules:**
+  - @nuxt/ui
+  - @nuxt/image
+  - @nuxtjs/color-mode
+  - @nuxtjs/google-fonts
+  - nuxt-icon
+
+## Project Structure
+```
+├── .github/               # GitHub workflows and config
+├── .nuxt/                # Nuxt build files
+├── .output/              # Output files
+├── assets/               # Static assets
+│   ├── css/             # CSS files
+│   └── images/          # Images
+├── components/           # Reusable components
+│   ├── A11ySkipLink.vue     # Accessibility skip link
+│   ├── AIChatButton.vue     # AI Chat button
+│   ├── ContactForm.vue      # Contact form
+│   ├── ErrorAlert.vue       # Error alert
+│   ├── ErrorBoundary.vue    # Error boundary
+│   ├── LanguageSwitch.vue   # Language switcher
+│   ├── MobileMenu.vue       # Mobile menu
+│   ├── ProjectCard.vue      # Project card
+│   ├── ProjectCardSkeleton.vue  # Project card skeleton
+│   ├── PWAPrompt.vue        # PWA installation prompt
+│   ├── ScrollToTop.vue      # Scroll to top button
+│   ├── SkillCard.vue        # Skill card
+│   ├── TheFooter.vue        # Footer component
+│   ├── TheHeader.vue        # Header component
+│   └── TimelineItem.vue     # Timeline item
+├── composables/          # Composable functions
+│   ├── useAnalytics.ts      # Analytics hooks
+│   ├── useChat.ts          # Chat functionality
+│   ├── useErrorHandler.ts   # Error handling
+│   ├── useHoverEffect.ts    # Hover effects
+│   ├── useOptimizedImage.ts # Image optimization
+│   ├── usePerformance.ts    # Performance tracking
+│   ├── usePWA.ts           # PWA functionality
+│   ├── useSecurity.ts      # Security features
+│   └── useUserTracking.ts   # User tracking
+├── layouts/              # Page layouts
+├── middleware/           # Middleware functions
+├── pages/                # Application pages
+│   ├── about.vue           # About page
+│   ├── contact.vue         # Contact page
+│   ├── index.vue           # Home page
+│   ├── projects.vue        # Projects list
+│   ├── projects/           # Project details
+│   └── skills.vue          # Skills page
+├── plugins/              # Nuxt plugins
+├── public/               # Public assets
+├── server/               # API endpoints
+├── stores/               # Pinia stores
+├── test/                 # Unit tests
+├── utils/                # Utility functions
+├── .env                  # Environment variables
+├── app.vue               # App entry
+├── i18n.config.ts        # i18n configuration
+├── nuxt.config.ts        # Nuxt configuration
+├── tailwind.config.js    # Tailwind configuration
+├── tsconfig.json         # TypeScript configuration
+└── vitest.setup.ts       # Vitest setup
+```
+
+## Performance
+- Fully Static Site
+- SEO Optimized
+- Mobile Responsive
+- Dark/Light Mode
+- Fast Loading Times

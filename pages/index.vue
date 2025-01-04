@@ -10,9 +10,18 @@
             :initial="{ opacity: 0, y: 100 }"
             :enter="{ opacity: 1, y: 0 }"
           >
-            {{ t('hero.title') }}
+            {{ t('personalInfo.name') }}
           </h1>
           
+          <p 
+            class="text-2xl text-gray-600 dark:text-gray-400 mb-4"
+            v-motion
+            :initial="{ opacity: 0, y: 100 }"
+            :enter="{ opacity: 1, y: 0, transition: { delay: 100 } }"
+          >
+            {{ t('personalInfo.role') }}
+          </p>
+
           <p 
             class="text-xl text-gray-600 dark:text-gray-400 mb-8"
             v-motion
@@ -71,9 +80,14 @@
             <div class="p-6">
               <h3 class="text-xl font-bold mb-2">{{ project.title }}</h3>
               <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description }}</p>
-              <NuxtLink :to="project.link" class="text-primary-500 hover:text-primary-600">
-                {{ t('projects.learnMore') }} →
-              </NuxtLink>
+              <div class="flex justify-between items-center">
+                <NuxtLink :to="project.link" class="text-primary-500 hover:text-primary-600">
+                  {{ t('projects.learnMore') }} →
+                </NuxtLink>
+                <a :href="project.github" target="_blank" class="text-gray-500 hover:text-primary-500">
+                  <Icon name="mdi:github" class="w-6 h-6" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -90,11 +104,27 @@ const { t } = useI18n()
 const featuredProjects = [
   {
     id: 1,
-    title: 'Project One',
-    description: 'A brief description of the project and its key features.',
-    image: '/images/project1.jpg',
-    link: '/projects/1'
+    title: 'Allure Spa',
+    description: t('projects.items.allureSpa.description'),
+    image: '/images/allure-spa.jpg',
+    link: '/projects/allure-spa',
+    github: 'https://github.com/thanhnn16/allure-spa'
   },
-  // Add more projects...
+  {
+    id: 2,
+    title: 'Marine Trace',
+    description: t('projects.items.marineTrace.description'),
+    image: '/images/marine-trace.jpg',
+    link: '/projects/marine-trace',
+    github: 'https://github.com/thanhnn16/marine-trace'
+  },
+  {
+    id: 3,
+    title: 'Allure Spa Admin',
+    description: t('projects.items.allureSpaAdmin.description'),
+    image: '/images/allure-spa-admin.jpg',
+    link: '/projects/allure-spa-admin',
+    github: 'https://github.com/thanhnn16/allure-spa-admin'
+  }
 ]
 </script>

@@ -24,6 +24,42 @@ export default defineI18nConfig(() => ({
                         title: "Full Stack Developer",
                         company: "Startup",
                         description: "Developed full-stack applications using Vue.js and Node.js."
+                    },
+                    highSchool: {
+                        title: "High School Graduation",
+                        institution: "High School",
+                        year: "2017",
+                        description: "Graduated from high school and started studying Japanese Language at HCMC Open University."
+                    },
+                    university: {
+                        title: "Japanese Language Studies",
+                        institution: "HCMC Open University",
+                        year: "2017-2021",
+                        description: "Studied Japanese Language and achieved N3 certification."
+                    },
+                    fptStart: {
+                        title: "Started Programming Journey",
+                        institution: "FPT Polytechnic",
+                        year: "2022",
+                        description: "Began studying Mobile Application Development."
+                    },
+                    internship: {
+                        title: "Mobile Developer Intern",
+                        institution: "Softworld",
+                        year: "06-08/2023",
+                        description: "Internship as Mobile Developer, working on various mobile applications."
+                    },
+                    currentJob: {
+                        title: "Web Developer",
+                        institution: "Aimmi.vn",
+                        year: "Present",
+                        description: "Working as IT Web Developer, developing and maintaining web applications."
+                    },
+                    graduation: {
+                        title: "FPT Polytechnic Graduation",
+                        institution: "FPT Polytechnic",
+                        year: "2024",
+                        description: "Expected graduation with Mobile Application Development degree."
                     }
                 },
                 skills: {
@@ -123,7 +159,16 @@ export default defineI18nConfig(() => ({
                 contact: "Contact",
                 quickLinks: "Quick Links",
                 followMe: "Follow Me",
-                allRightsReserved: "All rights reserved."
+                allRightsReserved: "All rights reserved.",
+                role: "Role"
+            },
+            personalInfo: {
+                name: "Nong Nguyen Thanh",
+                role: "Mobile & Web Developer | AI Enthusiast",
+                email: "thanhnn16.work@gmail.com",
+                phone: "+84 879 159 499",
+                location: "Go Vap District, Ho Chi Minh City",
+                birthDate: "01/06/1999"
             },
             skills: {
                 mobileDevelopment: "Mobile Development",
@@ -146,14 +191,29 @@ export default defineI18nConfig(() => ({
                 toolsAndSoftware: "Tools & Software",
                 softSkills: {
                     title: "Soft Skills",
-                    selfLearning: "Self Learning",
-                    communication: "Communication",
-                    teamwork: "Teamwork",
-                    research: "Research",
-                    aiUtilization: "AI Utilization",
-                    problemSolving: "Problem Solving",
-                    agileMethodology: "Agile Methodology"
-                }
+                    teamwork: "Effective Teamwork",
+                    independent: "Strong Independent Work",
+                    problemSolving: "Problem-solving Mindset",
+                    timeManagement: "Excellent Time Management",
+                    stressManagement: "Stress Resilience",
+                    communication: "Strong Communication",
+                    continuousLearning: "Continuous Learning",
+                    adaptability: "Adaptability",
+                    creativity: "Creativity",
+                    criticalThinking: "Critical Thinking",
+                    leadership: "Leadership Potential",
+                    projectManagement: "Project Management"
+                },
+                nextjsDescription: "Building modern web applications with Next.js",
+                nuxtjsDescription: "Creating performant Vue.js applications with Nuxt.js",
+                reactjsDescription: "Frontend development with React.js",
+                tailwindDescription: "Rapid UI development with TailwindCSS",
+                postgresDescription: "Advanced database management with PostgreSQL",
+                mongodbDescription: "NoSQL database solutions with MongoDB",
+                zaloMiniAppDescription: "Developing mini applications for Zalo platform",
+                aiDescription: "Integrating and implementing AI solutions",
+                uiuxDescription: "Creating user-centered design experiences",
+                graphicsDescription: "Basic graphics design with Adobe Creative Suite"
             }
         },
         vi: {
@@ -177,6 +237,42 @@ export default defineI18nConfig(() => ({
                         title: "Lập trình viên Full Stack",
                         company: "Startup",
                         description: "Phát triển ứng dụng full-stack sử dụng Vue.js và Node.js."
+                    },
+                    highSchool: {
+                        title: "Tốt nghiệp THPT",
+                        institution: "THPT",
+                        year: "2017",
+                        description: "Tốt nghiệp THPT và bắt đầu học ngôn ngữ Nhật tại Đại học Mở TP.HCM."
+                    },
+                    university: {
+                        title: "Học ngôn ngữ Nhật",
+                        institution: "Đại học Mở TP.HCM",
+                        year: "2017-2021",
+                        description: "Học ngôn ngữ Nhật và đạt chứng chỉ N3."
+                    },
+                    fptStart: {
+                        title: "Bắt đầu học lập trình",
+                        institution: "FPT Polytechnic",
+                        year: "2022",
+                        description: "Bắt đầu học chuyên ngành Lập trình Mobile."
+                    },
+                    internship: {
+                        title: "Thực tập Lập trình Mobile",
+                        institution: "Softworld",
+                        year: "06-08/2023",
+                        description: "Thực tập với vị trí Lập trình Mobile, làm việc với nhiều ứng dụng di động."
+                    },
+                    currentJob: {
+                        title: "Lập trình Web",
+                        institution: "Aimmi.vn",
+                        year: "Hiện tại",
+                        description: "Đang làm việc với vị trí IT Web, phát triển và bảo trì các ứng dụng web."
+                    },
+                    graduation: {
+                        title: "Tốt nghiệp FPT Polytechnic",
+                        institution: "FPT Polytechnic",
+                        year: "2024",
+                        description: "Dự kiến tốt nghiệp chuyên ngành Lập trình Mobile."
                     }
                 },
                 skills: {
@@ -276,7 +372,16 @@ export default defineI18nConfig(() => ({
                 contact: "Liên hệ",
                 quickLinks: "Liên kết nhanh",
                 followMe: "Theo dõi tôi",
-                allRightsReserved: "Đã đăng ký bản quyền."
+                allRightsReserved: "Đã đăng ký bản quyền.",
+                role: "Vai trò"
+            },
+            personalInfo: {
+                name: "Nông Nguyễn Thành",
+                role: "Lập trình viên Mobile & Web | AI Enthusiast",
+                email: "thanhnn16.work@gmail.com",
+                phone: "+84 879 159 499",
+                location: "Gò Vấp, TP.HCM",
+                birthDate: "01/06/1999"
             },
             skills: {
                 mobileDevelopment: "Phát triển Ứng dụng Di động",
@@ -299,14 +404,29 @@ export default defineI18nConfig(() => ({
                 toolsAndSoftware: "Công cụ & Phần mềm",
                 softSkills: {
                     title: "Kỹ năng mềm",
-                    selfLearning: "Tự học",
-                    communication: "Giao tiếp",
-                    teamwork: "Làm việc nhóm",
-                    research: "Nghiên cứu",
-                    aiUtilization: "Sử dụng AI",
-                    problemSolving: "Giải quyết vấn đề",
-                    agileMethodology: "Phương pháp Agile"
-                }
+                    teamwork: "Làm việc nhóm hiệu quả",
+                    independent: "Khả năng làm việc độc lập cao",
+                    problemSolving: "Tư duy giải quyết vấn đề",
+                    timeManagement: "Quản lý thời gian tốt",
+                    stressManagement: "Khả năng chịu áp lực",
+                    communication: "Kỹ năng giao tiếp tốt",
+                    continuousLearning: "Tinh thần học hỏi liên tục",
+                    adaptability: "Khả năng thích nghi",
+                    creativity: "Sáng tạo",
+                    criticalThinking: "Tư duy phản biện",
+                    leadership: "Tiềm năng lãnh đạo",
+                    projectManagement: "Quản lý dự án"
+                },
+                nextjsDescription: "Xây dựng ứng dụng web hiện đại với Next.js",
+                nuxtjsDescription: "Tạo ứng dụng Vue.js hiệu năng cao với Nuxt.js",
+                reactjsDescription: "Phát triển frontend với React.js",
+                tailwindDescription: "Phát triển UI nhanh chóng với TailwindCSS",
+                postgresDescription: "Quản lý cơ sở dữ liệu nâng cao với PostgreSQL",
+                mongodbDescription: "Giải pháp cơ sở dữ liệu NoSQL với MongoDB",
+                zaloMiniAppDescription: "Phát triển ứng dụng mini cho nền tảng Zalo",
+                aiDescription: "Tích hợp và triển khai các giải pháp AI",
+                uiuxDescription: "Tạo trải nghiệm thiết kế lấy người dùng làm trung tâm",
+                graphicsDescription: "Thiết kế đồ họa cơ bản với Adobe Creative Suite"
             }
         }
     }

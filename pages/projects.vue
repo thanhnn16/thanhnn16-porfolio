@@ -122,27 +122,104 @@ const categories = [
   { value: 'all', label: t('projects.categories.all') },
   { value: 'web', label: t('projects.categories.web') },
   { value: 'mobile', label: t('projects.categories.mobile') },
-  { value: 'design', label: t('projects.categories.design') }
+  { value: 'zalo', label: t('projects.categories.zalo') }
 ]
 
 const projects = [
+  // Mobile Applications
   {
     id: 1,
-    title: t('projects.items.ecommerce.title'),
-    description: t('projects.items.ecommerce.description'),
-    category: 'web',
-    image: '/images/project1.jpg',
-    technologies: ['Nuxt 3', 'Vue', 'Tailwind CSS', 'Node.js'],
-    link: '/projects/e-commerce-platform'
+    title: 'Đừng Quên Em',
+    description: t('projects.items.dungquenem.description'),
+    category: 'mobile',
+    image: '/images/dungquenem.jpg',
+    technologies: ['Flutter'],
+    link: 'https://github.com/thanhnn16/dungquenem',
+    github: 'https://github.com/thanhnn16/dungquenem'
   },
   {
     id: 2,
-    title: t('projects.items.mobileApp.title'),
-    description: t('projects.items.mobileApp.description'),
-    category: 'design',
-    image: '/images/project2.jpg',
-    technologies: ['Figma', 'Adobe XD'],
-    link: '/projects/fitness-app-design'
+    title: 'Allure Spa',
+    description: t('projects.items.allureSpa.description'),
+    category: 'mobile',
+    image: '/images/allure-spa.jpg',
+    technologies: ['Expo', 'React Native'],
+    link: 'https://github.com/thanhnn16/allure-spa',
+    github: 'https://github.com/thanhnn16/allure-spa'
+  },
+
+  // Web Applications
+  {
+    id: 3,
+    title: 'Allure Spa Admin',
+    description: t('projects.items.allureSpaAdmin.description'),
+    category: 'web',
+    image: '/images/allure-spa-admin.jpg',
+    technologies: ['Laravel', 'Inertia', 'Vue.js'],
+    link: 'https://github.com/thanhnn16/allure-spa-admin',
+    github: 'https://github.com/thanhnn16/allure-spa-admin'
+  },
+  {
+    id: 4,
+    title: 'SCG VN - Lucky Draw',
+    description: t('projects.items.scgLuckyDraw.description'),
+    category: 'web',
+    image: '/images/scg-lucky-draw.jpg',
+    technologies: ['Vue.js', 'Node.js'],
+    link: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong',
+    github: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong'
+  },
+  {
+    id: 5,
+    title: 'Marine Trace',
+    description: t('projects.items.marineTrace.description'),
+    category: 'web',
+    image: '/images/marine-trace.jpg',
+    technologies: ['Nuxt.js', 'TailwindCSS'],
+    link: 'https://github.com/thanhnn16/marine-trace',
+    github: 'https://github.com/thanhnn16/marine-trace'
+  },
+  {
+    id: 6,
+    title: 'Portfolio',
+    description: t('projects.items.portfolio.description'),
+    category: 'web',
+    image: '/images/portfolio.jpg',
+    technologies: ['Nuxt.js', 'TailwindCSS'],
+    link: 'https://github.com/thanhnn16/portfolio',
+    github: 'https://github.com/thanhnn16/portfolio'
+  },
+
+  // Zalo Mini Apps
+  {
+    id: 7,
+    title: 'Allure Spa Staff',
+    description: t('projects.items.allureSpaStaff.description'),
+    category: 'zalo',
+    image: '/images/allure-spa-staff.jpg',
+    technologies: ['Zalo Mini App'],
+    link: 'https://github.com/thanhnn16/allure-spa-staff',
+    github: 'https://github.com/thanhnn16/allure-spa-staff'
+  },
+  {
+    id: 8,
+    title: 'Allure Spa Customer',
+    description: t('projects.items.allureSpaCustomer.description'),
+    category: 'zalo',
+    image: '/images/allure-spa-customer.jpg',
+    technologies: ['Zalo Mini App'],
+    link: 'https://github.com/thanhnn16/allure-spa-customer',
+    github: 'https://github.com/thanhnn16/allure-spa-customer'
+  },
+  {
+    id: 9,
+    title: 'Bông Tuyết Trắng',
+    description: t('projects.items.bongtuyettrang.description'),
+    category: 'zalo',
+    image: '/images/bongtuyettrang.jpg',
+    technologies: ['Zalo Mini App'],
+    link: 'https://github.com/thanhnn16/bongtuyettrang',
+    github: 'https://github.com/thanhnn16/bongtuyettrang'
   }
 ]
 

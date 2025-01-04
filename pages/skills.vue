@@ -60,47 +60,59 @@ const skillCategories = ref([
   {
     title: t('mobileDevelopment'),
     skills: [
-      { name: 'React Native', description: t('reactNativeDescription'), level: 85 },
-      { name: 'Flutter', description: t('flutterDescription'), level: 75 },
-      { name: 'Android (Kotlin)', description: t('kotlinDescription'), level: 70 },
+      { name: 'Flutter', description: t('flutterDescription'), level: 85 },
+      { name: 'React Native', description: t('reactNativeDescription'), level: 80 },
+      { name: 'Kotlin', description: t('kotlinDescription'), level: 75 },
+      { name: 'Zalo Mini App', description: t('zaloMiniAppDescription'), level: 85 },
     ]
   },
   {
     title: t('webDevelopment'),
     skills: [
-      { name: 'Laravel', description: t('laravelDescription'), level: 80 },
-      { name: 'Node.js', description: t('nodejsDescription'), level: 75 },
-      { name: 'VPS', description: t('vpsDescription'), level: 70 },
-      { name: 'REST APIs', description: t('restApisDescription'), level: 85 },
+      { name: 'Next.js', description: t('nextjsDescription'), level: 85 },
+      { name: 'Nuxt.js', description: t('nuxtjsDescription'), level: 85 },
+      { name: 'React.js', description: t('reactjsDescription'), level: 80 },
+      { name: 'TailwindCSS', description: t('tailwindDescription'), level: 90 },
     ]
   },
   {
-    title: t('databaseAndVersionControl'),
+    title: t('backendDevelopment'),
     skills: [
-      { name: 'MySQL', description: t('mysqlDescription'), level: 80 },
-      { name: 'Git', description: t('gitDescription'), level: 85 },
+      { name: 'Node.js', description: t('nodejsDescription'), level: 85 },
+      { name: 'Laravel', description: t('laravelDescription'), level: 80 },
+      { name: 'MySQL', description: t('mysqlDescription'), level: 85 },
+      { name: 'PostgreSQL', description: t('postgresDescription'), level: 80 },
+      { name: 'MongoDB', description: t('mongodbDescription'), level: 75 },
+    ]
+  },
+  {
+    title: t('otherSkills'),
+    skills: [
+      { name: 'AI Integration', description: t('aiDescription'), level: 80 },
+      { name: 'UI/UX Design', description: t('uiuxDescription'), level: 75 },
+      { name: 'Graphics Design', description: t('graphicsDescription'), level: 70 },
     ]
   }
 ])
 
 const languages = ref([
-  { name: 'Tiếng Việt', level: t('native') },
-  { name: 'Tiếng Anh', level: t('readWrite') },
-  { name: 'Tiếng Nhật', level: t('n3Level') },
+  { name: '🇻🇳 Tiếng Việt', level: t('native') },
+  { name: '🇬🇧 Tiếng Anh', level: t('readWrite') },
+  { name: '🇯🇵 Tiếng Nhật', level: 'N3 (2019) - Target N2 (07/2025)' },
 ])
 
 const toolsAndSoftware = ref([
-  'VS Code', 'Android Studio', 'Xcode', 'Postman', 'Docker', 'Jira'
+  'VS Code', 'Android Studio', 'Figma', 'Photoshop', 'Illustrator', 'Git', 'Docker', 'Postman'
 ])
 
 const softSkills = ref([
-  t('selfLearning'),
-  t('communication'),
   t('teamwork'),
-  t('research'),
-  t('aiUtilization'),
+  t('independent'),
   t('problemSolving'),
-  t('agileMethodology'),
+  t('timeManagement'),
+  t('stressManagement'),
+  t('communication'),
+  t('continuousLearning'),
 ])
 
 onMounted(() => {
