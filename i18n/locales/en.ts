@@ -1,4 +1,4 @@
-export default () => ({
+const messages = {
   welcome: "Welcome to my portfolio",
   about: {
     title: "About Me",
@@ -261,4 +261,6 @@ export default () => ({
   restartChat: "Restart Chat",
   askAboutMe: "Ask me anything about Thanh!",
   scroll_to_top: 'Scroll to top'
-})
+} as const
+
+export default messages

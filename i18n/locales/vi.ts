@@ -1,4 +1,4 @@
-export default () => ({
+const messages = {
   welcome: "Chào mừng đến với portfolio của tôi",
   about: {
     title: "Về Tôi",
@@ -261,4 +261,6 @@ export default () => ({
   restartChat: "Bắt đầu lại",
   askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!",
   scroll_to_top: 'Cuộn lên đầu trang'
-})
+} as const
+
+export default messages
