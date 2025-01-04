@@ -91,28 +91,28 @@ export default {
         description: "Admin dashboard for Allure Spa system with comprehensive management features."
       },
       dungquenem: {
-        title: "Dung Quen Em",
-        description: "Description of Dung Quen Em"
+        title: "Don't Forget Me",
+        description: "A mobile application helping users remember and manage important tasks and events."
       },
       scgLuckyDraw: {
-        title: "SCG Lucky Draw",
-        description: "Description of SCG Lucky Draw"
+        title: "SCG VN - Lucky Draw",
+        description: "A web-based lucky draw application for SCG Vietnam's events."
       },
       portfolio: {
         title: "Portfolio",
-        description: "Description of Portfolio"
+        description: "Personal portfolio website built with Nuxt.js and TailwindCSS."
       },
       allureSpaStaff: {
         title: "Allure Spa Staff",
-        description: "Description of Allure Spa Staff"
+        description: "Zalo Mini App for Allure Spa staff, managing appointments and services."
       },
       allureSpaCustomer: {
         title: "Allure Spa Customer",
-        description: "Description of Allure Spa Customer"
+        description: "Zalo Mini App for Allure Spa customers, booking appointments and viewing service information."
       },
       bongtuyettrang: {
-        title: "Bong Tuyet Trang",
-        description: "Description of Bong Tuyet Trang"
+        title: "White Snow",
+        description: "Zalo Mini App for White Snow store, managing orders and customers."
       }
     }
   },
