@@ -1,6 +1,6 @@
 export default defineNuxtPlugin((nuxtApp) => {
   // Default placeholder image URL
-  const placeholderImage = 'https://placehold.co/800x600?text=Image+Not+Found'
+  const placeholderImage = 'https://placehold.co/800x600?text=Update+soon'
 
   // Global error handler for images
   nuxtApp.vueApp.config.errorHandler = (err, instance, info) => {
@@ -12,11 +12,24 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   }
 
+  // Register a global directive for handling image errors
+  nuxtApp.vueApp.directive('img-fallback', {
+    mounted(el: HTMLImageElement) {
+      el.addEventListener('error', () => {
+        el.src = placeholderImage
+      })
+    }
+  })
+
   return {
     provide: {
       getImageUrl: (path: string) => {
         try {
-          return new URL(`/public/${path}`, import.meta.url).href
+          // Handle both public and direct paths
+          if (path.startsWith('/public/')) {
+            return new URL(path.replace('/public/', '/'), import.meta.url).href
+          }
+          return path
         } catch {
           return placeholderImage
         }

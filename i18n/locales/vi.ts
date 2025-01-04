@@ -1,4 +1,4 @@
-export default {
+export const vi = {
   welcome: "Chào mừng đến với portfolio của tôi",
   about: {
     title: "Về Tôi",
@@ -51,7 +51,7 @@ export default {
   personalInfo: {
     name: "Nông Nguyễn Thành",
     role: "Lập trình viên Mobile & Web | AI Enthusiast",
-    email: "thanhnn16.work&#64;gmail.com",
+    email: "thanhnn16.work@gmail.com",
     phone: "+84 879 159 499",
     location: "Quận Gò Vấp, TP. Hồ Chí Minh",
     birthDate: "01/06/1999"
@@ -89,6 +89,30 @@ export default {
       allureSpaAdmin: {
         title: "Allure Spa Admin",
         description: "Trang quản trị cho hệ thống Allure Spa với các tính năng quản lý toàn diện."
+      },
+      dungquenem: {
+        title: "Đừng Quên Em",
+        description: "Ứng dụng di động giúp người dùng ghi nhớ và quản lý các công việc, sự kiện quan trọng."
+      },
+      scgLuckyDraw: {
+        title: "SCG VN - Lucky Draw",
+        description: "Ứng dụng web quay số trúng thưởng cho sự kiện của công ty SCG Việt Nam."
+      },
+      portfolio: {
+        title: "Portfolio",
+        description: "Website portfolio cá nhân được xây dựng bằng Nuxt.js và TailwindCSS."
+      },
+      allureSpaStaff: {
+        title: "Allure Spa Staff",
+        description: "Ứng dụng Zalo Mini App dành cho nhân viên Allure Spa, quản lý lịch hẹn và dịch vụ."
+      },
+      allureSpaCustomer: {
+        title: "Allure Spa Customer",
+        description: "Ứng dụng Zalo Mini App dành cho khách hàng Allure Spa, đặt lịch và xem thông tin dịch vụ."
+      },
+      bongtuyettrang: {
+        title: "Bông Tuyết Trắng",
+        description: "Ứng dụng Zalo Mini App cho cửa hàng Bông Tuyết Trắng, quản lý đơn hàng và khách hàng."
       }
     }
   },
@@ -98,6 +122,7 @@ export default {
     info: {
       title: "Thông tin liên hệ",
       email: "Email",
+      phone: "Điện thoại",
       location: {
         label: "Địa điểm",
         value: "Thành phố Hồ Chí Minh, Việt Nam"
@@ -114,7 +139,7 @@ export default {
       },
       email: {
         label: "Email",
-        placeholder: "your&#64;email.com",
+        placeholder: "your@email.com",
         required: "Email là bắt buộc",
         invalid: "Vui lòng nhập email hợp lệ",
         maxLength: "Email không được vượt quá 100 ký tự"
@@ -237,3 +262,5 @@ export default {
   askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!",
   scroll_to_top: 'Cuộn lên đầu trang'
 }
+
+export default vi

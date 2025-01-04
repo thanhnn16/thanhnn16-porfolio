@@ -2,6 +2,7 @@
   <img
     :src="src"
     :alt="alt"
+    v-img-fallback
     @error="handleImageError"
     v-bind="$attrs"
   />

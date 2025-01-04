@@ -51,7 +51,7 @@ export default {
   personalInfo: {
     name: "Nong Nguyen Thanh",
     role: "Mobile & Web Developer | AI Enthusiast",
-    email: "thanhnn16.work&#64;gmail.com",
+    email: "thanhnn16.work@gmail.com",
     phone: "+84 879 159 499",
     location: "Go Vap District, Ho Chi Minh City",
     birthDate: "01/06/1999"
@@ -89,6 +89,30 @@ export default {
       allureSpaAdmin: {
         title: "Allure Spa Admin",
         description: "Admin dashboard for Allure Spa system with comprehensive management features."
+      },
+      dungquenem: {
+        title: "Dung Quen Em",
+        description: "Description of Dung Quen Em"
+      },
+      scgLuckyDraw: {
+        title: "SCG Lucky Draw",
+        description: "Description of SCG Lucky Draw"
+      },
+      portfolio: {
+        title: "Portfolio",
+        description: "Description of Portfolio"
+      },
+      allureSpaStaff: {
+        title: "Allure Spa Staff",
+        description: "Description of Allure Spa Staff"
+      },
+      allureSpaCustomer: {
+        title: "Allure Spa Customer",
+        description: "Description of Allure Spa Customer"
+      },
+      bongtuyettrang: {
+        title: "Bong Tuyet Trang",
+        description: "Description of Bong Tuyet Trang"
       }
     }
   },
@@ -98,6 +122,7 @@ export default {
     info: {
       title: "Contact Information",
       email: "Email",
+      phone: "Phone",
       location: {
         label: "Location",
         value: "Ho Chi Minh City, Vietnam"
@@ -114,7 +139,7 @@ export default {
       },
       email: {
         label: "Email",
-        placeholder: "your&#64;email.com",
+        placeholder: "your@email.com",
         required: "Email is required",
         invalid: "Please enter a valid email",
         maxLength: "Email cannot exceed 100 characters"
@@ -236,4 +261,4 @@ export default {
   restartChat: "Restart Chat",
   askAboutMe: "Ask me anything about Thanh!",
   scroll_to_top: 'Scroll to top'
-} 
+}

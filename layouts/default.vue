@@ -27,7 +27,9 @@
         @leave="onPageLeave"
         @before-leave="onBeforeLeave"
       >
-        <slot />
+        <div class="page-wrapper">
+          <slot />
+        </div>
       </Transition>
     </main>
 
