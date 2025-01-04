@@ -248,11 +248,15 @@ export default defineNuxtConfig({
     preset: 'vercel',
     compressPublicAssets: true,
     minify: true,
-    timing: true,
-    storage: {
-      redis: {
-        driver: 'redis',
-        /* redis options */
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
+    },
+    routeRules: {
+      '/_nuxt/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable'
+        }
       }
     }
   },
@@ -301,8 +305,8 @@ export default defineNuxtConfig({
     }
   },
   experimental: {
-    viewTransition: true,
-    payloadExtraction: true
+    payloadExtraction: true,
+    viewTransition: true
   },
   runtimeConfig: {
     public: {

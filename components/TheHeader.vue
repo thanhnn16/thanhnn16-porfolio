@@ -93,8 +93,6 @@
 </template>
 
 <script setup lang="ts">
-import { useThemeStore } from '~/stores/theme'
-import { useLocalePath } from '#imports'
 import gsap from 'gsap'
 
 const route = useRoute()
