@@ -132,7 +132,7 @@ export default defineNuxtConfig({
         workbox: {
           navigateFallback: '/',
           globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg}'],
-          globDirectory: '.output/public',
+          globDirectory: '.vercel/output/static',
           cleanupOutdatedCaches: true,
           runtimeCaching: [
             {
@@ -248,17 +248,9 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'vercel',
     compressPublicAssets: true,
-    minify: true,
     prerender: {
-      crawlLinks: true,
-      routes: ['/']
-    },
-    routeRules: {
-      '/_nuxt/**': {
-        headers: {
-          'Cache-Control': 'public, max-age=31536000, immutable'
-        }
-      }
+      crawlLinks: false,
+      routes: []
     }
   },
   motion: {
@@ -312,8 +304,7 @@ export default defineNuxtConfig({
     }
   },
   experimental: {
-    payloadExtraction: true,
-    viewTransition: true
+    payloadExtraction: false
   },
   runtimeConfig: {
     public: {
