@@ -131,7 +131,8 @@ export default defineNuxtConfig({
         },
         workbox: {
           navigateFallback: '/',
-          globPatterns: ['**/*.{js,css,html,png,jpg,svg,ico}'],
+          globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg}'],
+          globDirectory: '.output/public',
           cleanupOutdatedCaches: true,
           runtimeCaching: [
             {
@@ -300,6 +301,12 @@ export default defineNuxtConfig({
           format: 'webp',
           width: 800,
           height: 400,
+        }
+      },
+      default: {
+        modifiers: {
+          format: 'webp',
+          placeholder: 'https://placehold.co/800x600?text=Image+Not+Found'
         }
       }
     }

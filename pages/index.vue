@@ -106,7 +106,7 @@ const featuredProjects = [
     id: 1,
     title: 'Allure Spa',
     description: t('projects.items.allureSpa.description'),
-    image: '/images/allure-spa.jpg',
+    image: '/images/projects/allure-spa/thumbnail.jpg',
     link: '/projects/allure-spa',
     github: 'https://github.com/thanhnn16/allure-spa'
   },
@@ -114,7 +114,7 @@ const featuredProjects = [
     id: 2,
     title: 'Marine Trace',
     description: t('projects.items.marineTrace.description'),
-    image: '/images/marine-trace.jpg',
+    image: '/images/projects/marine-trace/thumbnail.jpg',
     link: '/projects/marine-trace',
     github: 'https://github.com/thanhnn16/marine-trace'
   },
@@ -122,7 +122,7 @@ const featuredProjects = [
     id: 3,
     title: 'Allure Spa Admin',
     description: t('projects.items.allureSpaAdmin.description'),
-    image: '/images/allure-spa-admin.jpg',
+    image: '/images/projects/allure-spa-admin/thumbnail.jpg',
     link: '/projects/allure-spa-admin',
     github: 'https://github.com/thanhnn16/allure-spa-admin'
   }
