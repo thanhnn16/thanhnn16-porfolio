@@ -193,5 +193,13 @@ export default {
     aiDescription: "Tích hợp và triển khai các giải pháp AI",
     uiuxDescription: "Tạo trải nghiệm thiết kế lấy người dùng làm trung tâm",
     graphicsDescription: "Thiết kế đồ họa cơ bản với Adobe Creative Suite"
-  }
+  },
+  aiChat: "Chat AI",
+  thinking: "Đang suy nghĩ...",
+  startChatPrompt: "Bắt đầu trò chuyện với tôi! Bạn có thể hỏi về kỹ năng, kinh nghiệm hoặc các dự án của tôi.",
+  presetMessageVi: "Chat bằng tiếng Việt",
+  presetMessageEn: "Chat bằng tiếng Anh",
+  enterMessage: "Nhập tin nhắn của bạn...",
+  restartChat: "Bắt đầu lại",
+  askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!"
 }

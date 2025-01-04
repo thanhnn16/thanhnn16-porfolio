@@ -32,6 +32,10 @@
       </template>
       <TheFooter />
     </ClientOnly>
+
+    <ClientOnly>
+      <AIChatButton />
+    </ClientOnly>
   </div>
 </template>
 

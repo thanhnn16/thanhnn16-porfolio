@@ -193,5 +193,13 @@ export default {
     aiDescription: "Integrating and implementing AI solutions",
     uiuxDescription: "Creating user-centered design experiences",
     graphicsDescription: "Basic graphics design with Adobe Creative Suite"
-  }
+  },
+  aiChat: "AI Chat",
+  thinking: "Thinking...",
+  startChatPrompt: "Start a conversation with me! You can ask about my skills, experience, or projects.",
+  presetMessageVi: "Chat in Vietnamese",
+  presetMessageEn: "Chat in English",
+  enterMessage: "Type your message...",
+  restartChat: "Restart Chat",
+  askAboutMe: "Ask me anything about Thanh!"
 } 

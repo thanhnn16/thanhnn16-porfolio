@@ -1,83 +1,93 @@
 <template>
-  <div class="fixed bottom-20 right-4 flex flex-col items-end">
+  <div class="fixed bottom-20 right-4 flex flex-col items-end z-50">
     <Transition name="slide-fade">
-      <div v-if="showChat" class="mb-4 w-full max-w-md z-99999">
-        <div class="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200 flex flex-col" style="max-height: 60vh; max-width: 80vw; border-radius: 20px;">
+      <div v-if="showChat" class="mb-4 w-full max-w-md">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-lg flex flex-col"
+          style="max-height: 70vh; max-width: 85vw;">
           <!-- Chat header -->
-          <div class="flex justify-between items-center p-4 bg-gradient-to-r from-primary to-accent text-primary-contrast">
-            <h2 class="text-xl font-bold">{{ $t('aiChat') }}</h2>
-            <button @click="toggleChat" class="text-primary-contrast hover:text-gray-200 transition-colors duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+          <div
+            class="flex justify-between items-center p-4 bg-gradient-to-r from-primary/90 to-primary-600/90 backdrop-blur supports-[backdrop-filter]:bg-primary/60">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                <Icon name="heroicons:chat-bubble-left-right" class="h-5 w-5 text-white" />
+              </div>
+              <h2 class="text-lg font-semibold text-white">{{ $t('aiChat') }}</h2>
+            </div>
+            <button @click="toggleChat"
+              class="text-white/80 hover:text-white transition-colors duration-300 w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center">
+              <Icon name="heroicons:x-mark" class="h-5 w-5" />
             </button>
           </div>
           <!-- Chat messages -->
-          <div class="flex-grow overflow-y-auto p-4 bg-white" ref="chatContainer">
-            <div v-for="(msg, index) in chatHistory" :key="index" class="mb-3">
+          <div class="flex-grow overflow-y-auto p-4 space-y-4 bg-gray-50/50 dark:bg-gray-800/50" ref="chatContainer">
+            <div v-for="(msg, index) in chatHistory" :key="index">
               <div :class="msg.isUser ? 'text-right' : 'text-left'">
-                <span v-if="msg.text.trim()" :class="msg.isUser ? 'bg-accent text-accent-contrast' : 'bg-gray-100 text-gray-800'" 
-                      class="inline-block px-4 py-2 rounded-2xl shadow-sm max-w-[80%]">
-                  {{ msg.text }}
-                </span>
+                <div v-if="msg.text.trim()" :class="[
+                  msg.isUser 
+                    ? 'bg-primary text-white ml-auto' 
+                    : 'bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 mr-auto border border-gray-100 dark:border-gray-600',
+                  'inline-block px-4 py-2.5 rounded-2xl shadow-sm max-w-[85%]'
+                ]">
+                  <VueMarkdown :source="msg.text" class="prose dark:prose-invert prose-sm max-w-none break-words"
+                    :options="{
+                      html: false,
+                      breaks: true,
+                      linkify: true
+                    }" />
+                </div>
               </div>
             </div>
-            <div v-if="isLoading" class="text-center">
-              <span class="inline-block px-4 py-2 bg-gray-200 text-gray-700 rounded-full animate-pulse">
+            <div v-if="isLoading" class="flex justify-center">
+              <span
+                class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full shadow-sm border border-gray-200 dark:border-gray-600">
+                <Icon name="heroicons:arrow-path" class="h-4 w-4 animate-spin" />
                 {{ $t('thinking') }}
               </span>
             </div>
-            <div v-if="error" class="text-center text-red-500 mb-3">
-              {{ error }}
+            <div v-if="error" class="flex justify-center">
+              <span class="inline-flex items-center gap-2 px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full border border-red-200 dark:border-red-800">
+                <Icon name="heroicons:exclamation-circle" class="h-4 w-4" />
+                {{ error }}
+              </span>
             </div>
           </div>
           <!-- Chat input -->
-          <div class="p-4 bg-white border-t border-gray-200">
+          <div class="p-4 bg-white dark:bg-gray-800 border-t border-gray-200/50 dark:border-gray-700/50">
             <div v-if="chatHistory.length === 0" class="mb-4">
-              <p class="text-center text-gray-500 mb-2">{{ $t('startChatPrompt') }}</p>
-              <div class="flex justify-center space-x-2">
-                <button
-                  @click="sendPresetMessage('vi')"
-                  class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-300"
-                  :disabled="isLoading"
-                >
+              <p class="text-center text-gray-500 dark:text-gray-400 mb-3 text-sm">{{ $t('startChatPrompt') }}</p>
+              <div class="flex justify-center gap-2">
+                <button @click="sendPresetMessage('vi')"
+                  class="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-300 shadow-sm"
+                  :disabled="isLoading">
                   {{ $t('presetMessageVi') }}
                 </button>
-                <button
-                  @click="sendPresetMessage('en')"
-                  class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-300"
-                  :disabled="isLoading"
-                >
+                <button @click="sendPresetMessage('en')"
+                  class="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-300 shadow-sm"
+                  :disabled="isLoading">
                   {{ $t('presetMessageEn') }}
                 </button>
               </div>
             </div>
-            <div class="flex">
-              <input
-                v-model="userInput"
-                @keyup.enter="handleSendMessage"
-                type="text"
-                :placeholder="$t('enterMessage')"
-                :disabled="isLoading"
-                class="flex-grow border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
-                ref="inputRef"
-              />
-              <button
-                @click="handleSendMessage"
-                :disabled="isLoading"
-                class="bg-gradient-to-r from-primary to-accent text-primary-contrast px-6 py-2 rounded-r-lg hover:opacity-90 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
-              >
-                {{ $t('send') }}
+            <div class="flex gap-2">
+              <div class="flex-grow relative">
+                <input v-model="userInput" @keyup.enter="handleSendMessage" type="text" :placeholder="$t('enterMessage')"
+                  :disabled="isLoading"
+                  class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/30 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
+                  ref="inputRef" />
+                <div v-if="isLoading" class="absolute right-3 top-1/2 -translate-y-1/2">
+                  <Icon name="heroicons:arrow-path" class="h-5 w-5 text-gray-400 animate-spin" />
+                </div>
+              </div>
+              <button @click="handleSendMessage" :disabled="isLoading"
+                class="bg-gradient-to-r from-primary to-primary-600 text-primary-contrast p-2.5 rounded-xl hover:opacity-90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 shadow-sm flex items-center justify-center w-11 h-11">
+                <Icon name="heroicons:paper-airplane" class="h-5 w-5" />
               </button>
             </div>
             <div class="flex justify-center mt-4">
-              <button
-                @click="restartChat"
-                class="text-primary hover:text-accent transition-colors duration-300 focus:outline-none focus:underline flex items-center"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
+              <button @click="restartChat"
+                class="text-primary hover:text-primary-600 transition-colors duration-300 focus:outline-none hover:bg-primary-50 dark:hover:bg-primary-900/20 px-3 py-1.5 rounded-lg flex items-center gap-2 text-sm">
+                <Icon name="heroicons:arrow-path" class="h-4 w-4" />
                 {{ $t('restartChat') }}
               </button>
             </div>
@@ -86,36 +96,20 @@
       </div>
     </Transition>
     <!-- Chat button -->
-    <button
-      @click="toggleChat"
-      class="bg-gradient-to-r from-ai-button to-ai-button-dark text-accent-contrast rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 relative focus:outline-none focus:ring-2 focus:ring-ai-button"
-      :class="{ 'animate-pulse': !showChat }"
-    >
+    <button @click="toggleChat"
+      class="bg-gradient-to-r from-primary to-primary-600 text-primary-contrast w-12 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 relative focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900 flex items-center justify-center"
+      :class="{ 'animate-pulse': !showChat }">
       <span class="sr-only">{{ $t('aiChat') }}</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        class="w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-        />
-      </svg>
+      <Icon name="heroicons:chat-bubble-left-right" class="h-6 w-6" />
       <span class="absolute -top-1 -right-1 flex h-3 w-3">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ai-button opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-3 w-3 bg-ai-button"></span>
+        <span
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-contrast opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-primary-contrast"></span>
       </span>
     </button>
-    <div
-      v-if="showBalloon"
-      class="absolute bottom-full right-0 mb-2 p-2 bg-white rounded-lg shadow-md animate-bounce"
-    >
-      <p class="text-sm font-semibold">{{ $t('askAboutMe') }}</p>
+    <div v-if="showBalloon"
+      class="absolute bottom-full right-0 mb-2 p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 animate-bounce">
+      <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $t('askAboutMe') }}</p>
     </div>
   </div>
 </template>
@@ -123,7 +117,7 @@
 <script setup>
 import { ref, onMounted, nextTick, watch } from 'vue'
 import { useChat } from '~/composables/useChat'
-import { useI18n } from 'vue-i18n'
+import VueMarkdown from 'vue-markdown-render'
 
 const showChat = ref(false)
 const showBalloon = ref(true)
@@ -140,6 +134,7 @@ const toggleChat = () => {
   if (showChat.value) {
     nextTick(() => {
       scrollToBottom()
+      inputRef.value?.focus()
     })
   }
 }
@@ -149,23 +144,15 @@ const handleSendMessage = async () => {
 
   const userMessage = userInput.value
   userInput.value = ''
-  isLoading.value = true
 
   try {
-    const response = await sendMessage(userMessage)
-    if (response && response.trim() !== '') {
-      console.log('AI response:', response)
-      nextTick(() => {
-        inputRef.value.focus()
-      })
-    }
+    await sendMessage(userMessage)
+    nextTick(() => {
+      inputRef.value?.focus()
+    })
   } catch (error) {
     console.error('Error sending message:', error)
-  } finally {
-    isLoading.value = false
   }
-
-  console.log('Chat history:', chatHistory.value)
 }
 
 const scrollToBottom = () => {
@@ -202,48 +189,57 @@ const sendPresetMessage = async (lang) => {
   } else {
     message = 'Hello, I want to know more about Thanh.'
   }
-  
+
   userInput.value = message
   await handleSendMessage()
 }
 </script>
 
-<style scoped>
-@keyframes heartbeat {
-  0% {
-    transform: scale(1);
-  }
-  14% {
-    transform: scale(1.3);
-  }
-  28% {
-    transform: scale(1);
-  }
-  42% {
-    transform: scale(1.3);
-  }
-  70% {
-    transform: scale(1);
-  }
+<style lang="postcss">
+.prose {
+  @apply text-sm leading-relaxed;
 }
 
-.animate-heartbeat {
-  animation: heartbeat 1.5s infinite;
+.prose p {
+  @apply my-2;
+}
+
+.prose ul {
+  @apply list-disc list-inside my-2;
+}
+
+.prose ol {
+  @apply list-decimal list-inside my-2;
+}
+
+.prose a {
+  @apply text-primary hover:text-primary-600 hover:underline;
+}
+
+.prose code {
+  @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm;
+}
+
+.prose pre {
+  @apply bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto my-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-gray-300 dark:border-gray-600 pl-4 my-2 italic;
 }
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: all 0.3s ease;
+  @apply transition-all duration-300 ease-in-out;
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
+  @apply transform translate-y-5 opacity-0;
 }
 
 .bg-gradient-to-r {
-  background-size: 200% auto;
+  @apply bg-[length:200%_auto];
   animation: gradient 5s ease infinite;
 }
 
@@ -251,9 +247,11 @@ const sendPresetMessage = async (lang) => {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
