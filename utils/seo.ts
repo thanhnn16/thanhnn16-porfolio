@@ -1,12 +1,12 @@
 export const defaultMetaData = {
-  title: 'Thanh Nong Nguyen - Portfolio',
-  description: 'Full-stack Developer & UI/UX Designer specializing in modern web technologies',
+  title: 'Thanh Nong Nguyen (thanhnn16) - Full-stack Developer Portfolio',
+  description: 'Nong Nguyen Thanh (thanhnn16) - Full-stack Developer & UI/UX Designer from Vietnam. Expertise in Web Development, Mobile Apps, Flutter, React Native, Nuxt.js, and Laravel',
   image: '/images/avatar.png',
   url: 'https://thanhnn16.id.vn',
   locale: 'en',
   type: 'website',
-  author: 'Nong Nguyen Thanh',
-  keywords: 'Full-stack Developer, UI/UX Designer, Mobile Developer, Web Developer, Flutter, React Native, Nuxt.js, Laravel'
+  author: 'Nong Nguyen Thanh (thanhnn16)',
+  keywords: 'thanhnn16, Nong Nguyen Thanh, Full-stack Developer, UI/UX Designer, Mobile Developer, Web Developer, Flutter Developer, React Native Developer, Nuxt.js Developer, Laravel Developer, Vietnam Developer, Portfolio'
 }
 
 export const generateMeta = (pageMeta?: Partial<typeof defaultMetaData>) => {
