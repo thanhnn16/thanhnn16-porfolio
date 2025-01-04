@@ -69,12 +69,14 @@ export default {
       all: "All",
       web: "Web",
       mobile: "Mobile",
-      design: "Design"
+      design: "Design",
+      zalo: "Zalo"
     },
     noResults: "No projects found in this category.",
     featured: "Featured Projects",
     learnMore: "Learn More",
     viewProject: "View Project",
+    viewDetails: "View Details",
     items: {
       allureSpa: {
         title: "Allure Spa",

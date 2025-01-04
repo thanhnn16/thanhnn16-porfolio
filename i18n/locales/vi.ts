@@ -69,12 +69,14 @@ export default {
       all: "Tất cả",
       web: "Web",
       mobile: "Di động",
-      design: "Thiết kế"
+      design: "Thiết kế",
+      zalo: "Zalo"
     },
     noResults: "Không tìm thấy dự án nào trong danh mục này.",
     featured: "Dự án nổi bật",
     learnMore: "Tìm hiểu thêm",
     viewProject: "Xem dự án",
+    viewDetails: "Xem chi tiết",
     items: {
       allureSpa: {
         title: "Allure Spa",

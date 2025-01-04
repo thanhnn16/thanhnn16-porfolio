@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed bottom-20 right-4 flex flex-col items-end z-50">
+  <div class="fixed bottom-20 right-4 flex flex-col items-end z-49">
     <Transition name="slide-fade">
       <div v-if="showChat" class="mb-4 w-full max-w-md">
         <div

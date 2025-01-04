@@ -212,12 +212,6 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      meta: [
-        {
-          'http-equiv': 'Content-Security-Policy',
-          content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://api.iconify.design; frame-ancestors 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
-        }
-      ],
       link: [
         {
           rel: 'stylesheet',
