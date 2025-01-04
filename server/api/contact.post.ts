@@ -8,8 +8,8 @@ const i18n = createI18n({
     locale: 'vi',
     fallbackLocale: 'en',
     messages: {
-        en: en(),
-        vi: vi()
+        en: en,
+        vi: vi
     }
 })
 
