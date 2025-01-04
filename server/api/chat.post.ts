@@ -1,4 +1,8 @@
-import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+interface ChatMessage {
+    isUser: boolean;
+    text: string;
+}
 
 export default defineEventHandler(async (event) => {
     try {
@@ -67,7 +71,7 @@ Hãy luôn trả lời ngắn gọn, đúng trọng tâm, và chuyên nghiệp, 
         console.log('Starting chat session')
         const chat = model.startChat({
             generationConfig,
-            history: chatHistory.map(msg => ({
+            history: chatHistory.map((msg: ChatMessage) => ({
                 role: msg.isUser ? 'user' : 'model',
                 parts: [{ text: msg.text }],
             })),

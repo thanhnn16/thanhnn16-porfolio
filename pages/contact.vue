@@ -1,187 +1,264 @@
 <template>
-  <div class="container mx-auto py-20 px-4">
-    <h1 class="text-4xl font-bold text-dark mt-12 mb-12 text-center gsap-fade-in">{{ $t('contact') }}</h1>
+  <div class="pt-24 pb-20">
+    <div class="container mx-auto px-4">
+      <!-- Header -->
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h1 
+          class="text-4xl font-bold mb-6"
+          v-motion
+          :initial="{ opacity: 0, y: 100 }"
+          :enter="{ opacity: 1, y: 0 }"
+        >
+          {{ t('contact.title') }}
+        </h1>
+        <p 
+          class="text-xl text-gray-600 dark:text-gray-400"
+          v-motion
+          :initial="{ opacity: 0 }"
+          :enter="{ opacity: 1, transition: { delay: 200 } }"
+        >
+          {{ t('contact.description') }}
+        </p>
+      </div>
 
-    <!-- Thông tin liên hệ -->
-    <section class="gsap-slide-up mb-12">
-      <h2 class="text-2xl font-semibold text-dark mb-6">{{ $t('contactInfo') }}</h2>
-      <ul class="space-y-4">
-        <li class="flex items-center">
-          <Icon name="mdi:phone" size="24" class="mr-3 text-accent" />
-          <a href="tel:+84879159499" class="text-muted hover:text-accent">+84 879 159 499 ({{ $t('zalo') }})</a>
-        </li>
-        <li class="flex items-center">
-          <Icon name="mdi:email" size="24" class="mr-3 text-accent" />
-          <a href="mailto:thanhnn16.work@gmail.com" class="text-muted hover:text-accent">thanhnn16.work@gmail.com</a>
-        </li>
-        <li class="flex items-center">
-          <Icon name="mdi:github" size="24" class="mr-3 text-accent" />
-          <a href="https://github.com/thanhnn16" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-accent">github.com/thanhnn16</a>
-        </li>
-        <li class="flex items-center">
-          <Icon name="mdi:youtube" size="24" class="mr-3 text-accent" />
-          <a href="https://www.youtube.com/@thanhnn16" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-accent">@thanhnn16</a>
-        </li>
-        <li class="flex items-center">
-          <Icon name="mdi:map-marker" size="24" class="mr-3 text-accent" />
-          <span class="text-muted">362/29/11 Thống Nhất, P16, Gò Vấp, HCM</span>
-        </li>
-      </ul>
-    </section>
+      <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div 
+          class="space-y-8"
+          v-motion
+          :initial="{ opacity: 0, x: -100 }"
+          :enter="{ opacity: 1, x: 0 }"
+        >
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+            <h2 class="text-2xl font-bold mb-6">{{ t('contact.info.title') }}</h2>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center">
+                  <Icon name="heroicons:envelope" class="w-6 h-6 text-primary-500" />
+                </div>
+                <div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('contact.info.email') }}</p>
+                  <a href="mailto:your@email.com" class="font-medium hover:text-primary-500">
+                    your@email.com
+                  </a>
+                </div>
+              </div>
 
-    <!-- Form liên hệ -->
-    <section class="gsap-slide-up mb-12">
-      <h2 class="text-2xl font-semibold text-dark mb-6">{{ $t('sendMessage') }}</h2>
-      <form @submit.prevent="submitForm" class="space-y-4">
-        <div>
-          <label for="name" class="form-label">{{ $t('fullName') }}</label>
-          <input type="text" id="name" v-model="name" class="form-input" required>
-        </div>
-        <div>
-          <label for="email" class="form-label">{{ $t('email') }}</label>
-          <input type="email" id="email" v-model="email" class="form-input" required>
-        </div>
-        <div>
-          <label for="subject" class="form-label">{{ $t('subject') }}</label>
-          <input type="text" id="subject" v-model="subject" class="form-input" required>
-        </div>
-        <div>
-          <label for="message" class="form-label">{{ $t('message') }}</label>
-          <textarea id="message" v-model="message" rows="4" class="form-input" required></textarea>
-        </div>
-        <button type="submit" class="btn-primary w-full">{{ $t('send') }}</button>
-      </form>
-    </section>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center">
+                  <Icon name="heroicons:map-pin" class="w-6 h-6 text-primary-500" />
+                </div>
+                <div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('contact.info.location.label') }}</p>
+                  <p class="font-medium">{{ t('contact.info.location.value') }}</p>
+                </div>
+              </div>
+            </div>
 
-    <!-- Frequently Asked Questions -->
-    <section class="mt-16 gsap-slide-up">
-      <h2 class="text-2xl font-semibold text-dark mb-6">{{ $t('faq') }}</h2>
-      <div class="space-y-6">
-        <div v-for="(question, index) in faqQuestions" :key="index">
-          <h3 class="text-xl font-semibold mb-2">{{ $t(question.questionKey) }}</h3>
-          <p class="text-muted">{{ $t(question.answerKey) }}</p>
+            <!-- Social Links -->
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <h3 class="font-bold mb-4">{{ t('contact.followMe') }}</h3>
+              <div class="flex gap-4">
+                <a 
+                  v-for="social in socialLinks" 
+                  :key="social.name"
+                  :href="social.url"
+                  target="_blank"
+                  class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-colors"
+                >
+                  <Icon :name="social.icon" class="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div 
+          v-motion
+          :initial="{ opacity: 0, x: 100 }"
+          :enter="{ opacity: 1, x: 0, transition: { delay: 200 } }"
+        >
+          <form @submit.prevent="handleSubmit" class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium mb-2">{{ t('contact.form.name.label') }}</label>
+              <input
+                v-model="form.name"
+                type="text"
+                :class="[
+                  'w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary-500 outline-none transition-all',
+                  errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                ]"
+                :placeholder="t('contact.form.name.placeholder')"
+              />
+              <p v-if="errors.name" class="mt-1 text-sm text-red-500">{{ t('contact.form.name.required') }}</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-2">{{ t('contact.form.email.label') }}</label>
+              <input
+                v-model="form.email"
+                type="email"
+                :class="[
+                  'w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary-500 outline-none transition-all',
+                  errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                ]"
+                :placeholder="t('contact.form.email.placeholder')"
+              />
+              <p v-if="errors.email" class="mt-1 text-sm text-red-500">{{ errors.email }}</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-2">{{ t('contact.form.message.label') }}</label>
+              <textarea
+                v-model="form.message"
+                :class="[
+                  'w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary-500 outline-none transition-all',
+                  errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                ]"
+                rows="6"
+                :placeholder="t('contact.form.message.placeholder')"
+              ></textarea>
+              <p v-if="errors.message" class="mt-1 text-sm text-red-500">{{ t('contact.form.message.required') }}</p>
+            </div>
+
+            <button 
+              type="submit"
+              class="w-full px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
+              :disabled="isSubmitting"
+            >
+              <span v-if="isSubmitting">{{ t('contact.form.sending') }}</span>
+              <span v-else>{{ t('contact.form.send') }}</span>
+            </button>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Bản đồ -->
-    <section class="mt-16 gsap-slide-up">
-      <h2 class="text-2xl font-semibold text-dark mb-6">{{ $t('findMe') }}</h2>
-      <div class="h-96 rounded-lg overflow-hidden">
-        <iframe
-          width="100%"
-          height="100%"
-          frameborder="0"
-          style="border:0"
-          :src="mapUrl"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </section>
+    <!-- Success Modal -->
+    <TransitionRoot appear :show="showSuccessModal" as="template">
+      <Dialog as="div" @close="showSuccessModal = false" class="relative z-50">
+        <TransitionChild
+          enter="duration-300 ease-out"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="duration-200 ease-in"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
+        >
+          <div class="fixed inset-0 bg-black/25" />
+        </TransitionChild>
+
+        <div class="fixed inset-0 overflow-y-auto">
+          <div class="flex min-h-full items-center justify-center p-4">
+            <TransitionChild
+              enter="duration-300 ease-out"
+              enter-from="opacity-0 scale-95"
+              enter-to="opacity-100 scale-100"
+              leave="duration-200 ease-in"
+              leave-from="opacity-100 scale-100"
+              leave-to="opacity-0 scale-95"
+            >
+              <DialogPanel class="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl p-6">
+                <div class="text-center">
+                  <Icon name="heroicons:check-circle" class="w-16 h-16 text-green-500 mx-auto mb-4" />
+                  <DialogTitle class="text-2xl font-bold mb-2">{{ t('contact.success.title') }}</DialogTitle>
+                  <p class="text-gray-600 dark:text-gray-400">
+                    {{ t('contact.success.message') }}
+                  </p>
+                  <button
+                    @click="showSuccessModal = false"
+                    class="mt-6 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                  >
+                    {{ t('contact.success.close') }}
+                  </button>
+                </div>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
+        </div>
+      </Dialog>
+    </TransitionRoot>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
+<script setup lang="ts">
+import { Dialog, DialogPanel, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 import { useI18n } from 'vue-i18n'
-import { gsap } from 'gsap'
 
 const { t } = useI18n()
 
-const name = ref('')
-const email = ref('')
-const subject = ref('')
-const message = ref('')
+const form = reactive({
+  name: '',
+  email: '',
+  message: ''
+})
 
-const submitForm = () => {
-  // Xử lý gửi form ở đây
-  console.log('Form submitted:', { name: name.value, email: email.value, subject: subject.value, message: message.value })
-  // Reset form
-  name.value = ''
-  email.value = ''
-  subject.value = ''
-  message.value = ''
-}
+const errors = reactive({
+  name: '',
+  email: '',
+  message: ''
+})
 
-const mapUrl = ref('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.578968773864!2d106.66349611142522!3d10.843497389264803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529aff19f1b67%3A0x8f055637bb507dea!2zMzYyLzI5LzExIMSQLiBUaOG7kW5nIE5o4bqldCwgUGjGsOG7nW5nIDE2LCBHw7IgVuG6pXAsIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1729235066920!5m2!1svi!2s')
+const isSubmitting = ref(false)
+const showSuccessModal = ref(false)
 
-const faqQuestions = [
-  { questionKey: 'faqQuestion1', answerKey: 'faqAnswer1' },
-  { questionKey: 'faqQuestion2', answerKey: 'faqAnswer2' },
-  { questionKey: 'faqQuestion3', answerKey: 'faqAnswer3' },
+const socialLinks = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/yourusername',
+    icon: 'heroicons:code-bracket'
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://linkedin.com/in/yourusername',
+    icon: 'heroicons:link'
+  }
 ]
 
-onMounted(() => {
-  gsap.from('.gsap-fade-in', { 
-    opacity: 0, 
-    duration: 1.5, 
-    ease: 'power2.out' 
-  })
+const validateForm = () => {
+  let isValid = true
+  errors.name = ''
+  errors.email = ''
+  errors.message = ''
 
-  gsap.from('.gsap-slide-up', { 
-    y: 50, 
-    opacity: 0, 
-    duration: 1, 
-    stagger: 0.2, 
-    ease: 'power2.out' 
-  })
-})
+  if (!form.name.trim()) {
+    errors.name = t('contact.form.name.required')
+    isValid = false
+  }
+
+  if (!form.email.trim()) {
+    errors.email = t('contact.form.email.required')
+    isValid = false
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+    errors.email = t('contact.form.email.invalid')
+    isValid = false
+  }
+
+  if (!form.message.trim()) {
+    errors.message = t('contact.form.message.required')
+    isValid = false
+  }
+
+  return isValid
+}
+
+const handleSubmit = async () => {
+  if (!validateForm()) return
+
+  isSubmitting.value = true
+
+  try {
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    showSuccessModal.value = true
+    form.name = ''
+    form.email = ''
+    form.message = ''
+  } catch (error) {
+    console.error('Failed to send message:', error)
+  } finally {
+    isSubmitting.value = false
+  }
+}
 </script>
-
-<style scoped>
-.container {
-  max-width: 800px;
-}
-
-h1, h2, h3 {
-  color: #2c3e50;
-}
-
-.text-muted {
-  color: #6c757d;
-}
-
-section {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  transition: transform 0.3s ease;
-}
-
-section:hover {
-  transform: translateY(-5px);
-}
-
-.form-label {
-  @apply block text-dark mb-2 font-medium;
-}
-
-.form-input {
-  @apply w-full px-4 py-3 border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition duration-300;
-  background-color: white;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.form-input:focus {
-  background-color: white;
-}
-
-.btn-primary {
-  @apply bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-  
-  section {
-    padding: 1.5rem;
-  }
-}
-
-/* Remove the grid styles if they're no longer needed */
-</style>

@@ -16,23 +16,35 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const showButton = ref(false)
 
 const checkScroll = () => {
-  const scrollContainer = document.querySelector('.overflow-y-auto')
-  showButton.value = scrollContainer.scrollTop > 300
+  const scrollContainer = document.querySelector('.overflow-y-auto') || window
+  showButton.value = (scrollContainer === window ? window.pageYOffset : scrollContainer.scrollTop) > 300
 }
 
 const scrollToTop = () => {
   const scrollContainer = document.querySelector('.overflow-y-auto')
-  scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+  if (scrollContainer) {
+    scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 }
 
 onMounted(() => {
   const scrollContainer = document.querySelector('.overflow-y-auto')
-  scrollContainer.addEventListener('scroll', checkScroll)
+  if (scrollContainer) {
+    scrollContainer.addEventListener('scroll', checkScroll)
+  } else {
+    window.addEventListener('scroll', checkScroll)
+  }
 })
 
 onUnmounted(() => {
   const scrollContainer = document.querySelector('.overflow-y-auto')
-  scrollContainer.removeEventListener('scroll', checkScroll)
+  if (scrollContainer) {
+    scrollContainer.removeEventListener('scroll', checkScroll)
+  } else {
+    window.removeEventListener('scroll', checkScroll)
+  }
 })
 
 defineExpose({ scrollToTop })

@@ -4,6 +4,15 @@
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "types": [
+      "@pinia/nuxt",
+      "@nuxtjs/i18n",
+      "@vueuse/nuxt",
+      "@nuxt/image",
+      "@types/node",
+      "nuxt"
+    ]
   }
 }

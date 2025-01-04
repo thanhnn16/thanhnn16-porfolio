@@ -1,9 +1,12 @@
-import { ref } from 'vue'
+interface Message {
+  text: string;
+  isUser: boolean;
+}
 
 export function useChat() {
-  const chatHistory = ref([])
+  const chatHistory = ref<Message[]>([])
   const isLoading = ref(false)
-  const error = ref(null)
+  const error = ref<string | null>(null)
 
   const sendMessage = async (message: string) => {
     if (!message.trim()) return
@@ -50,14 +53,18 @@ export function useChat() {
       } else {
         throw new Error('Invalid response structure from server')
       }
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error sending message:', err)
-      if (err.message.includes('Hệ thống đang quá tải')) {
-        error.value = 'Hệ thống đang quá tải. Vui lòng thử lại sau ít phút.'
+      if (err instanceof Error) {
+        if (err.message.includes('Hệ thống đang quá tải')) {
+          error.value = 'Hệ thống đang quá tải. Vui lòng thử lại sau ít phút.'
+        } else {
+          error.value = `Xin lỗi, có lỗi xảy ra: ${err.message}`
+        }
       } else {
-        error.value = `Xin lỗi, có lỗi xảy ra: ${err.message}`
+        error.value = 'Đã xảy ra lỗi không xác định'
       }
-      chatHistory.value.push({ text: error.value, isUser: false })
+      chatHistory.value.push({ text: error.value!, isUser: false })
       throw err
     } finally {
       isLoading.value = false
