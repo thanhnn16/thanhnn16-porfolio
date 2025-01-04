@@ -17,6 +17,15 @@ Portfolio này được tạo ra nhằm:
 - **Điện thoại:** +84 879 159 499
 - **Địa chỉ:** Gò Vấp, TP.HCM
 
+# 🔗 Hành trình học tập và làm việc
+- **2017:** Tốt nghiệp THPT và bắt đầu học ngôn ngữ Nhật tại Đại học Mở TP.HCM
+- **2017-2021:** Học ngôn ngữ Nhật tại Đại học Mở TP.HCM, đạt chứng chỉ N3
+- **2021:** Bảo lưu kết quả học tập tại Đại học Mở TP.HCM
+- **2022:** Bắt đầu theo đuổi đam mê lập trình với chuyên ngành Lập trình Mobile tại FPT Polytechnic
+- **06-08/2023:** Thực tập tại Softworld với vị trí Lập trình Mobile
+- **Hiện tại:** Đang làm việc với vị trí IT Web tại Aimmi.vn
+- **2024:** Dự kiến tốt nghiệp FPT Polytechnic chuyên ngành Lập trình Mobile
+
 # 🔗 Liên kết mạng xã hội
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/thanhnn16/)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github)](https://github.com/thanhnn16)
@@ -182,6 +191,15 @@ This portfolio was created to:
 - **Email:** thanhnn16.work@gmail.com
 - **Phone:** +84 879 159 499
 - **Location:** Go Vap District, Ho Chi Minh City
+
+# 🔗 Education & Career Timeline
+- **2017:** High school graduation and started studying Japanese Language at HCMC Open University
+- **2017-2021:** Studied Japanese Language at HCMC Open University, achieved N3 certification
+- **2021:** Academic reservation at HCMC Open University
+- **2022:** Started pursuing programming passion with Mobile Application Development at FPT Polytechnic
+- **06-08/2023:** Internship at Softworld as Mobile Developer
+- **Present:** Working as IT Web Developer at Aimmi.vn
+- **2024:** Expected graduation from FPT Polytechnic in Mobile Application Development
 
 # 🔗 Social Links
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/thanhnn16/)

@@ -39,13 +39,13 @@
           >
             <NuxtLink 
               to="/projects"
-              class="px-6 py-3 bg-primary-500 dark:bg-primary-600 dark:text-white rounded-lg hover:bg-primary-600 dark:hover:bg-primary-700 transition-colors"
+              class="px-6 py-3 bg-primary-500 dark:bg-primary-600 text-primary-contrast rounded-lg hover:bg-primary-600 dark:hover:bg-primary-700 transition-colors"
             >
               {{ t('hero.viewWork') }}
             </NuxtLink>
             <NuxtLink 
               to="/contact"
-              class="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:border-primary-500 dark:text-white text-gray-900 hover:text-primary-500 dark:hover:text-primary-500 transition-colors"
+              class="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:border-primary-500 text-gray-900 dark:text-gray-100 hover:text-primary-500 dark:hover:text-primary-500 transition-colors"
             >
               {{ t('hero.contactMe') }}
             </NuxtLink>

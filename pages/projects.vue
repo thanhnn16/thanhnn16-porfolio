@@ -125,7 +125,19 @@ const categories = [
   { value: 'zalo', label: t('projects.categories.zalo') }
 ]
 
-const projects = [
+interface Project {
+  id: number
+  title: string
+  description: string
+  category: string
+  image: string
+  technologies: string[]
+  link: string
+  github: string
+  slug: string
+}
+
+const projects: Project[] = [
   // Mobile Applications
   {
     id: 1,
@@ -135,7 +147,8 @@ const projects = [
     image: '/images/dungquenem.jpg',
     technologies: ['Flutter'],
     link: 'https://github.com/thanhnn16/dungquenem',
-    github: 'https://github.com/thanhnn16/dungquenem'
+    github: 'https://github.com/thanhnn16/dungquenem',
+    slug: 'dungquenem'
   },
   {
     id: 2,
@@ -145,7 +158,8 @@ const projects = [
     image: '/images/allure-spa.jpg',
     technologies: ['Expo', 'React Native'],
     link: 'https://github.com/thanhnn16/allure-spa',
-    github: 'https://github.com/thanhnn16/allure-spa'
+    github: 'https://github.com/thanhnn16/allure-spa',
+    slug: 'allure-spa'
   },
 
   // Web Applications
@@ -157,7 +171,8 @@ const projects = [
     image: '/images/allure-spa-admin.jpg',
     technologies: ['Laravel', 'Inertia', 'Vue.js'],
     link: 'https://github.com/thanhnn16/allure-spa-admin',
-    github: 'https://github.com/thanhnn16/allure-spa-admin'
+    github: 'https://github.com/thanhnn16/allure-spa-admin',
+    slug: 'allure-spa-admin'
   },
   {
     id: 4,
@@ -167,7 +182,8 @@ const projects = [
     image: '/images/scg-lucky-draw.jpg',
     technologies: ['Vue.js', 'Node.js'],
     link: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong',
-    github: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong'
+    github: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong',
+    slug: 'scg-lucky-draw'
   },
   {
     id: 5,
@@ -177,7 +193,8 @@ const projects = [
     image: '/images/marine-trace.jpg',
     technologies: ['Nuxt.js', 'TailwindCSS'],
     link: 'https://github.com/thanhnn16/marine-trace',
-    github: 'https://github.com/thanhnn16/marine-trace'
+    github: 'https://github.com/thanhnn16/marine-trace',
+    slug: 'marine-trace'
   },
   {
     id: 6,
@@ -187,7 +204,8 @@ const projects = [
     image: '/images/portfolio.jpg',
     technologies: ['Nuxt.js', 'TailwindCSS'],
     link: 'https://github.com/thanhnn16/portfolio',
-    github: 'https://github.com/thanhnn16/portfolio'
+    github: 'https://github.com/thanhnn16/portfolio',
+    slug: 'portfolio'
   },
 
   // Zalo Mini Apps
@@ -199,7 +217,8 @@ const projects = [
     image: '/images/allure-spa-staff.jpg',
     technologies: ['Zalo Mini App'],
     link: 'https://github.com/thanhnn16/allure-spa-staff',
-    github: 'https://github.com/thanhnn16/allure-spa-staff'
+    github: 'https://github.com/thanhnn16/allure-spa-staff',
+    slug: 'allure-spa-staff'
   },
   {
     id: 8,
@@ -209,7 +228,8 @@ const projects = [
     image: '/images/allure-spa-customer.jpg',
     technologies: ['Zalo Mini App'],
     link: 'https://github.com/thanhnn16/allure-spa-customer',
-    github: 'https://github.com/thanhnn16/allure-spa-customer'
+    github: 'https://github.com/thanhnn16/allure-spa-customer',
+    slug: 'allure-spa-customer'
   },
   {
     id: 9,
@@ -219,7 +239,8 @@ const projects = [
     image: '/images/bongtuyettrang.jpg',
     technologies: ['Zalo Mini App'],
     link: 'https://github.com/thanhnn16/bongtuyettrang',
-    github: 'https://github.com/thanhnn16/bongtuyettrang'
+    github: 'https://github.com/thanhnn16/bongtuyettrang',
+    slug: 'bongtuyettrang'
   }
 ]
 

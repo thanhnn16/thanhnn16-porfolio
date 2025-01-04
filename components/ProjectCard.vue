@@ -23,11 +23,11 @@
         class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0"
       >
         <NuxtLink 
-          :to="project.link"
-          class="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+          :to="localePath(`/projects/${project.slug}`)"
+          class="px-6 py-3 bg-primary-500 text-primary-contrast rounded-lg hover:bg-primary-600 transition-colors"
           @click="trackProjectClick"
         >
-          {{ t('projects.viewProject') }}
+          {{ t('projects.viewDetails') }}
         </NuxtLink>
       </div>
     </div>
@@ -72,6 +72,7 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { useLocalePath } from '#imports'
 
 interface Project {
   id: number
@@ -81,6 +82,7 @@ interface Project {
   image: string
   technologies: string[]
   link: string
+  slug: string
 }
 
 const props = defineProps<{
@@ -88,6 +90,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 const { mouseX, mouseY, isHovering, handleMouseMove, handleMouseEnter, handleMouseLeave } = useHoverEffect()
 const { getOptimizedImage } = useOptimizedImage()
 const optimizedImage = computed(() => 

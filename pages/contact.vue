@@ -76,7 +76,8 @@
                   :key="social.name"
                   :href="social.url"
                   target="_blank"
-                  class="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary-500 hover:text-white transition-colors"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary-500 hover:text-primary-contrast transition-colors"
                 >
                   <Icon :name="social.icon" class="w-5 h-5" />
                   <span class="text-sm">{{ social.name }}</span>
@@ -137,11 +138,10 @@
 
             <button 
               type="submit"
-              class="w-full px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
               :disabled="isSubmitting"
+              class="w-full px-6 py-3 bg-primary-500 text-primary-contrast rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
             >
-              <span v-if="isSubmitting">{{ t('contact.form.sending') }}</span>
-              <span v-else>{{ t('contact.form.send') }}</span>
+              {{ isSubmitting ? t('contact.submitting') : t('contact.submit') }}
             </button>
           </form>
         </div>
@@ -181,7 +181,7 @@
                   </p>
                   <button
                     @click="showSuccessModal = false"
-                    class="mt-6 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                    class="mt-6 px-4 py-2 bg-primary-500 text-primary-contrast rounded-lg hover:bg-primary-600 transition-colors"
                   >
                     {{ t('contact.success.close') }}
                   </button>

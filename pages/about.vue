@@ -29,16 +29,20 @@
           :initial="{ opacity: 0, x: -100 }"
           :enter="{ opacity: 1, x: 0 }"
         >
-          <div class="aspect-square rounded-2xl overflow-hidden">
+          <div class="aspect-square rounded-2xl overflow-hidden bg-light-secondary dark:bg-dark-secondary relative group">
             <NuxtImg 
-              src="/profile.jpg" 
+              src="/images/avatar.png" 
               alt="Profile" 
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
               placeholder
+              quality="90"
+              format="webp"
+              fit="cover"
+              sizes="sm:100vw md:50vw lg:400px"
             />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark/50 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
         </div>
 
         <div 
@@ -75,10 +79,10 @@
               {{ t('about.downloadCV') }}
             </a>
             <NuxtLink 
-              to="/contact" 
-              class="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:border-primary-500 transition-colors"
+              to="/contact"
+              class="px-6 py-3 bg-primary-500 text-primary-contrast rounded-lg hover:bg-primary-600 transition-colors"
             >
-              {{ t('about.contactMe') }}
+              {{ t('about.contact') }}
             </NuxtLink>
           </div>
         </div>

@@ -17,8 +17,11 @@
           v-for="item in navItems" 
           :key="item.path"
           :to="localePath(item.path)"
-          class="hover:text-primary-500 transition-colors"
-          :class="{ 'text-primary-500': route.path === item.path }"
+          class="px-3 py-2 rounded-lg transition-all duration-300"
+          :class="{ 
+            'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 font-medium': route.path === item.path,
+            'hover:bg-gray-100 dark:hover:bg-gray-800': route.path !== item.path
+          }"
         >
           {{ t(`nav.${item.name.toLowerCase()}`) }}
         </NuxtLink>
@@ -29,14 +32,28 @@
 
           <!-- Dark mode toggle -->
           <button 
-            @click="themeStore.toggleTheme()"
-            class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            @click="toggleTheme"
+            class="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-500 flex items-center justify-center overflow-hidden relative"
             :aria-label="t(themeStore.isDark ? 'theme.light' : 'theme.dark')"
           >
-            <Icon
-              :name="themeStore.isDark ? 'heroicons:sun' : 'heroicons:moon'"
-              class="w-6 h-6"
-            />
+            <div class="relative w-5 h-5">
+              <Icon
+                name="heroicons:sun"
+                class="w-5 h-5 absolute inset-0 transform transition-all duration-500"
+                :class="{
+                  'rotate-[360deg] scale-100 opacity-100': !themeStore.isDark,
+                  'rotate-[-360deg] scale-0 opacity-0': themeStore.isDark
+                }"
+              />
+              <Icon
+                name="heroicons:moon"
+                class="w-5 h-5 absolute inset-0 transform transition-all duration-500"
+                :class="{
+                  'rotate-[360deg] scale-100 opacity-100': themeStore.isDark,
+                  'rotate-[-360deg] scale-0 opacity-0': !themeStore.isDark
+                }"
+              />
+            </div>
           </button>
         </div>
       </div>
@@ -63,8 +80,11 @@
               v-for="item in navItems" 
               :key="item.path"
               :to="localePath(item.path)"
-              class="text-2xl hover:text-primary-500 transition-colors"
-              :class="{ 'text-primary-500': route.path === item.path }"
+              class="text-2xl px-3 py-2 rounded-lg transition-all duration-300"
+              :class="{ 
+                'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 font-medium': route.path === item.path,
+                'hover:bg-gray-100 dark:hover:bg-gray-800': route.path !== item.path
+              }"
               @click="isMenuOpen = false"
             >
               {{ t(`nav.${item.name.toLowerCase()}`) }}
@@ -73,14 +93,28 @@
             <div class="flex items-center gap-4">
               <LanguageSwitch />
               <button 
-                @click="themeStore.toggleTheme()"
-                class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                @click="toggleTheme"
+                class="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-500 flex items-center justify-center overflow-hidden relative"
                 :aria-label="t(themeStore.isDark ? 'theme.light' : 'theme.dark')"
               >
-                <Icon
-                  :name="themeStore.isDark ? 'heroicons:sun' : 'heroicons:moon'"
-                  class="w-6 h-6"
-                />
+                <div class="relative w-5 h-5">
+                  <Icon
+                    name="heroicons:sun"
+                    class="w-5 h-5 absolute inset-0 transform transition-all duration-500"
+                    :class="{
+                      'rotate-[360deg] scale-100 opacity-100': !themeStore.isDark,
+                      'rotate-[-360deg] scale-0 opacity-0': themeStore.isDark
+                    }"
+                  />
+                  <Icon
+                    name="heroicons:moon"
+                    class="w-5 h-5 absolute inset-0 transform transition-all duration-500"
+                    :class="{
+                      'rotate-[360deg] scale-100 opacity-100': themeStore.isDark,
+                      'rotate-[-360deg] scale-0 opacity-0': !themeStore.isDark
+                    }"
+                  />
+                </div>
               </button>
             </div>
           </div>
@@ -95,6 +129,7 @@ import { useThemeStore } from '~/stores/theme'
 import { useLangStore } from '~/stores/lang'
 import { Icon } from '#components'
 import { useLocalePath } from '#imports'
+import gsap from 'gsap'
 
 const route = useRoute()
 const { t } = useI18n()
@@ -102,6 +137,35 @@ const localePath = useLocalePath()
 const themeStore = useThemeStore()
 const langStore = useLangStore()
 const isMenuOpen = ref(false)
+
+// Thêm overlay element vào DOM khi component được mount
+onMounted(() => {
+  if (import.meta.client) {
+    const overlay = document.createElement('div')
+    overlay.className = 'theme-transition-overlay'
+    document.body.appendChild(overlay)
+  }
+})
+
+const toggleTheme = (event: MouseEvent) => {
+  if (import.meta.client) {
+    // Cập nhật vị trí chuột cho overlay
+    const overlay = document.querySelector('.theme-transition-overlay') as HTMLElement
+    if (overlay) {
+      overlay.style.setProperty('--mouse-x', `${event.clientX}px`)
+      overlay.style.setProperty('--mouse-y', `${event.clientY}px`)
+    }
+
+    // Animation chuyển theme
+    gsap.to('body', {
+      duration: 0.3,
+      ease: 'power2.inOut',
+      onStart: () => {
+        themeStore.toggleTheme()
+      }
+    })
+  }
+}
 
 const navItems = [
   { name: 'Home', path: '/' },

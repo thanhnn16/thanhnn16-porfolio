@@ -32,7 +32,7 @@
             <div class="flex items-center gap-2">
               <button
                 @click="onAction"
-                class="text-sm px-3 py-1 bg-primary-500 text-white rounded-lg hover:bg-primary-600"
+                class="text-sm px-3 py-1 bg-primary-500 text-primary-contrast rounded-lg hover:bg-primary-600"
               >
                 {{ type === 'install' ? 'Install' : 'Update' }}
               </button>
