@@ -1,4 +1,4 @@
-export const vi = {
+export default () => ({
   welcome: "Chào mừng đến với portfolio của tôi",
   about: {
     title: "Về Tôi",
@@ -261,6 +261,4 @@ export const vi = {
   restartChat: "Bắt đầu lại",
   askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!",
   scroll_to_top: 'Cuộn lên đầu trang'
-}
-
-export default vi
+})

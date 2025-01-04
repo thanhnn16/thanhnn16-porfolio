@@ -6,7 +6,7 @@ export default defineI18nConfig(() => ({
     locale: 'vi',
     fallbackLocale: 'vi',
     messages: {
-        en,
-        vi
+        en: en(),
+        vi: vi()
     }
-})) 
+}))
