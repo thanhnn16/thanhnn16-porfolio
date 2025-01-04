@@ -64,7 +64,7 @@
 const project = {
   title: 'E-commerce Platform',
   description: 'A detailed description of the project...',
-  image: '/images/project1.jpg',
+  image: '/images/projects/marine-trace/thumbnail.jpg',
   technologies: ['Nuxt 3', 'Vue', 'Tailwind CSS', 'Node.js'],
   // Add more project details
 }
