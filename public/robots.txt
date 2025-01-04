@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-domain.com/sitemap.xml
+# Disallow admin and private paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*?*
+
+# Allow CSS, JS, and Images
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Crawl delay
+Crawl-delay: 10
+
+# Sitemaps
+Sitemap: https://thanhnn16.id.vn/sitemap.xml

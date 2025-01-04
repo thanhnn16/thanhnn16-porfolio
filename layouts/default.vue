@@ -21,7 +21,14 @@
       class="flex-grow"
       :aria-label="route.meta.title || 'Main content'"
     >
-      <slot />
+      <Transition
+        mode="out-in"
+        @enter="onPageEnter"
+        @leave="onPageLeave"
+        @before-leave="onBeforeLeave"
+      >
+        <slot />
+      </Transition>
     </main>
 
     <ClientOnly>
@@ -41,7 +48,8 @@
 
 <script setup lang="ts">
 import { usePerformance } from '~/composables/usePerformance'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { usePageTransition } from '~/composables/usePageTransition'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -50,6 +58,7 @@ declare module 'vue-router' {
 }
 
 const route = useRoute()
+const router = useRouter()
 
 // Monitor performance metrics
 const { isLCP, isFID, isCLS } = usePerformance()
@@ -61,4 +70,29 @@ watch([isLCP, isFID, isCLS], ([lcp, fid, cls]) => {
     console.log('Good Core Web Vitals')
   }
 })
+
+const { pageEnter, pageLeave } = usePageTransition()
+
+// Handle scroll restoration
+router.beforeEach(() => {
+  // Disable native scroll behavior
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual'
+  }
+})
+
+const onBeforeLeave = () => {
+  // Prevent scroll jumping during transition
+  document.body.style.overflow = 'hidden'
+}
+
+const onPageEnter = (el: Element, done: () => void) => {
+  // Re-enable scrolling after enter
+  document.body.style.overflow = ''
+  pageEnter(el, done)
+}
+
+const onPageLeave = (el: Element, done: () => void) => {
+  pageLeave(el, done)
+}
 </script> 

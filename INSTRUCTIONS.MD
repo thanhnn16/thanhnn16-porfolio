@@ -113,6 +113,7 @@ Portfolio này được tạo ra nhằm:
 ├── .github/               # GitHub workflows and config
 ├── .nuxt/                # Nuxt build files
 ├── .output/              # Output files
+├── .vercel/              # Vercel deployment config
 ├── assets/               # Static assets
 │   ├── css/             # CSS files
 │   └── images/          # Images
@@ -133,16 +134,23 @@ Portfolio này được tạo ra nhằm:
 │   ├── TheHeader.vue        # Header component
 │   └── TimelineItem.vue     # Timeline item
 ├── composables/          # Composable functions
-│   ├── useAnalytics.ts      # Analytics hooks
+│   ├── useAnalytics.ts      # Analytics tracking
 │   ├── useChat.ts          # Chat functionality
 │   ├── useErrorHandler.ts   # Error handling
-│   ├── useHoverEffect.ts    # Hover effects
+│   ├── useHoverEffect.ts    # Hover animations
 │   ├── useOptimizedImage.ts # Image optimization
-│   ├── usePerformance.ts    # Performance tracking
+│   ├── usePerformance.ts    # Performance monitoring
 │   ├── usePWA.ts           # PWA functionality
 │   ├── useSecurity.ts      # Security features
 │   └── useUserTracking.ts   # User tracking
+├── dist/                 # Build output
+├── i18n/                 # Internationalization
+│   ├── i18n.config.ts      # i18n configuration
+│   └── locales/            # Language files
+│       ├── en.ts           # English translations
+│       └── vi.ts           # Vietnamese translations
 ├── layouts/              # Page layouts
+│   └── default.vue         # Default layout
 ├── middleware/           # Middleware functions
 ├── pages/                # Application pages
 │   ├── about.vue           # About page
@@ -152,15 +160,22 @@ Portfolio này được tạo ra nhằm:
 │   ├── projects/           # Project details
 │   └── skills.vue          # Skills page
 ├── plugins/              # Nuxt plugins
+│   └── i18n.ts            # i18n plugin
 ├── public/               # Public assets
 ├── server/               # API endpoints
+│   └── api/               # API routes
+│       └── chat.post.ts    # Chat API endpoint
 ├── stores/               # Pinia stores
 ├── test/                 # Unit tests
 ├── utils/                # Utility functions
 ├── .env                  # Environment variables
+├── .gitignore           # Git ignore rules
 ├── app.vue               # App entry
-├── i18n.config.ts        # i18n configuration
+├── bun.lockb            # Bun lock file
+├── INSTRUCTIONS.MD       # Project instructions
 ├── nuxt.config.ts        # Nuxt configuration
+├── package.json         # Project dependencies
+├── README.md            # Project readme
 ├── tailwind.config.js    # Tailwind configuration
 ├── tsconfig.json         # TypeScript configuration
 └── vitest.setup.ts       # Vitest setup
@@ -288,6 +303,7 @@ This portfolio was created to:
 ├── .github/               # GitHub workflows and config
 ├── .nuxt/                # Nuxt build files
 ├── .output/              # Output files
+├── .vercel/              # Vercel deployment config
 ├── assets/               # Static assets
 │   ├── css/             # CSS files
 │   └── images/          # Images
@@ -308,16 +324,23 @@ This portfolio was created to:
 │   ├── TheHeader.vue        # Header component
 │   └── TimelineItem.vue     # Timeline item
 ├── composables/          # Composable functions
-│   ├── useAnalytics.ts      # Analytics hooks
+│   ├── useAnalytics.ts      # Analytics tracking
 │   ├── useChat.ts          # Chat functionality
 │   ├── useErrorHandler.ts   # Error handling
-│   ├── useHoverEffect.ts    # Hover effects
+│   ├── useHoverEffect.ts    # Hover animations
 │   ├── useOptimizedImage.ts # Image optimization
-│   ├── usePerformance.ts    # Performance tracking
+│   ├── usePerformance.ts    # Performance monitoring
 │   ├── usePWA.ts           # PWA functionality
 │   ├── useSecurity.ts      # Security features
 │   └── useUserTracking.ts   # User tracking
+├── dist/                 # Build output
+├── i18n/                 # Internationalization
+│   ├── i18n.config.ts      # i18n configuration
+│   └── locales/            # Language files
+│       ├── en.ts           # English translations
+│       └── vi.ts           # Vietnamese translations
 ├── layouts/              # Page layouts
+│   └── default.vue         # Default layout
 ├── middleware/           # Middleware functions
 ├── pages/                # Application pages
 │   ├── about.vue           # About page
@@ -327,15 +350,22 @@ This portfolio was created to:
 │   ├── projects/           # Project details
 │   └── skills.vue          # Skills page
 ├── plugins/              # Nuxt plugins
+│   └── i18n.ts            # i18n plugin
 ├── public/               # Public assets
 ├── server/               # API endpoints
+│   └── api/               # API routes
+│       └── chat.post.ts    # Chat API endpoint
 ├── stores/               # Pinia stores
 ├── test/                 # Unit tests
 ├── utils/                # Utility functions
 ├── .env                  # Environment variables
+├── .gitignore           # Git ignore rules
 ├── app.vue               # App entry
-├── i18n.config.ts        # i18n configuration
+├── bun.lockb            # Bun lock file
+├── INSTRUCTIONS.MD       # Project instructions
 ├── nuxt.config.ts        # Nuxt configuration
+├── package.json         # Project dependencies
+├── README.md            # Project readme
 ├── tailwind.config.js    # Tailwind configuration
 ├── tsconfig.json         # TypeScript configuration
 └── vitest.setup.ts       # Vitest setup

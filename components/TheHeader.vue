@@ -8,7 +8,7 @@
         <img 
           src="@/assets/images/thanhnn16-logo-300x128.svg" 
           alt="thanhnn16 logo" 
-          class="h-16 w-auto dark:invert"
+          class="h-12 w-auto dark:invert"
         />
       </NuxtLink>
 

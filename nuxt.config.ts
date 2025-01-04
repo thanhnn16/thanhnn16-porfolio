@@ -230,7 +230,7 @@ export default defineNuxtConfig({
     keepalive: true
   },
   plugins: [
-    { src: '~/plugins/gsap.client.js', mode: 'client' }
+    { src: '~/plugins/gsap.client.ts', mode: 'client' }
   ],
   nitro: {
     preset: 'vercel',
@@ -326,5 +326,10 @@ export default defineNuxtConfig({
       }
     },
     plugins: []
+  },
+  build: {
+    transpile: [
+      'gsap'
+    ]
   }
 })
