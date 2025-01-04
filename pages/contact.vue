@@ -141,7 +141,7 @@
               :disabled="isSubmitting"
               class="w-full px-6 py-3 bg-primary-500 text-primary-contrast rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
             >
-              {{ isSubmitting ? t('contact.submitting') : t('contact.submit') }}
+              {{ isSubmitting ? t('contact.form.sending') : t('contact.form.send') }}
             </button>
           </form>
         </div>
@@ -256,21 +256,42 @@ const validateForm = () => {
   errors.email = ''
   errors.message = ''
 
+  // Name validation
   if (!form.name.trim()) {
     errors.name = t('contact.form.name.required')
     isValid = false
+  } else if (form.name.trim().length < 2) {
+    errors.name = t('contact.form.name.minLength')
+    isValid = false
+  } else if (form.name.trim().length > 50) {
+    errors.name = t('contact.form.name.maxLength')
+    isValid = false
+  } else if (!/^[a-zA-ZÀ-ỹ\s']+$/.test(form.name.trim())) {
+    errors.name = t('contact.form.name.invalid')
+    isValid = false
   }
 
+  // Email validation
   if (!form.email.trim()) {
     errors.email = t('contact.form.email.required')
     isValid = false
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+  } else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(form.email.trim())) {
     errors.email = t('contact.form.email.invalid')
+    isValid = false
+  } else if (form.email.length > 100) {
+    errors.email = t('contact.form.email.maxLength')
     isValid = false
   }
 
+  // Message validation
   if (!form.message.trim()) {
     errors.message = t('contact.form.message.required')
+    isValid = false
+  } else if (form.message.trim().length < 10) {
+    errors.message = t('contact.form.message.minLength')
+    isValid = false
+  } else if (form.message.trim().length > 1000) {
+    errors.message = t('contact.form.message.maxLength')
     isValid = false
   }
 
@@ -283,14 +304,27 @@ const handleSubmit = async () => {
   isSubmitting.value = true
 
   try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    const response = await $fetch('/api/contact', {
+      method: 'POST',
+      body: {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        message: form.message.trim(),
+        locale: useI18n().locale.value
+      }
+    })
+    
     showSuccessModal.value = true
     form.name = ''
     form.email = ''
     form.message = ''
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to send message:', error)
+    if (error.response?.status === 429) {
+      alert(t('contact.error.tooManyRequests'))
+    } else {
+      alert(t('contact.error.general'))
+    }
   } finally {
     isSubmitting.value = false
   }

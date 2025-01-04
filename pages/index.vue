@@ -76,7 +76,7 @@
             :visible="{ opacity: 1, y: 0, transition: { delay: index * 200 } }"
             class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
           >
-            <img :src="project.image" :alt="project.title" class="w-full h-48 object-cover" />
+            <BaseImage :src="project.image" :alt="project.title" class="w-full h-48 object-cover" />
             <div class="p-6">
               <h3 class="text-xl font-bold mb-2">{{ project.title }}</h3>
               <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description }}</p>

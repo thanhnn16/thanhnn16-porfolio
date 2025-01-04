@@ -107,18 +107,24 @@ export default {
       name: {
         label: "Họ và tên",
         placeholder: "Tên của bạn",
-        required: "Vui lòng nhập họ tên"
+        required: "Vui lòng nhập họ tên",
+        minLength: "Tên phải có ít nhất 2 ký tự",
+        maxLength: "Tên không được vượt quá 50 ký tự",
+        invalid: "Tên chỉ được chứa chữ cái và khoảng trắng"
       },
       email: {
         label: "Email",
         placeholder: "your&#64;email.com",
         required: "Email là bắt buộc",
-        invalid: "Vui lòng nhập email hợp lệ"
+        invalid: "Vui lòng nhập email hợp lệ",
+        maxLength: "Email không được vượt quá 100 ký tự"
       },
       message: {
         label: "Tin nhắn",
         placeholder: "Tin nhắn của bạn",
-        required: "Vui lòng nhập tin nhắn"
+        required: "Vui lòng nhập tin nhắn",
+        minLength: "Tin nhắn phải có ít nhất 10 ký tự",
+        maxLength: "Tin nhắn không được vượt quá 1000 ký tự"
       },
       sending: "Đang gửi...",
       send: "Gửi tin nhắn"
@@ -127,6 +133,31 @@ export default {
       title: "Đã gửi tin nhắn!",
       message: "Cảm ơn bạn đã gửi tin nhắn. Tôi sẽ phản hồi sớm nhất có thể!",
       close: "Đóng"
+    },
+    error: {
+      tooManyRequests: "Bạn đã gửi quá nhiều tin nhắn. Vui lòng thử lại sau.",
+      general: "Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại.",
+      email: {
+        autoReply: {
+          subject: "Cảm ơn bạn đã liên hệ với Thanh Nguyen",
+          greeting: "Xin chào",
+          thankYou: "Cảm ơn bạn đã gửi tin nhắn!",
+          received: "Tôi đã nhận được tin nhắn của bạn và sẽ phản hồi trong thời gian sớm nhất.",
+          messageCopy: "Đây là nội dung tin nhắn của bạn:",
+          regards: "Trân trọng,",
+          signature: {
+            name: "Nông Nguyễn Thành",
+            role: "Lập trình viên Full-stack & Nhà thiết kế UI/UX"
+          }
+        },
+        admin: {
+          subject: "Tin nhắn mới từ Form Liên hệ - {name}",
+          title: "Tin nhắn mới từ Form Liên hệ",
+          name: "Họ tên",
+          email: "Email",
+          message: "Nội dung"
+        }
+      }
     },
     followMe: "Theo dõi tôi"
   },

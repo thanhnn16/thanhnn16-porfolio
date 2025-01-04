@@ -23,12 +23,12 @@
 
         <!-- Project Image -->
         <div 
-          class="rounded-xl overflow-hidden mb-8"
+          class="aspect-video rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 mb-8"
           v-motion
           :initial="{ opacity: 0 }"
           :enter="{ opacity: 1, transition: { delay: 200 } }"
         >
-          <img :src="project.image" :alt="project.title" class="w-full h-auto" />
+          <BaseImage :src="project.image" :alt="project.title" class="w-full h-auto" />
         </div>
 
         <!-- Project Content -->

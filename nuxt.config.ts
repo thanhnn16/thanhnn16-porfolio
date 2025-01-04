@@ -137,40 +137,34 @@ export default defineNuxtConfig({
           runtimeCaching: [
             {
               urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-              handler: 'CacheFirst',
+              handler: 'StaleWhileRevalidate',
               options: {
                 cacheName: 'google-fonts-cache',
                 expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-                },
-                cacheableResponse: {
-                  statuses: [0, 200]
+                  maxEntries: 5,
+                  maxAgeSeconds: 60 * 60 * 24 * 30
                 }
               }
             },
             {
               urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-              handler: 'CacheFirst',
+              handler: 'StaleWhileRevalidate',
               options: {
                 cacheName: 'gstatic-fonts-cache',
                 expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-                },
-                cacheableResponse: {
-                  statuses: [0, 200]
+                  maxEntries: 5,
+                  maxAgeSeconds: 60 * 60 * 24 * 30
                 }
               }
             },
             {
               urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
-              handler: 'CacheFirst',
+              handler: 'StaleWhileRevalidate',
               options: {
                 cacheName: 'image-cache',
                 expiration: {
-                  maxEntries: 50,
-                  maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                  maxEntries: 30,
+                  maxAgeSeconds: 60 * 60 * 24 * 7
                 }
               }
             },
@@ -192,11 +186,12 @@ export default defineNuxtConfig({
           periodicSyncForUpdates: 3600 // check for updates every hour
         },
         devOptions: {
-          enabled: true,
+          enabled: false,
           type: 'module'
         }
       }
-    ]
+    ],
+    'nuxt-nodemailer'
   ],
   icon: {
     size: '24px',
@@ -345,5 +340,15 @@ export default defineNuxtConfig({
     transpile: [
       'gsap'
     ]
+  },
+  nodemailer: {
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD
+    },
+    defaults: {
+      from: process.env.GMAIL_USER
+    }
   }
 })

@@ -30,16 +30,10 @@
           :enter="{ opacity: 1, x: 0 }"
         >
           <div class="aspect-square rounded-2xl overflow-hidden bg-light-secondary dark:bg-dark-secondary relative group">
-            <NuxtImg 
+            <BaseImage 
               src="/images/avatar.png" 
               alt="Profile" 
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-              placeholder
-              quality="90"
-              format="webp"
-              fit="cover"
-              sizes="sm:100vw md:50vw lg:400px"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-dark/50 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
@@ -82,7 +76,7 @@
               to="/contact"
               class="px-6 py-3 bg-primary-500 text-primary-contrast rounded-lg hover:bg-primary-600 transition-colors"
             >
-              {{ t('about.contact') }}
+              {{ t('contact.title') }}
             </NuxtLink>
           </div>
         </div>
@@ -96,7 +90,7 @@
           :initial="{ opacity: 0, y: 50 }"
           :visible="{ opacity: 1, y: 0 }"
         >
-          {{ t('about.education') }}
+          {{ t('about.journey') }}
         </h2>
 
         <div class="relative">

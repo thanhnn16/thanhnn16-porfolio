@@ -107,18 +107,24 @@ export default {
       name: {
         label: "Name",
         placeholder: "Your name",
-        required: "Name is required"
+        required: "Name is required",
+        minLength: "Name must be at least 2 characters",
+        maxLength: "Name cannot exceed 50 characters",
+        invalid: "Name can only contain letters and spaces"
       },
       email: {
         label: "Email",
         placeholder: "your&#64;email.com",
         required: "Email is required",
-        invalid: "Please enter a valid email"
+        invalid: "Please enter a valid email",
+        maxLength: "Email cannot exceed 100 characters"
       },
       message: {
         label: "Message",
         placeholder: "Your message",
-        required: "Message is required"
+        required: "Message is required",
+        minLength: "Message must be at least 10 characters",
+        maxLength: "Message cannot exceed 1000 characters"
       },
       sending: "Sending...",
       send: "Send Message"
@@ -127,6 +133,31 @@ export default {
       title: "Message Sent!",
       message: "Thank you for your message. I'll get back to you soon!",
       close: "Close"
+    },
+    error: {
+      tooManyRequests: "You have sent too many messages. Please try again later.",
+      general: "Failed to send message. Please try again.",
+      email: {
+        autoReply: {
+          subject: "Thank you for contacting Thanh Nguyen",
+          greeting: "Dear",
+          thankYou: "Thank you for your message!",
+          received: "I have received your message and will get back to you as soon as possible.",
+          messageCopy: "Here's a copy of your message:",
+          regards: "Best regards,",
+          signature: {
+            name: "Nong Nguyen Thanh",
+            role: "Full-stack Developer & UI/UX Designer"
+          }
+        },
+        admin: {
+          subject: "New Contact Form Message - {name}",
+          title: "New Contact Form Submission",
+          name: "Name",
+          email: "Email",
+          message: "Message"
+        }
+      }
     },
     followMe: "Follow Me"
   },
