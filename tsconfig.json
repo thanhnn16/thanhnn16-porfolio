@@ -10,9 +10,7 @@
       "@pinia/nuxt",
       "@nuxtjs/i18n",
       "@vueuse/nuxt",
-      "@nuxt/image",
-      "@types/node",
-      "nuxt"
+      "@nuxt/image"
     ]
   }
 }

@@ -1,5 +1,3 @@
-import { defineNuxtConfig } from 'nuxt/config'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
@@ -163,18 +161,38 @@ export default defineNuxtConfig({
                   statuses: [0, 200]
                 }
               }
+            },
+            {
+              urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'image-cache',
+                expiration: {
+                  maxEntries: 50,
+                  maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                }
+              }
+            },
+            {
+              urlPattern: /\.(js|css)$/,
+              handler: 'StaleWhileRevalidate',
+              options: {
+                cacheName: 'static-resources',
+                expiration: {
+                  maxEntries: 30,
+                  maxAgeSeconds: 60 * 60 * 24 * 7 // 7 days
+                }
+              }
             }
           ]
         },
         client: {
           installPrompt: true,
-          periodicSyncForUpdates: 20
+          periodicSyncForUpdates: 3600 // check for updates every hour
         },
         devOptions: {
           enabled: true,
-          suppressWarnings: true,
-          type: 'module',
-          navigateFallback: '/'
+          type: 'module'
         }
       }
     ]
