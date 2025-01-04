@@ -1,69 +1,63 @@
 <template>
-  <div class="fixed bottom-4 right-4">
-    <transition name="bounce">
-      <button v-show="showButton" @click="scrollToTop" class="bg-accent hover:bg-white text-accent-contrast hover:text-accent rounded-full p-3 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50">
-        <Icon name="heroicons:arrow-up" class="w-6 h-6" />
-      </button>
-    </transition>
-  </div>
+  <button
+    v-show="showButton"
+    @click="scrollToTop"
+    class="fixed bottom-6 right-4 z-50 w-12 h-12 rounded-xl transition-all duration-300 hover:scale-105 bg-gradient-to-r from-primary to-primary-600 text-primary-contrast shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900 flex items-center justify-center"
+    :aria-label="t('scroll_to_top')"
+  >
+    <Icon name="heroicons:arrow-up" class="w-6 h-6" />
+  </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { useI18n } from 'vue-i18n'
+import ScrollToPlugin from 'gsap/ScrollToPlugin'
+
+gsap.registerPlugin(ScrollToPlugin)
+
+const { t } = useI18n()
 
 const showButton = ref(false)
+const scrollThreshold = 200
 
-const checkScroll = () => {
-  const scrollContainer = document.querySelector('.overflow-y-auto') || window
-  showButton.value = (scrollContainer === window ? window.pageYOffset : scrollContainer.scrollTop) > 300
+const handleScroll = () => {
+  showButton.value = window.scrollY > scrollThreshold
 }
 
 const scrollToTop = () => {
-  const scrollContainer = document.querySelector('.overflow-y-auto')
-  if (scrollContainer) {
-    scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
-  } else {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: { y: 0 },
+    ease: 'power2.inOut'
+  })
 }
 
 onMounted(() => {
-  const scrollContainer = document.querySelector('.overflow-y-auto')
-  if (scrollContainer) {
-    scrollContainer.addEventListener('scroll', checkScroll)
-  } else {
-    window.addEventListener('scroll', checkScroll)
-  }
+  window.addEventListener('scroll', handleScroll)
 })
 
 onUnmounted(() => {
-  const scrollContainer = document.querySelector('.overflow-y-auto')
-  if (scrollContainer) {
-    scrollContainer.removeEventListener('scroll', checkScroll)
-  } else {
-    window.removeEventListener('scroll', checkScroll)
-  }
+  window.removeEventListener('scroll', handleScroll)
 })
-
-defineExpose({ scrollToTop })
 </script>
 
-<style scoped>
-.bounce-enter-active {
-  animation: bounce-in 0.5s;
+<style scoped lang="postcss">
+.bg-gradient-to-r {
+  @apply bg-[length:200%_auto];
+  animation: gradient 5s ease infinite;
 }
-.bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
-}
-@keyframes bounce-in {
+
+@keyframes gradient {
   0% {
-    transform: scale(0);
+    background-position: 0% 50%;
   }
   50% {
-    transform: scale(1.25);
+    background-position: 100% 50%;
   }
   100% {
-    transform: scale(1);
+    background-position: 0% 50%;
   }
 }
 </style>

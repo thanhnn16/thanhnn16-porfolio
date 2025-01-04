@@ -5,11 +5,7 @@
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
       <!-- Logo -->
       <NuxtLink to="/" class="text-2xl font-bold relative z-20">
-        <img 
-          src="@/assets/images/thanhnn16-logo-300x128.svg" 
-          alt="thanhnn16 logo" 
-          class="h-12 w-auto dark:invert"
-        />
+        <img src="@/assets/images/thanhnn16-logo-300x128.svg" alt="thanhnn16 logo" class="h-12 w-auto dark:invert" />
       </NuxtLink>
 
       <!-- Desktop Navigation -->
@@ -98,7 +94,6 @@
 
 <script setup lang="ts">
 import { useThemeStore } from '~/stores/theme'
-import { useLangStore } from '~/stores/lang'
 import { useLocalePath } from '#imports'
 import gsap from 'gsap'
 
@@ -106,7 +101,6 @@ const route = useRoute()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const themeStore = useThemeStore()
-const langStore = useLangStore()
 const isMenuOpen = ref(false)
 
 // Thêm overlay element vào DOM khi component được mount

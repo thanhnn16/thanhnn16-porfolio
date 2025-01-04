@@ -203,5 +203,6 @@ export default {
   presetMessageEn: "Chat bằng tiếng Anh",
   enterMessage: "Nhập tin nhắn của bạn...",
   restartChat: "Bắt đầu lại",
-  askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!"
+  askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!",
+  scroll_to_top: 'Cuộn lên đầu trang'
 }

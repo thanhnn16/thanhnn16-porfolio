@@ -116,7 +116,6 @@
 
 <script setup>
 import { ref, onMounted, nextTick, watch } from 'vue'
-import { useChat } from '~/composables/useChat'
 import VueMarkdown from 'vue-markdown-render'
 
 const showChat = ref(false)
@@ -126,7 +125,6 @@ const chatContainer = ref(null)
 const inputRef = ref(null)
 
 const { chatHistory, isLoading, error, sendMessage } = useChat()
-const { t } = useI18n()
 
 const toggleChat = () => {
   showChat.value = !showChat.value

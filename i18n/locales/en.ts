@@ -203,5 +203,6 @@ export default {
   presetMessageEn: "Chat in English",
   enterMessage: "Type your message...",
   restartChat: "Restart Chat",
-  askAboutMe: "Ask me anything about Thanh!"
+  askAboutMe: "Ask me anything about Thanh!",
+  scroll_to_top: 'Scroll to top'
 } 
