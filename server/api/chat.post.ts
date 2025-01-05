@@ -80,7 +80,7 @@ Khi không chắc chắn về thông tin, trả lời: "Thành Con chưa có đ�
         });
 
         const result = await chat.sendMessage([{ text: message }]);
-        const response = await result.response;
+        const response = result.response;
         const responseText = response.text();
         return { response: responseText } as ChatResponse;
     } catch (error: any) {

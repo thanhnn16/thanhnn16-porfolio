@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { H3Event } from 'h3'
+import { compare } from 'bcrypt'
 
 const prisma = new PrismaClient()
 
@@ -36,7 +37,8 @@ export default defineEventHandler(async (event: H3Event) => {
   }
 
   // Verify password
-  if (password !== user.password) {
+  const isValidPassword = await compare(password, user.password)
+  if (!isValidPassword) {
     throw createError({
       statusCode: 401,
       message: 'Email hoặc mật khẩu không đúng'

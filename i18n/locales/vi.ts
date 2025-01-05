@@ -330,5 +330,37 @@ export default {
   enterMessage: "Nhập tin nhắn của bạn...",
   restartChat: "Bắt đầu lại",
   askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!",
-  scroll_to_top: 'Cuộn lên đầu trang'
+  scroll_to_top: 'Cuộn lên đầu trang',
+  admin: {
+    dashboard: 'Bảng điều khiển',
+    posts: 'Bài viết',
+    tags: 'Thẻ',
+    settings: 'Cài đặt',
+    totalPosts: 'Tổng số bài viết',
+    totalTags: 'Tổng số thẻ',
+    totalViews: 'Tổng lượt xem',
+    recentPosts: 'Bài viết gần đây',
+    newPost: 'Bài viết mới',
+    title: 'Tiêu đề',
+    author: 'Tác giả',
+    status: {
+      published: 'Đã xuất bản',
+      draft: 'Bản nháp'
+    },
+    publishedAt: 'Xuất bản lúc',
+    actions: 'Thao tác',
+    edit: 'Chỉnh sửa',
+    login: {
+      title: 'Đăng nhập vào tài khoản',
+      email: 'Địa chỉ email',
+      password: 'Mật khẩu',
+      submit: 'Đăng nhập',
+      loading: 'Đang đăng nhập...',
+      success: 'Chào mừng trở lại!',
+      redirecting: 'Đang chuyển hướng đến bảng điều khiển...',
+      error: 'Đăng nhập thất bại',
+      invalid_credentials: 'Email hoặc mật khẩu không hợp lệ'
+    },
+    logout: 'Đăng xuất'
+  }
 }

@@ -351,5 +351,37 @@ export default {
   enterMessage: "Type your message...",
   restartChat: "Restart Chat",
   askAboutMe: "Ask me anything about Thanh!",
-  scroll_to_top: 'Scroll to top'
+  scroll_to_top: 'Scroll to top',
+  admin: {
+    dashboard: 'Dashboard',
+    posts: 'Posts',
+    tags: 'Tags',
+    settings: 'Settings',
+    totalPosts: 'Total Posts',
+    totalTags: 'Total Tags',
+    totalViews: 'Total Views',
+    recentPosts: 'Recent Posts',
+    newPost: 'New Post',
+    title: 'Title',
+    author: 'Author',
+    status: {
+      published: 'Published',
+      draft: 'Draft'
+    },
+    publishedAt: 'Published At',
+    actions: 'Actions',
+    edit: 'Edit',
+    login: {
+      title: 'Sign in to your account',
+      email: 'Email address',
+      password: 'Password',
+      submit: 'Sign in',
+      loading: 'Signing in...',
+      success: 'Welcome back!',
+      redirecting: 'Redirecting to dashboard...',
+      error: 'Login failed',
+      invalid_credentials: 'Invalid email or password'
+    },
+    logout: 'Sign out'
+  }
 }
