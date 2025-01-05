@@ -1,206 +1,282 @@
 <template>
-  <div class="container mx-auto py-20 px-4">
-    <h1 class="text-4xl font-bold text-dark mt-12 mb-12 text-center gsap-fade-in">{{ $t('mySkills') }}</h1>
+  <div class="pt-24 pb-20">
+    <div class="container mx-auto px-4">
+      <!-- Header -->
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h1 
+          class="text-4xl font-bold mb-6"
+          v-motion
+          :initial="{ opacity: 0, y: 100 }"
+          :enter="{ opacity: 1, y: 0 }"
+        >
+          {{ t('skills.title') }}
+        </h1>
+        <p 
+          class="text-xl text-gray-600 dark:text-gray-400"
+          v-motion
+          :initial="{ opacity: 0 }"
+          :enter="{ opacity: 1, transition: { delay: 200 } }"
+        >
+          {{ t('skills.description') }}
+        </p>
+      </div>
 
-    <!-- Phần kỹ năng chính -->
-    <section v-for="(category, index) in skillCategories" :key="category.title" class="mb-16 gsap-slide-up">
-      <h2 class="text-2xl font-semibold text-dark mb-6">{{ category.title }}</h2>
-      <ul class="space-y-4">
-        <li v-for="skill in category.skills" :key="skill.name" class="skill-item">
-          <div class="flex items-center mb-2">
-            <span class="skill-tag mr-3">{{ skill.name }}</span>
-            <div class="flex-grow h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div class="h-full bg-accent rounded-full" :style="{ width: `${skill.level}%` }"></div>
+      <!-- Technical Skills Section -->
+      <div class="max-w-4xl mx-auto">
+        <h2 
+          class="text-3xl font-bold text-center mb-12"
+          v-motion
+          :initial="{ opacity: 0, y: 50 }"
+          :visible="{ opacity: 1, y: 0 }"
+        >
+          {{ t('skills.technicalSkills.title') }}
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <SkillCard 
+            v-for="skill in skills" 
+            :key="skill.name"
+            :skill="skill"
+          />
+        </div>
+      </div>
+
+      <!-- Soft Skills Section -->
+      <div class="max-w-4xl mx-auto mt-20">
+        <h2 
+          class="text-3xl font-bold text-center mb-12"
+          v-motion
+          :initial="{ opacity: 0, y: 50 }"
+          :visible="{ opacity: 1, y: 0 }"
+        >
+          {{ t('skills.softSkills.title') }}
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div 
+            v-for="skill in softSkills" 
+            :key="skill.name"
+            class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-primary-500/10 rounded-lg flex items-center justify-center">
+                <Icon :name="skill.icon" class="w-6 h-6 text-primary-500" />
+              </div>
+              <h3 class="font-medium text-sm">{{ skill.name }}</h3>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-primary-500 rounded-full" :style="{ width: `${skill.level}%` }"></div>
             </div>
           </div>
-          <p class="text-muted text-sm">{{ skill.description }}</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Phần ngôn ngữ -->
-    <section class="mb-16 gsap-slide-up">
-      <h2 class="text-2xl font-semibold text-dark mb-6">{{ $t('languages') }}</h2>
-      <ul class="space-y-4">
-        <li v-for="language in languages" :key="language.name" class="flex items-center">
-          <span class="skill-tag mr-3">{{ language.name }}</span>
-          <span class="text-muted">{{ language.level }}</span>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Phần công cụ và phần mềm -->
-    <section class="mb-16 gsap-slide-up">
-      <h2 class="text-2xl font-semibold text-dark mb-6">{{ $t('toolsAndSoftware') }}</h2>
-      <div class="flex flex-wrap gap-3">
-        <span v-for="tool in toolsAndSoftware" :key="tool" class="skill-tag">{{ tool }}</span>
+        </div>
       </div>
-    </section>
 
-    <!-- Phần kỹ năng mềm -->
-    <section class="mb-16 gsap-slide-up">
-      <h2 class="text-2xl font-semibold text-dark mb-6">{{ $t('softSkills') }}</h2>
-      <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-muted">
-        <li v-for="skill in softSkills" :key="skill" class="flex items-center">
-          <span class="mr-2 text-accent">•</span>{{ skill }}
-        </li>
-      </ul>
-    </section>
+      <!-- Tools & Software Section -->
+      <div class="max-w-4xl mx-auto mt-20">
+        <h2 
+          class="text-3xl font-bold text-center mb-12"
+          v-motion
+          :initial="{ opacity: 0, y: 50 }"
+          :visible="{ opacity: 1, y: 0 }"
+        >
+          {{ t('skills.toolsAndSoftware.title') }}
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Tools -->
+          <div 
+            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            v-motion
+            :initial="{ opacity: 0, x: -50 }"
+            :visible="{ opacity: 1, x: 0 }"
+          >
+            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Icon name="heroicons:wrench-screwdriver" class="w-6 h-6 text-primary-500" />
+              {{ t('skills.toolsAndSoftware.tools.title') }}
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div 
+                v-for="tool in tools" 
+                :key="tool"
+                class="flex items-center gap-2 text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              >
+                <Icon name="heroicons:check-circle" class="w-5 h-5 text-primary-500 flex-shrink-0" />
+                <span class="text-sm">{{ tool }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Software -->
+          <div 
+            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            v-motion
+            :initial="{ opacity: 0, x: 50 }"
+            :visible="{ opacity: 1, x: 0 }"
+          >
+            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Icon name="heroicons:computer-desktop" class="w-6 h-6 text-primary-500" />
+              {{ t('skills.toolsAndSoftware.software.title') }}
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div 
+                v-for="software in softwares" 
+                :key="software"
+                class="flex items-center gap-2 text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              >
+                <Icon name="heroicons:check-circle" class="w-5 h-5 text-primary-500 flex-shrink-0" />
+                <span class="text-sm">{{ software }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import gsap from 'gsap'
 
 const { t } = useI18n()
 
-const skillCategories = ref([
+const tools = t('skills.toolsAndSoftware.tools.tools')
+const softwares = t('skills.toolsAndSoftware.software.software')
+
+const skills = [
   {
-    title: t('mobileDevelopment'),
-    skills: [
-      { name: 'Flutter', description: t('flutterDescription'), level: 85 },
-      { name: 'React Native', description: t('reactNativeDescription'), level: 80 },
-      { name: 'Kotlin', description: t('kotlinDescription'), level: 75 },
-      { name: 'Zalo Mini App', description: t('zaloMiniAppDescription'), level: 85 },
-    ]
+    name: 'Flutter',
+    icon: 'logos:flutter',
+    level: 85,
+    description: t('skills.flutterDescription')
   },
   {
-    title: t('webDevelopment'),
-    skills: [
-      { name: 'Next.js', description: t('nextjsDescription'), level: 85 },
-      { name: 'Nuxt.js', description: t('nuxtjsDescription'), level: 85 },
-      { name: 'React.js', description: t('reactjsDescription'), level: 80 },
-      { name: 'TailwindCSS', description: t('tailwindDescription'), level: 90 },
-    ]
+    name: 'React Native',
+    icon: 'logos:react',
+    level: 80,
+    description: t('skills.reactNativeDescription')
   },
   {
-    title: t('backendDevelopment'),
-    skills: [
-      { name: 'Node.js', description: t('nodejsDescription'), level: 85 },
-      { name: 'Laravel', description: t('laravelDescription'), level: 80 },
-      { name: 'MySQL', description: t('mysqlDescription'), level: 85 },
-      { name: 'PostgreSQL', description: t('postgresDescription'), level: 80 },
-      { name: 'MongoDB', description: t('mongodbDescription'), level: 75 },
-    ]
+    name: 'Kotlin',
+    icon: 'logos:kotlin',
+    level: 75,
+    description: t('skills.kotlinDescription')
   },
   {
-    title: t('otherSkills'),
-    skills: [
-      { name: 'AI Integration', description: t('aiDescription'), level: 80 },
-      { name: 'UI/UX Design', description: t('uiuxDescription'), level: 75 },
-      { name: 'Graphics Design', description: t('graphicsDescription'), level: 70 },
-    ]
+    name: 'Next.js',
+    icon: 'logos:nextjs-icon',
+    level: 85,
+    description: t('skills.nextjsDescription')
+  },
+  {
+    name: 'Nuxt.js',
+    icon: 'logos:nuxt-icon',
+    level: 85,
+    description: t('skills.nuxtjsDescription')
+  },
+  {
+    name: 'React.js',
+    icon: 'logos:react',
+    level: 80,
+    description: t('skills.reactjsDescription')
+  },
+  {
+    name: 'Laravel',
+    icon: 'logos:laravel',
+    level: 80,
+    description: t('skills.laravelDescription')
+  },
+  {
+    name: 'Node.js',
+    icon: 'logos:nodejs',
+    level: 85,
+    description: t('skills.nodejsDescription')
+  },
+  {
+    name: 'MySQL',
+    icon: 'logos:mysql',
+    level: 85,
+    description: t('skills.mysqlDescription')
+  },
+  {
+    name: 'PostgreSQL',
+    icon: 'logos:postgresql',
+    level: 80,
+    description: t('skills.postgresDescription')
+  },
+  {
+    name: 'MongoDB',
+    icon: 'logos:mongodb-icon',
+    level: 75,
+    description: t('skills.mongodbDescription')
+  },
+  {
+    name: 'TailwindCSS',
+    icon: 'logos:tailwindcss-icon',
+    level: 90,
+    description: t('skills.tailwindDescription')
   }
-])
+]
 
-const languages = ref([
-  { name: '🇻🇳 Tiếng Việt', level: t('native') },
-  { name: '🇬🇧 Tiếng Anh', level: t('readWrite') },
-  { name: '🇯🇵 Tiếng Nhật', level: 'N3 (2019) - Target N2 (07/2025)' },
-])
-
-const toolsAndSoftware = ref([
-  'VS Code', 'Android Studio', 'Figma', 'Photoshop', 'Illustrator', 'Git', 'Docker', 'Postman'
-])
-
-const softSkills = ref([
-  t('teamwork'),
-  t('independent'),
-  t('problemSolving'),
-  t('timeManagement'),
-  t('stressManagement'),
-  t('communication'),
-  t('continuousLearning'),
-])
-
-onMounted(() => {
-  gsap.from('.gsap-fade-in', { 
-    opacity: 0, 
-    duration: 1.5, 
-    ease: 'power2.out' 
-  })
-
-  gsap.from('.gsap-slide-up', { 
-    y: 50, 
-    opacity: 0, 
-    duration: 1, 
-    stagger: 0.2, 
-    ease: 'power2.out' 
-  })
-
-  gsap.from('.skill-item .bg-accent', {
-    width: 0,
-    duration: 1,
-    ease: 'power2.out',
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: '.skill-item',
-      start: 'top 80%',
-    }
-  })
-})
+const softSkills = [
+  {
+    name: t('skills.softSkills.teamwork'),
+    icon: 'heroicons:user-group',
+    level: 90
+  },
+  {
+    name: t('skills.softSkills.independent'),
+    icon: 'heroicons:user',
+    level: 85
+  },
+  {
+    name: t('skills.softSkills.problemSolving'),
+    icon: 'heroicons:light-bulb',
+    level: 85
+  },
+  {
+    name: t('skills.softSkills.timeManagement'),
+    icon: 'heroicons:clock',
+    level: 80
+  },
+  {
+    name: t('skills.softSkills.stressManagement'),
+    icon: 'heroicons:heart',
+    level: 85
+  },
+  {
+    name: t('skills.softSkills.communication'),
+    icon: 'heroicons:chat-bubble-left-right',
+    level: 85
+  },
+  {
+    name: t('skills.softSkills.continuousLearning'),
+    icon: 'heroicons:academic-cap',
+    level: 90
+  },
+  {
+    name: t('skills.softSkills.adaptability'),
+    icon: 'heroicons:arrows-right-left',
+    level: 85
+  },
+  {
+    name: t('skills.softSkills.creativity'),
+    icon: 'heroicons:sparkles',
+    level: 80
+  },
+  {
+    name: t('skills.softSkills.criticalThinking'),
+    icon: 'heroicons:puzzle-piece',
+    level: 85
+  },
+  {
+    name: t('skills.softSkills.leadership'),
+    icon: 'heroicons:flag',
+    level: 75
+  },
+  {
+    name: t('skills.softSkills.projectManagement'),
+    icon: 'heroicons:clipboard-document-list',
+    level: 80
+  }
+]
 </script>
-
-<style scoped>
-.container {
-  max-width: 800px;
-}
-
-h1, h2 {
-  color: #2c3e50;
-}
-
-.text-muted {
-  color: #6c757d;
-}
-
-section {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  transition: transform 0.3s ease;
-}
-
-section:hover {
-  transform: translateY(-5px);
-}
-
-.skill-tag {
-  background-color: #e9ecef;
-  color: #495057;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.bg-accent {
-  background-color: #007bff;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-  
-  section {
-    padding: 1.5rem;
-  }
-}
-
-.skill-item {
-  background-color: #f8f9fa;
-  border-left: 4px solid #007bff;
-  padding: 1rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.skill-item:hover {
-  transform: translateX(5px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-</style>

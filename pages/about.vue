@@ -109,7 +109,7 @@
         </div>
       </div>
 
-      <!-- Technical Skills Section -->
+      <!-- Interesting Facts Section -->
       <div class="max-w-4xl mx-auto mt-20">
         <h2 
           class="text-3xl font-bold text-center mb-12"
@@ -117,44 +117,83 @@
           :initial="{ opacity: 0, y: 50 }"
           :visible="{ opacity: 1, y: 0 }"
         >
-          {{ t('about.skillsAndTech') }}
+          {{ t('about.interestingFacts') }}
         </h2>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <SkillCard 
-            v-for="skill in skills" 
-            :key="skill.name"
-            :skill="skill"
-          />
-        </div>
-      </div>
-
-      <!-- Soft Skills Section -->
-      <div class="max-w-4xl mx-auto mt-20">
-        <h2 
-          class="text-3xl font-bold text-center mb-12"
-          v-motion
-          :initial="{ opacity: 0, y: 50 }"
-          :visible="{ opacity: 1, y: 0 }"
-        >
-          {{ t('skills.softSkills.title') }}
-        </h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Numerology -->
           <div 
-            v-for="skill in softSkills" 
-            :key="skill.name"
-            class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            v-motion
+            :initial="{ opacity: 0, x: -50 }"
+            :visible="{ opacity: 1, x: 0 }"
           >
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 bg-primary-500/10 rounded-lg flex items-center justify-center">
-                <Icon :name="skill.icon" class="w-6 h-6 text-primary-500" />
-              </div>
-              <h3 class="font-medium text-sm">{{ skill.name }}</h3>
-            </div>
-            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div class="h-full bg-primary-500 rounded-full" :style="{ width: `${skill.level}%` }"></div>
-            </div>
+            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Icon name="heroicons:sparkles" class="w-6 h-6 text-primary-500" />
+              {{ t('about.numerology.title') }}
+            </h3>
+            <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+              <li>{{ t('about.numerology.lifePathNumber') }}</li>
+              <li>{{ t('about.numerology.destinyNumber') }}</li>
+              <li>{{ t('about.numerology.soulUrgeNumber') }}</li>
+            </ul>
+          </div>
+
+          <!-- Languages -->
+          <div 
+            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            v-motion
+            :initial="{ opacity: 0, x: 50 }"
+            :visible="{ opacity: 1, x: 0 }"
+          >
+            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Icon name="heroicons:language" class="w-6 h-6 text-primary-500" />
+              {{ t('about.languages.title') }}
+            </h3>
+            <ul class="space-y-3">
+              <li v-for="lang in languages" :key="lang.name" class="flex items-center justify-between">
+                <span>{{ lang.name }}</span>
+                <span class="text-primary-500">{{ lang.level }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Hobbies -->
+          <div 
+            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            v-motion
+            :initial="{ opacity: 0, x: -50 }"
+            :visible="{ opacity: 1, x: 0 }"
+          >
+            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Icon name="heroicons:heart" class="w-6 h-6 text-primary-500" />
+              {{ t('about.hobbies.title') }}
+            </h3>
+            <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+              <li v-for="hobby in hobbies" :key="hobby" class="flex items-center gap-2">
+                <Icon name="heroicons:check-circle" class="w-5 h-5 text-primary-500" />
+                {{ hobby }}
+              </li>
+            </ul>
+          </div>
+
+          <!-- Fun Facts -->
+          <div 
+            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            v-motion
+            :initial="{ opacity: 0, x: 50 }"
+            :visible="{ opacity: 1, x: 0 }"
+          >
+            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Icon name="heroicons:light-bulb" class="w-6 h-6 text-primary-500" />
+              {{ t('about.funFacts.title') }}
+            </h3>
+            <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+              <li v-for="fact in funFacts" :key="fact" class="flex items-center gap-2">
+                <Icon name="heroicons:star" class="w-5 h-5 text-primary-500" />
+                {{ fact }}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -212,117 +251,23 @@ const timelineItems = [
   }
 ]
 
-const skills = [
-  {
-    name: 'Flutter',
-    icon: 'logos:flutter',
-    level: 85,
-    description: t('skills.flutterDescription')
-  },
-  {
-    name: 'React Native',
-    icon: 'logos:react',
-    level: 80,
-    description: t('skills.reactNativeDescription')
-  },
-  {
-    name: 'Nuxt.js',
-    icon: 'logos:nuxt-icon',
-    level: 85,
-    description: t('skills.nuxtjsDescription')
-  },
-  {
-    name: 'Laravel',
-    icon: 'logos:laravel',
-    level: 80,
-    description: t('skills.laravelDescription')
-  },
-  {
-    name: 'Node.js',
-    icon: 'logos:nodejs',
-    level: 85,
-    description: t('skills.nodejsDescription')
-  },
-  {
-    name: 'TailwindCSS',
-    icon: 'logos:tailwindcss-icon',
-    level: 90,
-    description: t('skills.tailwindDescription')
-  },
-  {
-    name: 'MySQL',
-    icon: 'logos:mysql',
-    level: 85,
-    description: t('skills.mysqlDescription')
-  },
-  {
-    name: 'MongoDB',
-    icon: 'logos:mongodb-icon',
-    level: 75,
-    description: t('skills.mongodbDescription')
-  }
+const languages = [
+  { name: '🇻🇳 ' + t('about.languages.vietnamese'), level: t('about.languages.native') },
+  { name: '🇬🇧 ' + t('about.languages.english'), level: t('about.languages.advanced') },
+  { name: '🇯🇵 ' + t('about.languages.japanese'), level: 'N3 (2019)' }
 ]
 
-const softSkills = [
-  {
-    name: t('skills.softSkills.teamwork'),
-    icon: 'heroicons:user-group',
-    level: 90
-  },
-  {
-    name: t('skills.softSkills.independent'),
-    icon: 'heroicons:user',
-    level: 85
-  },
-  {
-    name: t('skills.softSkills.problemSolving'),
-    icon: 'heroicons:light-bulb',
-    level: 85
-  },
-  {
-    name: t('skills.softSkills.timeManagement'),
-    icon: 'heroicons:clock',
-    level: 80
-  },
-  {
-    name: t('skills.softSkills.stressManagement'),
-    icon: 'heroicons:heart',
-    level: 85
-  },
-  {
-    name: t('skills.softSkills.communication'),
-    icon: 'heroicons:chat-bubble-left-right',
-    level: 85
-  },
-  {
-    name: t('skills.softSkills.continuousLearning'),
-    icon: 'heroicons:academic-cap',
-    level: 90
-  },
-  {
-    name: t('skills.softSkills.adaptability'),
-    icon: 'heroicons:arrows-right-left',
-    level: 85
-  },
-  {
-    name: t('skills.softSkills.creativity'),
-    icon: 'heroicons:sparkles',
-    level: 80
-  },
-  {
-    name: t('skills.softSkills.criticalThinking'),
-    icon: 'heroicons:puzzle-piece',
-    level: 85
-  },
-  {
-    name: t('skills.softSkills.leadership'),
-    icon: 'heroicons:flag',
-    level: 75
-  },
-  {
-    name: t('skills.softSkills.projectManagement'),
-    icon: 'heroicons:clipboard-document-list',
-    level: 80
-  }
+const hobbies = [
+  t('about.hobbies.coding'),
+  t('about.hobbies.reading'),
+  t('about.hobbies.gaming'),
+  t('about.hobbies.traveling')
+]
+
+const funFacts = [
+  t('about.funFacts.fact1'),
+  t('about.funFacts.fact2'),
+  t('about.funFacts.fact3'),
+  t('about.funFacts.fact4')
 ]
 </script>

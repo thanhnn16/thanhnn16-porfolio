@@ -9,6 +9,35 @@ export default {
     contactMe: "Contact Me",
     journey: "My Journey",
     skillsAndTech: "Skills & Technologies",
+    interestingFacts: "Interesting Facts",
+    numerology: {
+      title: "Numerology",
+      lifePathNumber: "Life Path Number: 8 - Power & Success",
+      destinyNumber: "Destiny Number: 3 - Creativity & Expression",
+      soulUrgeNumber: "Soul Urge Number: 6 - Love & Responsibility"
+    },
+    languages: {
+      title: "Languages",
+      vietnamese: "Vietnamese",
+      english: "English",
+      japanese: "Japanese",
+      native: "Native",
+      advanced: "Advanced"
+    },
+    hobbies: {
+      title: "Hobbies",
+      coding: "Coding",
+      reading: "Reading",
+      gaming: "Gaming",
+      traveling: "Traveling"
+    },
+    funFacts: {
+      title: "Fun Facts",
+      fact1: "I started programming at age 16",
+      fact2: "I can type 120+ words per minute",
+      fact3: "I am an INTJ-T personality type",
+      fact4: "I love blue and purple colors"
+    },
     timeline: {
       highSchool: {
         title: "High School Graduation",
@@ -139,7 +168,7 @@ export default {
       },
       email: {
         label: "Email",
-        placeholder: "your[at]email.com",
+        placeholder: "Your email",
         required: "Email is required",
         invalid: "Please enter a valid email",
         maxLength: "Email cannot exceed 100 characters"
@@ -193,6 +222,7 @@ export default {
   nav: {
     home: "Home",
     projects: "Projects",
+    skills: "Skills",
     about: "About",
     contact: "Contact"
   },
@@ -208,24 +238,11 @@ export default {
     role: "Role"
   },
   skills: {
-    mobileDevelopment: "Mobile Development",
-    reactNativeDescription: "Building cross-platform mobile applications with React Native",
-    flutterDescription: "Creating beautiful native apps with Flutter",
-    kotlinDescription: "Native Android development with Kotlin",
-    webDevelopment: "Web Development",
-    laravelDescription: "Building robust backend systems with Laravel",
-    nodejsDescription: "Server-side JavaScript with Node.js",
-    vpsDescription: "Server management and deployment",
-    restApisDescription: "RESTful API design and implementation",
-    databaseAndVersionControl: "Database & Version Control",
-    mysqlDescription: "Database design and optimization with MySQL",
-    gitDescription: "Version control and collaboration with Git",
-    native: "Native",
-    readWrite: "Read & Write",
-    n3Level: "N3 Level",
-    mySkills: "My Skills",
-    languages: "Languages",
-    toolsAndSoftware: "Tools & Software",
+    title: "Skills",
+    description: "Skills and technologies I use",
+    technicalSkills: {
+      title: "Technical Skills"
+    },
     softSkills: {
       title: "Soft Skills",
       teamwork: "Effective Teamwork",
@@ -241,10 +258,84 @@ export default {
       leadership: "Leadership Potential",
       projectManagement: "Project Management"
     },
+    flutterDescription: "Cross-platform mobile app development",
+    reactNativeDescription: "Native mobile app development",
+    nuxtjsDescription: "Modern web application development",
+    laravelDescription: "Powerful backend development",
+    nodejsDescription: "API and microservices development",
+    tailwindDescription: "Beautiful and responsive UI design",
+    mobileDevelopment: "Mobile Development",
+    kotlinDescription: "Native Android development with Kotlin",
+    webDevelopment: "Web Development",
+    vpsDescription: "Server management and deployment",
+    restApisDescription: "RESTful API design and implementation",
+    databaseAndVersionControl: "Database & Version Control",
+    mysqlDescription: "Database design and optimization with MySQL",
+    gitDescription: "Version control and collaboration with Git",
+    native: "Native",
+    readWrite: "Read & Write",
+    n3Level: "N3 Level",
+    mySkills: "My Skills",
+    languages: "Languages",
+    toolsAndSoftware: {
+      title: "Tools & Software",
+      tools: {
+        title: "Tools",
+        tools: [
+          "Visual Studio Code",
+          "IntelliJ IDEA",
+          "Android Studio",
+          "Xcode",
+          "Eclipse",
+          "Git & GitHub",
+          "GitLab",
+          "Docker",
+          "Postman",
+          "MySQL Workbench",
+          "MongoDB Compass",
+          "Firebase Console",
+          "Google Cloud Platform",
+          "AWS Console",
+          "Sourcetree",
+          "DBeaver",
+          "Insomnia",
+          "Terminal",
+          "PowerShell",
+          "WSL",
+          "npm & yarn",
+          "Composer",
+          "Redis Desktop Manager",
+          "PuTTY"
+        ]
+      },
+      software: {
+        title: "Software",
+        software: [
+          "Microsoft Office",
+          "Google Workspace",
+          "Adobe Creative Suite",
+          "Figma",
+          "Notion",
+          "Trello",
+          "Jira",
+          "Slack",
+          "Zoom",
+          "Microsoft Teams",
+          "Adobe XD",
+          "Canva",
+          "Miro",
+          "ClickUp",
+          "Discord",
+          "Skype",
+          "Google Meet",
+          "Asana",
+          "Monday.com",
+          "Linear"
+        ]
+      }
+    },
     nextjsDescription: "Building modern web applications with Next.js",
-    nuxtjsDescription: "Creating performant Vue.js applications with Nuxt.js",
     reactjsDescription: "Frontend development with React.js",
-    tailwindDescription: "Rapid UI development with TailwindCSS",
     postgresDescription: "Advanced database management with PostgreSQL",
     mongodbDescription: "NoSQL database solutions with MongoDB",
     zaloMiniAppDescription: "Developing mini applications for Zalo platform",

@@ -108,6 +108,15 @@ Portfolio này được tạo ra nhằm:
   - @nuxtjs/google-fonts
   - nuxt-icon
 
+## Các trang trong dự án
+- Trang chủ: Thông tin tổng quan.
+- Dự án: Hiển thị thông tin danh sách dự án và chi tiết dự án.
+- Kỹ năng: kỹ năng chuyên môn và kỹ năng mềm của tôi.
+- Về tôi: Thông tin cá nhân và thông tin khác về tôi.
+- Liên hệ: Thông tin liên hệ và form liên hệ.
+- Blog: nội dung blog mà tôi viết.
+- CMS: chỉ admin. tôi có thể đăng nhập và quản lý bài viết cũng như dự án.
+
 ## Project Structure
 ```
 ├── .github/               # GitHub workflows and config
@@ -297,6 +306,15 @@ This portfolio was created to:
   - @nuxtjs/color-mode
   - @nuxtjs/google-fonts
   - nuxt-icon
+
+## Pages in the project
+- Home: General information.
+- Projects: Display project information and details.
+- Skills: My professional and soft skills.
+- About me: Personal information and other information about me.
+- Contact: Contact information and contact form.
+- Blog: Content of the blog I wrote.
+- CMS: Only admin. I can login and manage posts and projects.
 
 ## Project Structure
 ```

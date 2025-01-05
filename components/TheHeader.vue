@@ -133,6 +133,7 @@ const toggleTheme = (event: MouseEvent) => {
 const navItems = [
   { name: 'Home', path: '/' },
   { name: 'Projects', path: '/projects' },
+  { name: 'Skills', path: '/skills' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' }
 ]

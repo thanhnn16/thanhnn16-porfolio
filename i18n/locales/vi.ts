@@ -9,6 +9,35 @@ export default {
     contactMe: "Liên hệ với tôi",
     journey: "Hành trình của tôi",
     skillsAndTech: "Kỹ năng & Công nghệ",
+    interestingFacts: "Thông tin thú vị",
+    numerology: {
+      title: "Thần số học",
+      lifePathNumber: "Con số đường đời: 8 - Quyền lực & Thành công",
+      destinyNumber: "Con số vận mệnh: 3 - Sáng tạo & Biểu đạt",
+      soulUrgeNumber: "Con số linh hồn: 6 - Tình yêu & Trách nhiệm"
+    },
+    languages: {
+      title: "Ngôn ngữ",
+      vietnamese: "Tiếng Việt",
+      english: "Tiếng Anh",
+      japanese: "Tiếng Nhật",
+      native: "Bản ngữ",
+      advanced: "Nâng cao"
+    },
+    hobbies: {
+      title: "Sở thích",
+      coding: "Lập trình",
+      reading: "Đọc sách",
+      gaming: "Chơi game",
+      traveling: "Du lịch"
+    },
+    funFacts: {
+      title: "Sự thật thú vị",
+      fact1: "Tôi bắt đầu lập trình từ năm 16 tuổi",
+      fact2: "Tôi có thể gõ 120+ từ mỗi phút",
+      fact3: "Tôi là một người hướng nội INTJ-T",
+      fact4: "Tôi thích màu xanh dương và tím"
+    },
     timeline: {
       highSchool: {
         title: "Tốt nghiệp THPT",
@@ -139,7 +168,7 @@ export default {
       },
       email: {
         label: "Email",
-        placeholder: "your[at]email.com",
+        placeholder: "Địa chỉ email của bạn",
         required: "Email là bắt buộc",
         invalid: "Vui lòng nhập email hợp lệ",
         maxLength: "Email không được vượt quá 100 ký tự"
@@ -193,6 +222,7 @@ export default {
   nav: {
     home: "Trang chủ",
     projects: "Dự án",
+    skills: "Kỹ năng",
     about: "Về tôi",
     contact: "Liên hệ"
   },
@@ -208,24 +238,11 @@ export default {
     role: "Vai trò"
   },
   skills: {
-    mobileDevelopment: "Phát triển Ứng dụng Di động",
-    reactNativeDescription: "Xây dựng ứng dụng di động đa nền tảng với React Native",
-    flutterDescription: "Tạo ứng dụng native đẹp mắt với Flutter",
-    kotlinDescription: "Phát triển ứng dụng Android native với Kotlin",
-    webDevelopment: "Phát triển Web",
-    laravelDescription: "Xây dựng hệ thống backend mạnh mẽ với Laravel",
-    nodejsDescription: "JavaScript phía máy chủ với Node.js",
-    vpsDescription: "Quản lý và triển khai máy chủ",
-    restApisDescription: "Thiết kế và triển khai RESTful API",
-    databaseAndVersionControl: "Cơ sở dữ liệu & Quản lý phiên bản",
-    mysqlDescription: "Thiết kế và tối ưu hóa cơ sở dữ liệu với MySQL",
-    gitDescription: "Quản lý phiên bản và cộng tác với Git",
-    native: "Bản địa",
-    readWrite: "Đọc & Viết",
-    n3Level: "Trình độ N3",
-    mySkills: "Kỹ năng của tôi",
-    languages: "Ngôn ngữ",
-    toolsAndSoftware: "Công cụ & Phần mềm",
+    title: "Kỹ năng",
+    description: "Các kỹ năng và công nghệ tôi sử dụng",
+    technicalSkills: {
+      title: "Kỹ năng chuyên môn"
+    },
     softSkills: {
       title: "Kỹ năng mềm",
       teamwork: "Làm việc nhóm hiệu quả",
@@ -241,16 +258,69 @@ export default {
       leadership: "Tiềm năng lãnh đạo",
       projectManagement: "Quản lý dự án"
     },
-    nextjsDescription: "Xây dựng ứng dụng web hiện đại với Next.js",
-    nuxtjsDescription: "Tạo ứng dụng Vue.js hiệu năng cao với Nuxt.js",
-    reactjsDescription: "Phát triển frontend với React.js",
-    tailwindDescription: "Phát triển UI nhanh chóng với TailwindCSS",
-    postgresDescription: "Quản lý cơ sở dữ liệu nâng cao với PostgreSQL",
-    mongodbDescription: "Giải pháp cơ sở dữ liệu NoSQL với MongoDB",
-    zaloMiniAppDescription: "Phát triển ứng dụng mini cho nền tảng Zalo",
-    aiDescription: "Tích hợp và triển khai các giải pháp AI",
-    uiuxDescription: "Tạo trải nghiệm thiết kế lấy người dùng làm trung tâm",
-    graphicsDescription: "Thiết kế đồ họa cơ bản với Adobe Creative Suite"
+    flutterDescription: "Phát triển ứng dụng di động đa nền tảng",
+    reactNativeDescription: "Xây dựng ứng dụng di động native",
+    nuxtjsDescription: "Phát triển ứng dụng web hiện đại",
+    laravelDescription: "Xây dựng backend mạnh mẽ",
+    nodejsDescription: "Phát triển API và microservices",
+    tailwindDescription: "Thiết kế giao diện đẹp và responsive",
+    toolsAndSoftware: {
+      title: "Công cụ & Phần mềm",
+      tools: {
+        title: "Công cụ",
+        tools: [
+          "Visual Studio Code",
+          "IntelliJ IDEA",
+          "Android Studio",
+          "Xcode",
+          "Eclipse",
+          "Git & GitHub",
+          "GitLab",
+          "Docker",
+          "Postman",
+          "MySQL Workbench",
+          "MongoDB Compass",
+          "Firebase Console",
+          "Google Cloud Platform",
+          "AWS Console",
+          "Sourcetree",
+          "DBeaver",
+          "Insomnia",
+          "Terminal",
+          "PowerShell",
+          "WSL",
+          "npm & yarn",
+          "Composer",
+          "Redis Desktop Manager",
+          "PuTTY"
+        ]
+      },
+      software: {
+        title: "Phần mềm",
+        software: [
+          "Microsoft Office",
+          "Google Workspace",
+          "Adobe Creative Suite",
+          "Figma",
+          "Notion",
+          "Trello",
+          "Jira",
+          "Slack",
+          "Zoom",
+          "Microsoft Teams",
+          "Adobe XD",
+          "Canva",
+          "Miro",
+          "ClickUp",
+          "Discord",
+          "Skype",
+          "Google Meet",
+          "Asana",
+          "Monday.com",
+          "Linear"
+        ]
+      }
+    }
   },
   aiChat: "Chat AI",
   thinking: "Đang suy nghĩ...",
