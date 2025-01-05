@@ -198,16 +198,17 @@
 <script setup lang="ts">
 import { Dialog, DialogPanel, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 import { useI18n } from 'vue-i18n'
+import type { ContactForm, FormErrors, ContactInfo, SocialLink } from '~/types/form'
 
 const { t } = useI18n()
 
-const form = reactive({
+const form = reactive<ContactForm>({
   name: '',
   email: '',
   message: ''
 })
 
-const errors = reactive({
+const errors = reactive<FormErrors>({
   name: '',
   email: '',
   message: ''
@@ -216,7 +217,7 @@ const errors = reactive({
 const isSubmitting = ref(false)
 const showSuccessModal = ref(false)
 
-const socialLinks = [
+const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
     url: 'https://github.com/thanhnn16',
@@ -244,7 +245,7 @@ const socialLinks = [
   }
 ]
 
-const contactInfo = {
+const contactInfo: ContactInfo = {
   email: 'thanhnn16.work@gmail.com',
   phone: '+84 879 159 499',
   location: 'Gò Vấp, TP.HCM'

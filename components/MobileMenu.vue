@@ -63,22 +63,20 @@
 
 <script setup lang="ts">
 import { TransitionRoot, TransitionChild } from '@headlessui/vue'
+import type { NavItem, SocialLink } from '~/types/ui'
 
 const route = useRoute()
 
 defineProps<{
   show: boolean
-  navItems: Array<{
-    name: string
-    path: string
-  }>
+  navItems: NavItem[]
 }>()
 
 defineEmits<{
   (e: 'close'): void
 }>()
 
-const socialLinks = [
+const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
     url: 'https://github.com/yourusername',
@@ -88,7 +86,6 @@ const socialLinks = [
     name: 'LinkedIn',
     url: 'https://linkedin.com/in/yourusername',
     icon: 'heroicons:link'
-  },
-  // Add more social links as needed
+  }
 ]
 </script> 

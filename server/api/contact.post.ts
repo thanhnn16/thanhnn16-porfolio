@@ -1,5 +1,6 @@
 import { defineEventHandler, readBody } from 'h3'
 import { createI18n } from 'vue-i18n'
+import type { EmailOptions, ContactRequestBody, ApiResponse } from '~/types/api'
 import en from '~/i18n/locales/en'
 import vi from '~/i18n/locales/vi'
 
@@ -15,7 +16,7 @@ const i18n = createI18n({
 
 export default defineEventHandler(async (event) => {
     try {
-        const body = await readBody(event)
+        const body = await readBody(event) as ContactRequestBody
         const { name, email, message, locale = 'vi' } = body
 
         // Basic server-side validation
@@ -25,19 +26,19 @@ export default defineEventHandler(async (event) => {
                 body: {
                     error: 'All fields are required'
                 }
-            }
+            } as ApiResponse
         }
 
         // Get nodemailer instance
         const mailer = event.context.nodemailer
 
         // Set locale for translations
-        i18n.global.locale.value = locale
+        i18n.global.locale.value = locale as 'vi' | 'en'
 
         const t = i18n.global.t
 
         // Email to admin
-        const adminMailOptions = {
+        const adminMailOptions: EmailOptions = {
             to: 'thanhnn16.work@gmail.com',
             subject: t('contact.email.admin.subject', { name }),
             html: `
@@ -51,7 +52,7 @@ export default defineEventHandler(async (event) => {
         }
 
         // Auto-reply email to sender
-        const autoReplyOptions = {
+        const autoReplyOptions: EmailOptions = {
             to: email,
             subject: t('contact.email.autoReply.subject'),
             html: `
@@ -78,7 +79,7 @@ export default defineEventHandler(async (event) => {
             body: {
                 message: 'Message sent successfully'
             }
-        }
+        } as ApiResponse
     } catch (error: any) {
         console.error('Error sending message:', error)
 
@@ -87,6 +88,6 @@ export default defineEventHandler(async (event) => {
             body: {
                 error: 'Failed to send message'
             }
-        }
+        } as ApiResponse
     }
 }) 

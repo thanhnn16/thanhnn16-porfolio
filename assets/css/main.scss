@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  // Base styles
   body {
     @apply bg-light dark:bg-dark text-gray-900 dark:text-gray-100;
     @apply transition-colors duration-150;
@@ -12,24 +11,20 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  // Custom heading styles
   h1, h2, h3, h4, h5, h6 {
     @apply text-gray-900 dark:text-gray-100 font-medium;
   }
 
-  // Custom selection color
   ::selection {
     @apply bg-primary-100 dark:bg-primary-900;
   }
 
-  // Smooth scroll behavior
   html {
     scroll-behavior: smooth;
   }
 }
 
 @layer components {
-  // Custom transitions
   .page-enter-active,
   .page-leave-active {
     transition: opacity 0.2s ease;
@@ -39,7 +34,6 @@
     opacity: 0;
   }
 
-  // Custom scrollbar
   ::-webkit-scrollbar {
     @apply w-1.5;
   }
@@ -52,27 +46,18 @@
     @apply bg-gray-300 dark:bg-gray-600 rounded-full hover:bg-gray-400 dark:hover:bg-gray-500;
   }
 
-  // Custom focus outline
-  :focus-visible {
-    @apply outline-none ring-2 ring-primary-500/50 ring-offset-2 ring-offset-light dark:ring-offset-dark rounded-md;
-  }
-
-  // Custom link styles
-  a {
-    @apply text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-150;
-  }
-
-  // Custom button styles
-  button {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-light dark:focus-visible:ring-offset-dark rounded-md;
-  }
-
-  // Custom card styles
   .card {
     @apply bg-light dark:bg-dark-secondary rounded-lg shadow-sm hover:shadow-md transition-shadow duration-150;
   }
 
-  // Custom input styles
+  a {
+    @apply text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-150;
+  }
+
+  button {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-light dark:focus-visible:ring-offset-dark rounded-md;
+  }
+
   input, textarea {
     @apply bg-light dark:bg-dark-secondary border border-gray-200 dark:border-gray-700
            rounded-md focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/30
@@ -83,7 +68,6 @@
 }
 
 @layer utilities {
-  // Text utilities
   .text-secondary {
     @apply text-gray-600 dark:text-gray-400;
   }
@@ -92,20 +76,19 @@
     @apply text-gray-400 dark:text-gray-600;
   }
 
-  // Status colors
   .status-success {
-    color: theme('colors.success');
+    @apply text-green-500;
   }
 
   .status-warning {
-    color: theme('colors.warning');
+    @apply text-yellow-500;
   }
 
   .status-error {
-    color: theme('colors.error');
+    @apply text-red-500;
   }
 
   .status-info {
-    color: theme('colors.info');
+    @apply text-blue-500;
   }
 } 

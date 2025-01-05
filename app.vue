@@ -4,6 +4,8 @@
       <NuxtPage />
     </NuxtLayout>
 
+    <UNotifications />
+
     <!-- PWA Install Prompt -->
     <PWAPrompt type="install" :show-prompt="canInstall" @action="install" @close="canInstall = false" />
 

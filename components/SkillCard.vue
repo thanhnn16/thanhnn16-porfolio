@@ -18,11 +18,7 @@
 </template>
 
 <script setup lang="ts">
-interface Skill {
-  name: string
-  icon: string
-  level: number
-}
+import type { Skill } from '~/types/ui'
 
 defineProps<{
   skill: Skill

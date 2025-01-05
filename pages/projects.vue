@@ -82,6 +82,7 @@
 <script setup lang="ts">
 import { useErrorHandler } from '../composables/useErrorHandler'
 import { useI18n } from 'vue-i18n'
+import type { Project } from '~/types/project'
 
 const { t } = useI18n()
 const { error, isLoading, withAsync, clearError } = useErrorHandler()
@@ -124,18 +125,6 @@ const categories = [
   { value: 'mobile', label: t('projects.categories.mobile') },
   { value: 'zalo', label: t('projects.categories.zalo') }
 ]
-
-interface Project {
-  id: number
-  title: string
-  description: string
-  category: string
-  image: string
-  technologies: string[]
-  link: string
-  github: string
-  slug: string
-}
 
 const projects: Project[] = [
   // Mobile Applications

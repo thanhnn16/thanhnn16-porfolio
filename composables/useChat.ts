@@ -1,7 +1,4 @@
-interface Message {
-  text: string;
-  isUser: boolean;
-}
+import type { Message, ChatState, ChatResponse } from '~/types/chat'
 
 export function useChat() {
   const chatHistory = ref<Message[]>([])
@@ -35,7 +32,7 @@ export function useChat() {
         throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`)
       }
 
-      let data
+      let data: ChatResponse
       try {
         data = JSON.parse(responseText)
       } catch (parseError) {

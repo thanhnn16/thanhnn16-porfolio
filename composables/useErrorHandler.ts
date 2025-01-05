@@ -1,10 +1,5 @@
 import { ref } from 'vue'
-
-interface ErrorState {
-  message: string
-  code?: string | number
-  details?: any
-}
+import type { ErrorState } from '~/types/error'
 
 export const useErrorHandler = () => {
   const analytics = useAnalytics()

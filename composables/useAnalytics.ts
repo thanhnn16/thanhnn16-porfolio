@@ -1,28 +1,4 @@
-interface GtagEvent {
-  event: (action: string, params: {
-    event_category?: string
-    event_label?: string
-    value?: number
-    [key: string]: any
-  }) => void
-  pageview: (params: {
-    page_path: string
-    page_title?: string
-    [key: string]: any
-  }) => void
-}
-
-interface TrackingEvent {
-  category: string
-  action: string
-  label?: string
-  value?: number
-}
-
-interface PageView {
-  path: string
-  title?: string
-}
+import type { GtagEvent, TrackingEvent, PageView } from '~/types/analytics'
 
 export const useAnalytics = () => {
   const nuxtApp = useNuxtApp()

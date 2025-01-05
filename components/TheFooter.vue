@@ -58,6 +58,7 @@
 import { useRuntimeConfig } from '#app'
 import { useI18n } from 'vue-i18n'
 import { useLocalePath } from '#imports'
+import type { ContactInfo, SocialLink } from '~/types/form'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
@@ -70,7 +71,7 @@ const navItems = [
   { name: 'Contact', path: '/contact' }
 ]
 
-const socialLinks = [
+const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
     url: 'https://github.com/thanhnn16',
@@ -98,7 +99,7 @@ const socialLinks = [
   }
 ]
 
-const contactInfo = {
+const contactInfo: ContactInfo = {
   email: 'thanhnn16.work@gmail.com',
   phone: '+84 879 159 499',
   location: 'Gò Vấp, TP.HCM'

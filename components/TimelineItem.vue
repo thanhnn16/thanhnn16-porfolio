@@ -29,13 +29,7 @@
 </template>
 
 <script setup lang="ts">
-interface TimelineItem {
-  id: number
-  year: string
-  title: string
-  institution: string
-  description: string
-}
+import type { TimelineItem } from '~/types/ui'
 
 defineProps<{
   item: TimelineItem

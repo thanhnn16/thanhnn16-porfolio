@@ -4,13 +4,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
   modules: [
-    '@nuxtjs/tailwindcss',
-    '@vueuse/motion/nuxt',
     '@pinia/nuxt',
-    '@nuxtjs/i18n',
-    'vue3-carousel-nuxt',
+    '@vueuse/nuxt',
+    '@nuxtjs/color-mode',
     '@nuxt/image',
-    '@nuxt/icon',
+    '@vueuse/motion/nuxt',
+    'vue3-carousel-nuxt',
+    '@nuxtjs/i18n',
     [
       '@vite-pwa/nuxt',
       {
@@ -191,8 +191,28 @@ export default defineNuxtConfig({
         }
       }
     ],
-    'nuxt-nodemailer'
+    'nuxt-nodemailer',
+    '@nuxt/ui',
+    '@nuxt/icon',
+    [
+      'nuxt-auth-utils',
+      {
+        session: {
+          name: 'nuxt-session',
+          password: process.env.SESSION_PASSWORD || 'your-secret-password'
+        }
+      }
+    ]
   ],
+  ui: {
+    global: true,
+    safelistColors: ['primary', 'gray', 'green', 'yellow', 'red', 'blue']
+  },
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+    classSuffix: ''
+  },
   icon: {
     size: '24px',
     class: 'icon',
@@ -264,6 +284,12 @@ export default defineNuxtConfig({
     }
   },
   css: ['~/assets/css/main.scss'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   image: {
     provider: 'ipx',
     screens: {

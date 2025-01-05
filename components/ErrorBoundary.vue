@@ -28,9 +28,7 @@
 </template>
 
 <script setup lang="ts">
-interface CustomError extends Error {
-  code?: string | number;
-}
+import type { CustomError } from '~/types/error'
 
 const error = ref<CustomError | null>(null)
 

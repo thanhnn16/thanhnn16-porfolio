@@ -1,8 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-interface ChatMessage {
-    isUser: boolean;
-    text: string;
-}
+import type { ChatMessage, ChatResponse, AIConfig, AIMessage } from '~/types/chat'
 
 export default defineEventHandler(async (event) => {
     try {
@@ -67,7 +64,7 @@ Khi không chắc chắn về thông tin, trả lời: "Thành Con chưa có đ�
 `,
         });
 
-        const generationConfig = {
+        const generationConfig: AIConfig = {
             temperature: 0.85,
             topP: 0.8,
             topK: 35,
@@ -79,20 +76,20 @@ Khi không chắc chắn về thông tin, trả lời: "Thành Con chưa có đ�
             history: chatHistory.map((msg: ChatMessage) => ({
                 role: msg.isUser ? 'user' : 'model',
                 parts: [{ text: msg.text }],
-            })),
+            } as AIMessage)),
         });
 
         const result = await chat.sendMessage([{ text: message }]);
         const response = await result.response;
         const responseText = response.text();
-        return { response: responseText };
+        return { response: responseText } as ChatResponse;
     } catch (error: any) {
         if (error.message.includes('429') || error.message.includes('Resource has been exhausted')) {
-            return { error: 'Hệ thống đang quá tải. Vui lòng thử lại sau ít phút.' };
+            return { error: 'Hệ thống đang quá tải. Vui lòng thử lại sau ít phút.' } as ChatResponse;
         }
         if (error.message.includes('API key expired') || error.message.includes('API_KEY_INVALID')) {
-            return { error: 'API key đã hết hạn. Vui lòng liên hệ admin để được hỗ trợ.' };
+            return { error: 'API key đã hết hạn. Vui lòng liên hệ admin để được hỗ trợ.' } as ChatResponse;
         }
-        return { error: error.message || 'Đã xảy ra lỗi khi xử lý yêu cầu của bạn.' };
+        return { error: error.message || 'Đã xảy ra lỗi khi xử lý yêu cầu của bạn.' } as ChatResponse;
     }
 })

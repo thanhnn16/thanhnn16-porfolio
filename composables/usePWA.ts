@@ -1,15 +1,16 @@
 import { ref } from 'vue'
+import type { PWAInstallPrompt } from '~/types/pwa'
 
 export const usePWA = () => {
 
   const canInstall = ref(false)
-  const deferredPrompt = ref<any>(null)
+  const deferredPrompt = ref<PWAInstallPrompt | null>(null)
 
   // Check if app can be installed
   if (import.meta.client) {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault()
-      deferredPrompt.value = e
+      deferredPrompt.value = e as PWAInstallPrompt
       canInstall.value = true
     })
   }

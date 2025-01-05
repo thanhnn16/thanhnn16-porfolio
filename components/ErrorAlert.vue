@@ -48,12 +48,7 @@
 
 <script setup lang="ts">
 import { TransitionRoot, TransitionChild } from '@headlessui/vue'
-
-interface ErrorState {
-  message: string
-  code?: string | number
-  details?: any
-}
+import type { ErrorState } from '~/types/error'
 
 defineProps<{
   error: ErrorState | null

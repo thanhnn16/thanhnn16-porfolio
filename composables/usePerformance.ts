@@ -1,12 +1,4 @@
-interface FirstInputEntry extends PerformanceEntry {
-  processingStart: number;
-  startTime: number;
-}
-
-interface LayoutShiftEntry extends PerformanceEntry {
-  hadRecentInput: boolean;
-  value: number;
-}
+import type { FirstInputEntry, LayoutShiftEntry } from '~/types/performance'
 
 export const usePerformance = () => {
   const isLCP = ref(false) // Largest Contentful Paint

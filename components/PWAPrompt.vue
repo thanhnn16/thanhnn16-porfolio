@@ -52,9 +52,10 @@
 
 <script setup lang="ts">
 import { TransitionRoot, TransitionChild } from '@headlessui/vue'
+import type { PWAPromptType } from '~/types/pwa'
 
 defineProps<{
-  type: 'install' | 'update'
+  type: PWAPromptType
   showPrompt: boolean
 }>()
 

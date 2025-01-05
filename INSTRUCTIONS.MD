@@ -119,75 +119,87 @@ Portfolio này được tạo ra nhằm:
 
 ## Project Structure
 ```
-├── .github/               # GitHub workflows and config
-├── .nuxt/                # Nuxt build files
-├── .output/              # Output files
-├── .vercel/              # Vercel deployment config
 ├── assets/               # Static assets
 │   ├── css/             # CSS files
+│   │   └── main.scss    # Main stylesheet
 │   └── images/          # Images
-├── components/           # Reusable components
-│   ├── A11ySkipLink.vue     # Accessibility skip link
-│   ├── AIChatButton.vue     # AI Chat button
-│   ├── ContactForm.vue      # Contact form
-│   ├── ErrorAlert.vue       # Error alert
-│   ├── ErrorBoundary.vue    # Error boundary
-│   ├── LanguageSwitch.vue   # Language switcher
-│   ├── MobileMenu.vue       # Mobile menu
-│   ├── ProjectCard.vue      # Project card
-│   ├── ProjectCardSkeleton.vue  # Project card skeleton
-│   ├── PWAPrompt.vue        # PWA installation prompt
-│   ├── ScrollToTop.vue      # Scroll to top button
-│   ├── SkillCard.vue        # Skill card
-│   ├── TheFooter.vue        # Footer component
-│   ├── TheHeader.vue        # Header component
-│   └── TimelineItem.vue     # Timeline item
-├── composables/          # Composable functions
-│   ├── useAnalytics.ts      # Analytics tracking
-│   ├── useChat.ts          # Chat functionality
-│   ├── useErrorHandler.ts   # Error handling
-│   ├── useHoverEffect.ts    # Hover animations
-│   ├── useOptimizedImage.ts # Image optimization
-│   ├── usePerformance.ts    # Performance monitoring
-│   ├── usePWA.ts           # PWA functionality
-│   ├── useSecurity.ts      # Security features
-│   └── useUserTracking.ts   # User tracking
-├── dist/                 # Build output
-├── i18n/                 # Internationalization
-│   ├── i18n.config.ts      # i18n configuration
-│   └── locales/            # Language files
-│       ├── en.ts           # English translations
-│       └── vi.ts           # Vietnamese translations
-├── layouts/              # Page layouts
-│   └── default.vue         # Default layout
-├── middleware/           # Middleware functions
-├── pages/                # Application pages
-│   ├── about.vue           # About page
-│   ├── contact.vue         # Contact page
-│   ├── index.vue           # Home page
-│   ├── projects.vue        # Projects list
-│   ├── projects/           # Project details
-│   └── skills.vue          # Skills page
-├── plugins/              # Nuxt plugins
-│   └── i18n.ts            # i18n plugin
-├── public/               # Public assets
-├── server/               # API endpoints
-│   └── api/               # API routes
-│       └── chat.post.ts    # Chat API endpoint
-├── stores/               # Pinia stores
-├── test/                 # Unit tests
-├── utils/                # Utility functions
-├── .env                  # Environment variables
-├── .gitignore           # Git ignore rules
-├── app.vue               # App entry
-├── bun.lockb            # Bun lock file
-├── INSTRUCTIONS.MD       # Project instructions
-├── nuxt.config.ts        # Nuxt configuration
-├── package.json         # Project dependencies
-├── README.md            # Project readme
-├── tailwind.config.js    # Tailwind configuration
-├── tsconfig.json         # TypeScript configuration
-└── vitest.setup.ts       # Vitest setup
+├── components/          # Reusable components
+│   ├── admin/          # Admin components
+│   ├── blog/           # Blog components
+│   ├── A11ySkipLink.vue
+│   ├── AIChatButton.vue
+│   ├── BaseImage.vue
+│   ├── ContactForm.vue
+│   ├── ErrorAlert.vue
+│   ├── ErrorBoundary.vue
+│   ├── LanguageSwitch.vue
+│   ├── MobileMenu.vue
+│   ├── ProjectCard.vue
+│   ├── ProjectCardSkeleton.vue
+│   ├── PWAPrompt.vue
+│   ├── ScrollToTop.vue
+│   ├── SkillCard.vue
+│   ├── TheFooter.vue
+│   ├── TheHeader.vue
+│   └── TimelineItem.vue
+├── composables/         # Composable functions
+│   ├── useAnalytics.ts
+│   ├── useChat.ts
+│   ├── useErrorHandler.ts
+│   ├── useHoverEffect.ts
+│   ├── useOptimizedImage.ts
+│   ├── usePerformance.ts
+│   ├── usePWA.ts
+│   ├── useSecurity.ts
+│   └── useUserTracking.ts
+├── i18n/                # Internationalization
+│   ├── i18n.config.ts
+│   └── locales/
+│       ├── en.ts
+│       └── vi.ts
+├── layouts/             # Page layouts
+│   └── default.vue
+├── middleware/          # Middleware functions
+│   └── auth.ts
+├── pages/              # Application pages
+│   ├── admin/         # Admin pages
+│   ├── blog/          # Blog pages
+│   ├── projects/      # Project details pages
+│   ├── about.vue
+│   ├── contact.vue
+│   ├── index.vue
+│   ├── projects.vue
+│   └── skills.vue
+├── plugins/            # Nuxt plugins
+│   └── i18n.ts
+├── prisma/             # Prisma database config
+├── public/             # Public assets
+├── server/             # API endpoints
+│   └── api/
+│       ├── admin/     # Admin API routes
+│       ├── auth/      # Auth API routes
+│       ├── blog/      # Blog API routes
+│       ├── chat.post.ts
+│       └── contact.post.ts
+├── stores/             # Pinia stores
+│   └── theme.ts
+├── test/              # Unit tests
+├── types/             # TypeScript definitions
+│   ├── auth.d.ts
+│   ├── config.d.ts
+│   └── ui.d.ts
+├── utils/             # Utility functions
+├── .env              # Environment variables
+├── .env.example      # Example environment variables
+├── .gitignore        # Git ignore rules
+├── app.config.ts     # App configuration
+├── app.vue           # App entry
+├── migration.sql     # Database migration
+├── nuxt.config.ts    # Nuxt configuration
+├── package.json      # Project dependencies
+├── README.md         # Project readme
+├── tailwind.config.ts # Tailwind configuration
+└── tsconfig.json     # TypeScript configuration
 ```
 
 ## Performance
@@ -318,75 +330,87 @@ This portfolio was created to:
 
 ## Project Structure
 ```
-├── .github/               # GitHub workflows and config
-├── .nuxt/                # Nuxt build files
-├── .output/              # Output files
-├── .vercel/              # Vercel deployment config
 ├── assets/               # Static assets
 │   ├── css/             # CSS files
+│   │   └── main.scss    # Main stylesheet
 │   └── images/          # Images
-├── components/           # Reusable components
-│   ├── A11ySkipLink.vue     # Accessibility skip link
-│   ├── AIChatButton.vue     # AI Chat button
-│   ├── ContactForm.vue      # Contact form
-│   ├── ErrorAlert.vue       # Error alert
-│   ├── ErrorBoundary.vue    # Error boundary
-│   ├── LanguageSwitch.vue   # Language switcher
-│   ├── MobileMenu.vue       # Mobile menu
-│   ├── ProjectCard.vue      # Project card
-│   ├── ProjectCardSkeleton.vue  # Project card skeleton
-│   ├── PWAPrompt.vue        # PWA installation prompt
-│   ├── ScrollToTop.vue      # Scroll to top button
-│   ├── SkillCard.vue        # Skill card
-│   ├── TheFooter.vue        # Footer component
-│   ├── TheHeader.vue        # Header component
-│   └── TimelineItem.vue     # Timeline item
-├── composables/          # Composable functions
-│   ├── useAnalytics.ts      # Analytics tracking
-│   ├── useChat.ts          # Chat functionality
-│   ├── useErrorHandler.ts   # Error handling
-│   ├── useHoverEffect.ts    # Hover animations
-│   ├── useOptimizedImage.ts # Image optimization
-│   ├── usePerformance.ts    # Performance monitoring
-│   ├── usePWA.ts           # PWA functionality
-│   ├── useSecurity.ts      # Security features
-│   └── useUserTracking.ts   # User tracking
-├── dist/                 # Build output
-├── i18n/                 # Internationalization
-│   ├── i18n.config.ts      # i18n configuration
-│   └── locales/            # Language files
-│       ├── en.ts           # English translations
-│       └── vi.ts           # Vietnamese translations
-├── layouts/              # Page layouts
-│   └── default.vue         # Default layout
-├── middleware/           # Middleware functions
-├── pages/                # Application pages
-│   ├── about.vue           # About page
-│   ├── contact.vue         # Contact page
-│   ├── index.vue           # Home page
-│   ├── projects.vue        # Projects list
-│   ├── projects/           # Project details
-│   └── skills.vue          # Skills page
-├── plugins/              # Nuxt plugins
-│   └── i18n.ts            # i18n plugin
-├── public/               # Public assets
-├── server/               # API endpoints
-│   └── api/               # API routes
-│       └── chat.post.ts    # Chat API endpoint
-├── stores/               # Pinia stores
-├── test/                 # Unit tests
-├── utils/                # Utility functions
-├── .env                  # Environment variables
-├── .gitignore           # Git ignore rules
-├── app.vue               # App entry
-├── bun.lockb            # Bun lock file
-├── INSTRUCTIONS.MD       # Project instructions
-├── nuxt.config.ts        # Nuxt configuration
-├── package.json         # Project dependencies
-├── README.md            # Project readme
-├── tailwind.config.js    # Tailwind configuration
-├── tsconfig.json         # TypeScript configuration
-└── vitest.setup.ts       # Vitest setup
+├── components/          # Reusable components
+│   ├── admin/          # Admin components
+│   ├── blog/           # Blog components
+│   ├── A11ySkipLink.vue
+│   ├── AIChatButton.vue
+│   ├── BaseImage.vue
+│   ├── ContactForm.vue
+│   ├── ErrorAlert.vue
+│   ├── ErrorBoundary.vue
+│   ├── LanguageSwitch.vue
+│   ├── MobileMenu.vue
+│   ├── ProjectCard.vue
+│   ├── ProjectCardSkeleton.vue
+│   ├── PWAPrompt.vue
+│   ├── ScrollToTop.vue
+│   ├── SkillCard.vue
+│   ├── TheFooter.vue
+│   ├── TheHeader.vue
+│   └── TimelineItem.vue
+├── composables/         # Composable functions
+│   ├── useAnalytics.ts
+│   ├── useChat.ts
+│   ├── useErrorHandler.ts
+│   ├── useHoverEffect.ts
+│   ├── useOptimizedImage.ts
+│   ├── usePerformance.ts
+│   ├── usePWA.ts
+│   ├── useSecurity.ts
+│   └── useUserTracking.ts
+├── i18n/                # Internationalization
+│   ├── i18n.config.ts
+│   └── locales/
+│       ├── en.ts
+│       └── vi.ts
+├── layouts/             # Page layouts
+│   └── default.vue
+├── middleware/          # Middleware functions
+│   └── auth.ts
+├── pages/              # Application pages
+│   ├── admin/         # Admin pages
+│   ├── blog/          # Blog pages
+│   ├── projects/      # Project details pages
+│   ├── about.vue
+│   ├── contact.vue
+│   ├── index.vue
+│   ├── projects.vue
+│   └── skills.vue
+├── plugins/            # Nuxt plugins
+│   └── i18n.ts
+├── prisma/             # Prisma database config
+├── public/             # Public assets
+├── server/             # API endpoints
+│   └── api/
+│       ├── admin/     # Admin API routes
+│       ├── auth/      # Auth API routes
+│       ├── blog/      # Blog API routes
+│       ├── chat.post.ts
+│       └── contact.post.ts
+├── stores/             # Pinia stores
+│   └── theme.ts
+├── test/              # Unit tests
+├── types/             # TypeScript definitions
+│   ├── auth.d.ts
+│   ├── config.d.ts
+│   └── ui.d.ts
+├── utils/             # Utility functions
+├── .env              # Environment variables
+├── .env.example      # Example environment variables
+├── .gitignore        # Git ignore rules
+├── app.config.ts     # App configuration
+├── app.vue           # App entry
+├── migration.sql     # Database migration
+├── nuxt.config.ts    # Nuxt configuration
+├── package.json      # Project dependencies
+├── README.md         # Project readme
+├── tailwind.config.ts # Tailwind configuration
+└── tsconfig.json     # TypeScript configuration
 ```
 
 ## Performance
