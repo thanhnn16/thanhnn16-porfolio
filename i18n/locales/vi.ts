@@ -220,22 +220,33 @@ export default {
     vi: "Tiếng Việt"
   },
   nav: {
-    home: "Trang chủ",
-    projects: "Dự án",
-    skills: "Kỹ năng",
-    about: "Về tôi",
-    contact: "Liên hệ"
+    home: 'Trang chủ',
+    projects: 'Dự án',
+    skills: 'Kỹ năng',
+    blog: 'Blog',
+    about: 'Về tôi',
+    contact: 'Liên hệ'
   },
   theme: {
     light: "Chuyển sang chế độ sáng",
     dark: "Chuyển sang chế độ tối"
   },
   footer: {
-    contact: "Liên hệ",
-    quickLinks: "Liên kết nhanh",
-    followMe: "Theo dõi tôi",
-    allRightsReserved: "Đã đăng ký bản quyền.",
-    role: "Vai trò"
+    about: {
+      title: 'Về tôi',
+      description: 'Tôi là một lập trình viên đam mê công nghệ và sáng tạo, chuyên về phát triển ứng dụng di động, web và tích hợp AI.'
+    },
+    quickLinks: {
+      title: 'Liên kết nhanh'
+    },
+    contact: {
+      title: 'Liên hệ',
+      address: 'Gò Vấp, TP.HCM'
+    },
+    social: {
+      title: 'Mạng xã hội'
+    },
+    copyright: '© {year} Nông Nguyễn Thành. Đã đăng ký bản quyền.'
   },
   skills: {
     title: "Kỹ năng",
@@ -322,45 +333,176 @@ export default {
       }
     }
   },
-  aiChat: "Chat AI",
+  aiChat: "Chat với AI",
   thinking: "Đang suy nghĩ...",
-  startChatPrompt: "Bắt đầu trò chuyện với tôi! Bạn có thể hỏi về kỹ năng, kinh nghiệm hoặc các dự án của tôi.",
-  presetMessageVi: "Chat bằng tiếng Việt",
-  presetMessageEn: "Chat bằng tiếng Anh",
-  enterMessage: "Nhập tin nhắn của bạn...",
-  restartChat: "Bắt đầu lại",
-  askAboutMe: "Hãy hỏi tôi bất cứ điều gì về Thành!",
+  startChatPrompt: "Bạn có thể hỏi tôi bất cứ điều gì về Thành",
+  presetMessageVi: "Hỏi bằng tiếng Việt",
+  presetMessageEn: "Hỏi bằng tiếng Anh",
+  enterMessage: "Nhập tin nhắn của bạn",
+  restartChat: "Bắt đầu lại cuộc trò chuyện",
+  askAboutMe: "Hãy hỏi tôi về Thành!",
   scroll_to_top: 'Cuộn lên đầu trang',
   admin: {
     dashboard: 'Bảng điều khiển',
-    posts: 'Bài viết',
-    tags: 'Thẻ',
-    settings: 'Cài đặt',
+    login: {
+      title: 'Đăng nhập',
+      email: 'Email',
+      password: 'Mật khẩu',
+      submit: 'Đăng nhập',
+      error: 'Email hoặc mật khẩu không đúng',
+      success: 'Đăng nhập thành công',
+      loading: 'Đang đăng nhập...',
+      redirecting: 'Đang chuyển hướng...',
+      invalid_credentials: 'Thông tin đăng nhập không hợp lệ'
+    },
+    logout: 'Đăng xuất',
+    projects: {
+      title: 'Quản lý dự án',
+      add: 'Thêm dự án mới',
+      edit: 'Chỉnh sửa dự án',
+      delete: 'Xoá dự án',
+      deleteConfirm: 'Bạn có chắc chắn muốn xoá dự án này?',
+      form: {
+        title: 'Tên dự án',
+        description: 'Mô tả',
+        category: 'Danh mục',
+        technologies: 'Công nghệ sử dụng',
+        sourceUrl: 'URL mã nguồn',
+        demoUrl: 'URL demo',
+        status: 'Trạng thái',
+        thumbnail: 'Ảnh đại diện',
+        slug: 'Slug'
+      },
+      table: {
+        title: 'Tên dự án',
+        category: 'Danh mục',
+        status: 'Trạng thái',
+        createdAt: 'Ngày tạo',
+        actions: 'Thao tác'
+      },
+      validation: {
+        title: 'Vui lòng nhập tên dự án',
+        description: 'Vui lòng nhập mô tả dự án',
+        category: 'Vui lòng chọn danh mục',
+        status: 'Vui lòng chọn trạng thái'
+      }
+    },
+    blog: {
+      title: 'Quản lý blog',
+      add: 'Thêm bài viết mới',
+      edit: 'Chỉnh sửa bài viết',
+      delete: 'Xoá bài viết',
+      deleteConfirm: 'Bạn có chắc chắn muốn xoá bài viết này?',
+      new: 'Tạo bài viết mới',
+      newDescription: 'Tạo bài viết mới với tiêu đề, nội dung và hình ảnh đại diện.',
+      form: {
+        title: 'Tiêu đề',
+        titlePlaceholder: 'Nhập tiêu đề bài viết',
+        slug: 'Slug',
+        slugPlaceholder: 'nhap-tieu-de-bai-viet',
+        description: 'Mô tả ngắn',
+        descriptionPlaceholder: 'Nhập mô tả ngắn cho bài viết',
+        content: 'Nội dung',
+        contentPlaceholder: 'Viết nội dung bài viết của bạn tại đây...',
+        category: 'Danh mục',
+        tags: 'Tags',
+        featuredImage: 'Ảnh đại diện',
+        status: 'Trạng thái'
+      },
+      table: {
+        title: 'Tiêu đề',
+        category: 'Danh mục',
+        status: 'Trạng thái',
+        createdAt: 'Ngày tạo',
+        actions: 'Thao tác'
+      },
+      validation: {
+        title: 'Vui lòng nhập tiêu đề',
+        description: 'Vui lòng nhập mô tả',
+        content: 'Vui lòng nhập nội dung',
+        category: 'Vui lòng chọn danh mục',
+        status: 'Vui lòng chọn trạng thái'
+      }
+    },
+    settings: {
+      title: 'Cài đặt',
+      general: 'Cài đặt chung',
+      generalDescription: 'Quản lý cài đặt ứng dụng bao gồm ngôn ngữ và giao diện.',
+      profile: 'Cài đặt hồ sơ',
+      profileDescription: 'Cập nhật thông tin và tùy chọn hồ sơ của bạn.',
+      security: 'Cài đặt bảo mật',
+      securityDescription: 'Quản lý cài đặt bảo mật và mật khẩu của bạn.',
+      notifications: 'Thông báo',
+      notificationsDescription: 'Cấu hình cách bạn nhận thông báo.',
+      appearance: 'Giao diện',
+      appearanceDescription: 'Tùy chỉnh giao diện của ứng dụng.',
+      language: {
+        title: 'Ngôn ngữ',
+        description: 'Chọn ngôn ngữ ưa thích của bạn.',
+        system: 'Sử dụng ngôn ngữ hệ thống'
+      },
+      theme: {
+        title: 'Giao diện',
+        description: 'Chọn giao diện ưa thích của bạn.',
+        system: 'Sử dụng giao diện hệ thống',
+        light: 'Chế độ sáng',
+        dark: 'Chế độ tối'
+      },
+      profileSettings: {
+        personalInfo: 'Thông tin cá nhân',
+        name: 'Họ và tên',
+        email: 'Địa chỉ email',
+        phone: 'Số điện thoại',
+        bio: 'Tiểu sử',
+        bioPlaceholder: 'Viết vài câu về bản thân bạn',
+        location: 'Địa điểm',
+        website: 'Website',
+        social: 'Mạng xã hội',
+        avatar: 'Ảnh đại diện',
+        changeAvatar: 'Thay đổi ảnh đại diện',
+        removeAvatar: 'Xóa ảnh đại diện'
+      },
+      securitySettings: {
+        password: 'Mật khẩu',
+        currentPassword: 'Mật khẩu hiện tại',
+        newPassword: 'Mật khẩu mới',
+        confirmPassword: 'Xác nhận mật khẩu mới',
+        changePassword: 'Đổi mật khẩu',
+        twoFactor: 'Xác thực hai yếu tố',
+        enable2FA: 'Bật xác thực hai yếu tố',
+        disable2FA: 'Tắt xác thực hai yếu tố',
+        loginHistory: 'Lịch sử đăng nhập',
+        sessions: 'Phiên đang hoạt động',
+        revokeAll: 'Thu hồi tất cả phiên'
+      }
+    },
+    common: {
+      save: 'Lưu',
+      cancel: 'Hủy',
+      delete: 'Xóa',
+      edit: 'Sửa',
+      view: 'Xem',
+      back: 'Quay lại',
+      loading: 'Đang tải...',
+      confirmDelete: 'Xác nhận xoá',
+      success: 'Thành công',
+      error: 'Có lỗi xảy ra',
+      status: {
+        draft: 'Bản nháp',
+        published: 'Đã xuất bản',
+        archived: 'Đã lưu trữ'
+      }
+    },
     totalPosts: 'Tổng số bài viết',
     totalTags: 'Tổng số thẻ',
     totalViews: 'Tổng lượt xem',
     recentPosts: 'Bài viết gần đây',
-    newPost: 'Bài viết mới',
+    newPost: 'Thêm bài viết mới',
     title: 'Tiêu đề',
     author: 'Tác giả',
-    status: {
-      published: 'Đã xuất bản',
-      draft: 'Bản nháp'
-    },
-    publishedAt: 'Xuất bản lúc',
+    status: 'Trạng thái',
+    publishedAt: 'Ngày xuất bản',
     actions: 'Thao tác',
-    edit: 'Chỉnh sửa',
-    login: {
-      title: 'Đăng nhập vào tài khoản',
-      email: 'Địa chỉ email',
-      password: 'Mật khẩu',
-      submit: 'Đăng nhập',
-      loading: 'Đang đăng nhập...',
-      success: 'Chào mừng trở lại!',
-      redirecting: 'Đang chuyển hướng đến bảng điều khiển...',
-      error: 'Đăng nhập thất bại',
-      invalid_credentials: 'Email hoặc mật khẩu không hợp lệ'
-    },
-    logout: 'Đăng xuất'
+    edit: 'Chỉnh sửa'
   }
 }

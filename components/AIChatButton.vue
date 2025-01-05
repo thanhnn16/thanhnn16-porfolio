@@ -12,7 +12,7 @@
               <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
                 <Icon name="heroicons:chat-bubble-left-right" class="h-5 w-5 text-white" />
               </div>
-              <h2 class="text-lg font-semibold text-white">{{ $t('aiChat') }}</h2>
+              <h2 class="text-lg font-semibold text-white">{{ t('aiChat') }}</h2>
             </div>
             <button @click="toggleChat"
               class="text-white/80 hover:text-white transition-colors duration-300 w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center">
@@ -42,7 +42,7 @@
               <span
                 class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full shadow-sm border border-gray-200 dark:border-gray-600">
                 <Icon name="heroicons:arrow-path" class="h-4 w-4 animate-spin" />
-                {{ $t('thinking') }}
+                {{ t('thinking') }}
               </span>
             </div>
             <div v-if="error" class="flex justify-center">
@@ -55,23 +55,23 @@
           <!-- Chat input -->
           <div class="p-4 bg-white dark:bg-gray-800 border-t border-gray-200/50 dark:border-gray-700/50">
             <div v-if="chatHistory.length === 0" class="mb-4">
-              <p class="text-center text-gray-500 dark:text-gray-400 mb-3 text-sm">{{ $t('startChatPrompt') }}</p>
+              <p class="text-center text-gray-500 dark:text-gray-400 mb-3 text-sm">{{ t('startChatPrompt') }}</p>
               <div class="flex justify-center gap-2">
                 <button @click="sendPresetMessage('vi')"
                   class="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-300 shadow-sm"
                   :disabled="isLoading">
-                  {{ $t('presetMessageVi') }}
+                  {{ t('presetMessageVi') }}
                 </button>
                 <button @click="sendPresetMessage('en')"
                   class="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-300 shadow-sm"
                   :disabled="isLoading">
-                  {{ $t('presetMessageEn') }}
+                  {{ t('presetMessageEn') }}
                 </button>
               </div>
             </div>
             <div class="flex gap-2">
               <div class="flex-grow relative">
-                <input v-model="userInput" @keyup.enter="handleSendMessage" type="text" :placeholder="$t('enterMessage')"
+                <input v-model="userInput" @keyup.enter="handleSendMessage" type="text" :placeholder="t('enterMessage')"
                   :disabled="isLoading"
                   class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/30 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
                   ref="inputRef" />
@@ -88,7 +88,7 @@
               <button @click="restartChat"
                 class="text-primary hover:text-primary-600 transition-colors duration-300 focus:outline-none hover:bg-primary-50 dark:hover:bg-primary-900/20 px-3 py-1.5 rounded-lg flex items-center gap-2 text-sm">
                 <Icon name="heroicons:arrow-path" class="h-4 w-4" />
-                {{ $t('restartChat') }}
+                {{ t('restartChat') }}
               </button>
             </div>
           </div>
@@ -99,7 +99,7 @@
     <button @click="toggleChat"
       class="bg-gradient-to-r from-primary to-primary-600 text-primary-contrast w-12 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 relative focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900 flex items-center justify-center"
       :class="{ 'animate-pulse': !showChat }">
-      <span class="sr-only">{{ $t('aiChat') }}</span>
+      <span class="sr-only">{{ t('aiChat') }}</span>
       <Icon name="heroicons:chat-bubble-left-right" class="h-6 w-6" />
       <span class="absolute -top-1 -right-1 flex h-3 w-3">
         <span
@@ -109,7 +109,7 @@
     </button>
     <div v-if="showBalloon"
       class="absolute bottom-full right-0 mb-2 p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 animate-bounce">
-      <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $t('askAboutMe') }}</p>
+      <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ t('askAboutMe') }}</p>
     </div>
   </div>
 </template>
@@ -117,6 +117,8 @@
 <script setup>
 import { ref, onMounted, nextTick, watch } from 'vue'
 import VueMarkdown from 'vue-markdown-render'
+
+const { t } = useI18n()
 
 const showChat = ref(false)
 const showBalloon = ref(true)

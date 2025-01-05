@@ -15,7 +15,10 @@ export const useLangStore = defineStore('lang', () => {
   function initLang() {
     const savedLang = localStorage.getItem('selectedLang')
     const browserLang = navigator.language.split('-')[0]
+    
+    // Ưu tiên localStorage, sau đó là ngôn ngữ trình duyệt
     const defaultLang = savedLang || (browserLang === 'vi' ? 'vi' : 'en')
+    
     setLang(defaultLang as 'vi' | 'en')
   }
 

@@ -1,174 +1,125 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sidebar -->
-    <AdminSidebar />
-
-    <!-- Main content -->
-    <main class="lg:pl-72">
-      <div class="px-4 py-10 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="mb-8">
-          <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">
-            {{ t('admin.dashboard') }}
-          </h1>
+  <div>
+    <UCard>
+      <template #header>
+        <div class="flex justify-between items-center">
+          <h2 class="text-xl font-semibold">{{ t('admin.dashboard') }}</h2>
         </div>
+      </template>
 
-        <!-- Stats -->
-        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <Icon name="heroicons:document-text" class="h-6 w-6 text-gray-400" />
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                      {{ t('admin.totalPosts') }}
-                    </dt>
-                    <dd>
-                      <div class="text-lg font-medium text-gray-900 dark:text-white">
-                        {{ stats.totalPosts }}
-                      </div>
-                    </dd>
-                  </dl>
-                </div>
-              </div>
+      <!-- Stats -->
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+        <UCard>
+          <div class="flex items-center">
+            <UIcon name="i-heroicons-document-text" class="h-6 w-6 text-gray-400" />
+            <div class="ml-5">
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ t('admin.totalPosts') }}
+              </p>
+              <p class="text-lg font-medium">
+                {{ stats.totalPosts }}
+              </p>
             </div>
           </div>
+        </UCard>
 
-          <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <Icon name="heroicons:tag" class="h-6 w-6 text-gray-400" />
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                      {{ t('admin.totalTags') }}
-                    </dt>
-                    <dd>
-                      <div class="text-lg font-medium text-gray-900 dark:text-white">
-                        {{ stats.totalTags }}
-                      </div>
-                    </dd>
-                  </dl>
-                </div>
-              </div>
+        <UCard>
+          <div class="flex items-center">
+            <UIcon name="i-heroicons-tag" class="h-6 w-6 text-gray-400" />
+            <div class="ml-5">
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ t('admin.totalTags') }}
+              </p>
+              <p class="text-lg font-medium">
+                {{ stats.totalTags }}
+              </p>
             </div>
           </div>
+        </UCard>
 
-          <div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <Icon name="heroicons:eye" class="h-6 w-6 text-gray-400" />
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                      {{ t('admin.totalViews') }}
-                    </dt>
-                    <dd>
-                      <div class="text-lg font-medium text-gray-900 dark:text-white">
-                        {{ stats.totalViews }}
-                      </div>
-                    </dd>
-                  </dl>
-                </div>
-              </div>
+        <UCard>
+          <div class="flex items-center">
+            <UIcon name="i-heroicons-eye" class="h-6 w-6 text-gray-400" />
+            <div class="ml-5">
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ t('admin.totalViews') }}
+              </p>
+              <p class="text-lg font-medium">
+                {{ stats.totalViews }}
+              </p>
             </div>
           </div>
-        </div>
-
-        <!-- Recent posts -->
-        <div class="mt-8">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-lg font-medium text-gray-900 dark:text-white">
-              {{ t('admin.recentPosts') }}
-            </h2>
-            <NuxtLink
-              to="/admin/posts/new"
-              class="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-            >
-              <Icon name="heroicons:plus" class="h-5 w-5 mr-2" />
-              {{ t('admin.newPost') }}
-            </NuxtLink>
-          </div>
-
-          <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-            <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-              <thead class="bg-gray-50 dark:bg-gray-800">
-                <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:pl-6">
-                    {{ t('admin.title') }}
-                  </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">
-                    {{ t('admin.author') }}
-                  </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">
-                    {{ t('admin.status') }}
-                  </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">
-                    {{ t('admin.publishedAt') }}
-                  </th>
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                    <span class="sr-only">{{ t('admin.actions') }}</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800">
-                <tr v-for="post in recentPosts" :key="post.id">
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                    <div class="flex items-center">
-                      <div class="h-10 w-10 flex-shrink-0">
-                        <img class="h-10 w-10 rounded-lg object-cover" :src="post.thumbnail" :alt="post.title" />
-                      </div>
-                      <div class="ml-4">
-                        <div class="font-medium text-gray-900 dark:text-white">{{ post.title }}</div>
-                        <div class="text-gray-500 dark:text-gray-400">{{ post.excerpt }}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
-                    <div class="flex items-center">
-                      <img class="h-8 w-8 rounded-full" src="~/assets/images/thanhnn16-logo-300x128.svg" alt="Logo" />
-                      <div class="ml-3">
-                        <div class="font-medium text-gray-900 dark:text-white">{{ post.author.name }}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
-                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5"
-                      :class="{
-                        'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400': post.status === 'published',
-                        'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400': post.status === 'draft'
-                      }">
-                      {{ t(`admin.status.${post.status}`) }}
-                    </span>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
-                    {{ formatDate(post.publishedAt) }}
-                  </td>
-                  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                    <NuxtLink :to="`/admin/posts/${post.id}/edit`" class="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
-                      {{ t('admin.edit') }}
-                    </NuxtLink>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        </UCard>
       </div>
-    </main>
+
+      <!-- Recent posts -->
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-medium">{{ t('admin.recentPosts') }}</h3>
+        <UButton
+          icon="i-heroicons-plus"
+          to="/admin/blog/new"
+          color="primary"
+        >
+          {{ t('admin.newPost') }}
+        </UButton>
+      </div>
+
+      <UTable
+        :rows="recentPosts"
+        :columns="columns"
+      >
+        <template #title-data="{ row }">
+          <div class="flex items-center">
+            <UAvatar
+              :src="row.thumbnail"
+              :alt="row.title"
+              size="sm"
+            />
+            <div class="ml-4">
+              <div class="font-medium">{{ row.title }}</div>
+              <div class="text-sm text-gray-500">{{ row.excerpt }}</div>
+            </div>
+          </div>
+        </template>
+
+        <template #author-data="{ row }">
+          <div class="flex items-center">
+            <UAvatar
+              src="~/assets/images/thanhnn16-logo-300x128.svg"
+              :alt="row.author.name"
+              size="sm"
+            />
+            <span class="ml-2">{{ row.author.name }}</span>
+          </div>
+        </template>
+
+        <template #status-data="{ row }">
+          <UBadge
+            :color="row.status === 'published' ? 'green' : 'yellow'"
+            size="sm"
+          >
+            {{ t(`admin.status.${row.status}`) }}
+          </UBadge>
+        </template>
+
+        <template #actions-data="{ row }">
+          <div class="flex items-center gap-2">
+            <UButton
+              icon="i-heroicons-pencil-square"
+              color="primary"
+              variant="ghost"
+              size="xs"
+              :to="`/admin/blog/${row.id}/edit`"
+            />
+          </div>
+        </template>
+      </UTable>
+    </UCard>
   </div>
 </template>
 
 <script setup lang="ts">
 const { t } = useI18n()
-const toast = useToast()
 
 interface Author {
   id: number
@@ -214,6 +165,29 @@ const stats = ref({
 // Recent posts data
 const recentPosts = ref<Post[]>([])
 
+const columns = [
+  {
+    key: 'title',
+    label: t('admin.title')
+  },
+  {
+    key: 'author',
+    label: t('admin.author')
+  },
+  {
+    key: 'status',
+    label: t('admin.status')
+  },
+  {
+    key: 'publishedAt',
+    label: t('admin.publishedAt')
+  },
+  {
+    key: 'actions',
+    label: t('admin.actions')
+  }
+]
+
 // Load dashboard data
 onMounted(async () => {
   try {
@@ -226,15 +200,6 @@ onMounted(async () => {
     console.error('Error loading dashboard data:', error)
   }
 })
-
-// Format date
-const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString('vi-VN', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
-}
 
 // Meta tags
 useHead({
@@ -249,6 +214,6 @@ useHead({
 
 // Route middleware
 definePageMeta({
-  middleware: ['auth']
+  layout: 'admin'
 })
-</script> 
+</script>

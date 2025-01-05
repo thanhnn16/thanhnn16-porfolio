@@ -1,11 +1,25 @@
 export interface Project {
   id: number
   title: string
+  slug: string
   description: string
   category: string
-  image: string
   technologies: string[]
-  link: string
-  github: string
-  slug: string
+  sourceUrl?: string
+  demoUrl?: string
+  thumbnail?: string
+  images?: string[]
+  featured?: boolean
+  status?: string
+  startDate?: Date
+  endDate?: Date
+  views?: number
+  order?: number
+  authorId?: number
+  createdAt?: Date
+  updatedAt?: Date
+  // Frontend-specific fields
+  image?: string
+  link?: string
+  github?: string
 } 

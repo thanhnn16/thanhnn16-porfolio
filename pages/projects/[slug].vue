@@ -10,7 +10,7 @@
         {{ t('projects.backToProjects') }}
       </NuxtLink>
 
-      <template v-if="project">
+      <template v-if="project && !loading">
         <!-- Project Header -->
         <div class="max-w-4xl mx-auto">
           <h1 
@@ -29,7 +29,7 @@
             :initial="{ opacity: 0 }"
             :enter="{ opacity: 1, transition: { delay: 200 } }"
           >
-            <BaseImage :src="project.image" :alt="project.title" class="w-full h-auto" />
+            <BaseImage :src="thumbnailSrc" :alt="project.title" class="w-full h-auto" />
           </div>
 
           <!-- Project Content -->
@@ -56,8 +56,8 @@
             <!-- Project Links -->
             <div class="flex gap-4 mt-8">
               <a 
-                v-if="project.link"
-                :href="project.link" 
+                v-if="project.demoUrl"
+                :href="project.demoUrl" 
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600"
@@ -66,8 +66,8 @@
                 {{ t('projects.viewLive') }}
               </a>
               <a 
-                v-if="project.github"
-                :href="project.github" 
+                v-if="project.sourceUrl"
+                :href="project.sourceUrl" 
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600"
@@ -80,10 +80,22 @@
         </div>
       </template>
 
+      <!-- Loading state -->
+      <div v-else-if="loading" class="animate-pulse max-w-4xl mx-auto">
+        <div class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg w-3/4 mb-6"></div>
+        <div class="aspect-video rounded-xl bg-gray-200 dark:bg-gray-700 mb-8"></div>
+        <div class="space-y-4">
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/4"></div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
+        </div>
+      </div>
+
+      <!-- Error state -->
       <template v-else>
         <div class="text-center py-12">
           <p class="text-gray-600 dark:text-gray-400">
-            {{ t('projects.notFound') }}
+            {{ error || t('projects.notFound') }}
           </p>
         </div>
       </template>
@@ -105,124 +117,40 @@ interface Project {
   title: string
   description: string
   category: string
-  image: string
+  thumbnail: string | null
   technologies: string[]
-  link: string
-  github: string
+  sourceUrl: string | null
+  demoUrl: string | null
   slug: string
 }
 
-// Get all projects (in a real app, this would be an API call)
-const projects: Project[] = [
-  // Mobile Applications
-  {
-    id: 1,
-    title: 'Đừng Quên Em',
-    description: t('projects.items.dungquenem.description'),
-    category: 'mobile',
-    image: '/images/projects/dungquenem/thumbnail.jpg',
-    technologies: ['Flutter'],
-    link: 'https://github.com/thanhnn16/dungquenem',
-    github: 'https://github.com/thanhnn16/dungquenem',
-    slug: 'dungquenem'
-  },
-  {
-    id: 2,
-    title: 'Allure Spa',
-    description: t('projects.items.allureSpa.description'),
-    category: 'mobile',
-    image: '/images/projects/allure-spa/thumbnail.jpg',
-    technologies: ['Expo', 'React Native'],
-    link: 'https://github.com/thanhnn16/allure-spa',
-    github: 'https://github.com/thanhnn16/allure-spa',
-    slug: 'allure-spa'
-  },
-  // Web Applications
-  {
-    id: 3,
-    title: 'Allure Spa Admin',
-    description: t('projects.items.allureSpaAdmin.description'),
-    category: 'web',
-    image: '/images/projects/allure-spa/admin-thumbnail.jpg',
-    technologies: ['Laravel', 'Inertia', 'Vue.js'],
-    link: 'https://github.com/thanhnn16/allure-spa-admin',
-    github: 'https://github.com/thanhnn16/allure-spa-admin',
-    slug: 'allure-spa-admin'
-  },
-  {
-    id: 4,
-    title: 'SCG VN - Lucky Draw',
-    description: t('projects.items.scgLuckyDraw.description'),
-    category: 'web',
-    image: '/images/projects/scg-lucky-draw/thumbnail.jpg',
-    technologies: ['Vue.js', 'Node.js'],
-    link: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong',
-    github: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong',
-    slug: 'scg-lucky-draw'
-  },
-  {
-    id: 5,
-    title: 'Marine Trace',
-    description: t('projects.items.marineTrace.description'),
-    category: 'web',
-    image: '/images/projects/marine-trace/thumbnail.jpg',
-    technologies: ['Nuxt.js', 'TailwindCSS'],
-    link: 'https://github.com/thanhnn16/marine-trace',
-    github: 'https://github.com/thanhnn16/marine-trace',
-    slug: 'marine-trace'
-  },
-  {
-    id: 6,
-    title: 'Portfolio',
-    description: t('projects.items.portfolio.description'),
-    category: 'web',
-    image: '/images/projects/portfolio/thumbnail.jpg',
-    technologies: ['Nuxt.js', 'TailwindCSS'],
-    link: 'https://github.com/thanhnn16/portfolio',
-    github: 'https://github.com/thanhnn16/portfolio',
-    slug: 'portfolio'
-  },
-  // Zalo Mini Apps
-  {
-    id: 7,
-    title: 'Allure Spa Staff',
-    description: t('projects.items.allureSpaStaff.description'),
-    category: 'zalo',
-    image: '/images/projects/allure-spa/staff-thumbnail.jpg',
-    technologies: ['Zalo Mini App'],
-    link: 'https://github.com/thanhnn16/allure-spa-staff',
-    github: 'https://github.com/thanhnn16/allure-spa-staff',
-    slug: 'allure-spa-staff'
-  },
-  {
-    id: 8,
-    title: 'Allure Spa Customer',
-    description: t('projects.items.allureSpaCustomer.description'),
-    category: 'zalo',
-    image: '/images/projects/allure-spa/customer-thumbnail.jpg',
-    technologies: ['Zalo Mini App'],
-    link: 'https://github.com/thanhnn16/allure-spa-customer',
-    github: 'https://github.com/thanhnn16/allure-spa-customer',
-    slug: 'allure-spa-customer'
-  },
-  {
-    id: 9,
-    title: 'Bông Tuyết Trắng',
-    description: t('projects.items.bongtuyettrang.description'),
-    category: 'zalo',
-    image: '/images/projects/bong-tuyet-trang/thumbnail.jpg',
-    technologies: ['Zalo Mini App'],
-    link: 'https://github.com/thanhnn16/bongtuyettrang',
-    github: 'https://github.com/thanhnn16/bongtuyettrang',
-    slug: 'bongtuyettrang'
-  }
-]
+const project = ref<Project | null>(null)
+const loading = ref(true)
+const error = ref<string | null>(null)
 
-// Find project by slug
-const project = computed(() => projects.find(p => p.slug === slug))
+// Computed property for thumbnail with fallback
+const thumbnailSrc = computed(() => {
+  return project.value?.thumbnail || '/images/projects/default-thumbnail.jpg'
+})
+
+// Fetch project data
+onMounted(async () => {
+  try {
+    const response = await $fetch<Project>(`/api/projects/${slug}`)
+    if (response) {
+      project.value = response
+    } else {
+      error.value = t('projects.notFound')
+    }
+  } catch (err) {
+    error.value = (err as Error).message
+  } finally {
+    loading.value = false
+  }
+})
 
 // Handle 404
-if (!project.value) {
+if (!project.value && !loading.value) {
   throw createError({
     statusCode: 404,
     message: 'Project not found'

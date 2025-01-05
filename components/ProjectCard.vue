@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-    <BaseImage :src="project.image" :alt="project.title" class="w-full h-48 object-cover" />
+    <BaseImage v-if="project.thumbnail" :src="project.thumbnail" :alt="project.title" class="w-full h-48 object-cover" />
     <div class="p-6">
       <h3 class="text-xl font-bold mb-2">{{ project.title }}</h3>
       <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description }}</p>
@@ -14,10 +14,10 @@
         </span>
       </div>
       <div class="flex justify-between items-center">
-        <NuxtLink :to="project.link" class="text-primary-500 hover:text-primary-600">
+        <NuxtLink :to="`/projects/${project.slug}`" class="text-primary-500 hover:text-primary-600">
           {{ t('projects.learnMore') }} →
         </NuxtLink>
-        <a :href="project.github" target="_blank" class="text-gray-500 hover:text-primary-500">
+        <a v-if="project.sourceUrl" :href="project.sourceUrl" target="_blank" class="text-gray-500 hover:text-primary-500">
           <Icon name="mdi:github" class="w-6 h-6" />
         </a>
       </div>
@@ -34,10 +34,10 @@ defineProps<{
   project: {
     title: string
     description: string
-    image: string
+    thumbnail?: string
     technologies: string[]
-    link: string
-    github: string
+    sourceUrl?: string
+    slug: string
   }
 }>()
 </script>

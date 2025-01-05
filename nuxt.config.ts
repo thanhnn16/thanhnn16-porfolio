@@ -206,7 +206,7 @@ export default defineNuxtConfig({
   ],
   ui: {
     global: true,
-    safelistColors: ['primary', 'gray', 'green', 'yellow', 'red', 'blue']
+    safelistColors: ['primary', 'gray', 'green', 'yellow', 'red', 'blue', 'sky', 'brand']
   },
   colorMode: {
     preference: 'system',
@@ -235,12 +235,15 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'vi',
     strategy: 'no_prefix',
-    lazy: false,
+    lazy: true,
+    langDir: './locales',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root',
-      alwaysRedirect: true
+      alwaysRedirect: true,
+      cookieSecure: true,
+      fallbackLocale: 'vi'
     }
   },
   app: {

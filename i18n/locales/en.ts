@@ -220,22 +220,33 @@ export default {
     vi: "Vietnamese"
   },
   nav: {
-    home: "Home",
-    projects: "Projects",
-    skills: "Skills",
-    about: "About",
-    contact: "Contact"
+    home: 'Home',
+    projects: 'Projects',
+    skills: 'Skills',
+    blog: 'Blog',
+    about: 'About',
+    contact: 'Contact'
   },
   theme: {
     light: "Switch to light mode",
     dark: "Switch to dark mode"
   },
   footer: {
-    contact: "Contact",
-    quickLinks: "Quick Links",
-    followMe: "Follow Me",
-    allRightsReserved: "All rights reserved.",
-    role: "Role"
+    about: {
+      title: 'About Me',
+      description: 'I am a developer passionate about technology and creativity, specializing in mobile and web development with AI integration.'
+    },
+    quickLinks: {
+      title: 'Quick Links'
+    },
+    contact: {
+      title: 'Contact',
+      address: 'Go Vap District, Ho Chi Minh City'
+    },
+    social: {
+      title: 'Social Media'
+    },
+    copyright: '© {year} Nong Nguyen Thanh. All rights reserved.'
   },
   skills: {
     title: "Skills",
@@ -343,45 +354,172 @@ export default {
     uiuxDescription: "Creating user-centered design experiences",
     graphicsDescription: "Basic graphics design with Adobe Creative Suite"
   },
-  aiChat: "AI Chat",
+  aiChat: "Chat with AI",
   thinking: "Thinking...",
-  startChatPrompt: "Start a conversation with me! You can ask about my skills, experience, or projects.",
-  presetMessageVi: "Chat in Vietnamese",
-  presetMessageEn: "Chat in English",
-  enterMessage: "Type your message...",
-  restartChat: "Restart Chat",
-  askAboutMe: "Ask me anything about Thanh!",
+  startChatPrompt: "You can ask me anything about Thanh",
+  presetMessageVi: "Ask in Vietnamese",
+  presetMessageEn: "Ask in English",
+  enterMessage: "Enter your message",
+  restartChat: "Restart conversation",
+  askAboutMe: "Ask me about Thanh!",
   scroll_to_top: 'Scroll to top',
   admin: {
     dashboard: 'Dashboard',
-    posts: 'Posts',
-    tags: 'Tags',
-    settings: 'Settings',
+    login: {
+      title: 'Login',
+      email: 'Email',
+      password: 'Password',
+      submit: 'Login',
+      error: 'Invalid email or password',
+      success: 'Login successful',
+      loading: 'Logging in...',
+      redirecting: 'Redirecting...',
+      invalid_credentials: 'Invalid credentials'
+    },
+    logout: 'Logout',
+    projects: {
+      title: 'Project Management',
+      add: 'Add New Project',
+      edit: 'Edit Project',
+      delete: 'Delete Project',
+      deleteConfirm: 'Are you sure you want to delete this project?',
+      form: {
+        title: 'Project Name',
+        description: 'Description',
+        category: 'Category',
+        technologies: 'Technologies Used',
+        sourceUrl: 'Source Code URL',
+        demoUrl: 'Demo URL',
+        status: 'Status',
+        thumbnail: 'Thumbnail',
+        slug: 'Slug'
+      },
+      table: {
+        title: 'Project Name',
+        category: 'Category',
+        status: 'Status',
+        createdAt: 'Created At',
+        actions: 'Actions'
+      },
+      validation: {
+        title: 'Please enter project name',
+        description: 'Please enter project description',
+        category: 'Please select a category',
+        status: 'Please select a status'
+      }
+    },
+    blog: {
+      title: 'Blog Management',
+      add: 'Add New Post',
+      edit: 'Edit Post',
+      delete: 'Delete Post',
+      deleteConfirm: 'Are you sure you want to delete this post?',
+      new: 'Create New Post',
+      newDescription: 'Create a new blog post with title, content and featured image.',
+      form: {
+        title: 'Title',
+        titlePlaceholder: 'Enter post title',
+        slug: 'Slug',
+        slugPlaceholder: 'enter-post-slug',
+        description: 'Short Description',
+        descriptionPlaceholder: 'Enter a short description for the post',
+        content: 'Content',
+        contentPlaceholder: 'Write your post content here...',
+        category: 'Category',
+        tags: 'Tags',
+        featuredImage: 'Featured Image',
+        status: 'Status'
+      },
+      table: {
+        title: 'Title',
+        category: 'Category',
+        status: 'Status',
+        createdAt: 'Created At',
+        actions: 'Actions'
+      },
+      validation: {
+        title: 'Please enter title',
+        description: 'Please enter description',
+        content: 'Please enter content',
+        category: 'Please select a category',
+        status: 'Please select a status'
+      }
+    },
+    settings: {
+      title: 'Settings',
+      general: 'General Settings',
+      generalDescription: 'Manage your application settings including language and theme preferences.',
+      profileSettings: {
+        personalInfo: 'Personal Information',
+        name: 'Full Name',
+        email: 'Email Address',
+        phone: 'Phone Number',
+        bio: 'Bio',
+        bioPlaceholder: 'Write a few sentences about yourself',
+        location: 'Location',
+        website: 'Website',
+        social: 'Social Media',
+        avatar: 'Profile Picture',
+        changeAvatar: 'Change Avatar',
+        removeAvatar: 'Remove Avatar'
+      },
+      securitySettings: {
+        password: 'Password',
+        currentPassword: 'Current Password',
+        newPassword: 'New Password',
+        confirmPassword: 'Confirm New Password',
+        changePassword: 'Change Password',
+        twoFactor: 'Two-Factor Authentication',
+        enable2FA: 'Enable Two-Factor Authentication',
+        disable2FA: 'Disable Two-Factor Authentication',
+        loginHistory: 'Login History',
+        sessions: 'Active Sessions',
+        revokeAll: 'Revoke All Sessions'
+      },
+      notifications: 'Notifications',
+      notificationsDescription: 'Configure how you receive notifications.',
+      appearance: 'Appearance',
+      appearanceDescription: 'Customize the look and feel of your application.',
+      language: {
+        title: 'Language',
+        description: 'Choose your preferred language.',
+        system: 'Use system language'
+      },
+      theme: {
+        title: 'Theme',
+        description: 'Choose your preferred theme.',
+        system: 'Use system theme',
+        light: 'Light mode',
+        dark: 'Dark mode'
+      }
+    },
+    common: {
+      save: 'Save',
+      cancel: 'Cancel',
+      delete: 'Delete',
+      edit: 'Edit',
+      view: 'View',
+      back: 'Back',
+      loading: 'Loading...',
+      confirmDelete: 'Confirm Delete',
+      success: 'Success',
+      error: 'An error occurred',
+      status: {
+        draft: 'Draft',
+        published: 'Published',
+        archived: 'Archived'
+      }
+    },
     totalPosts: 'Total Posts',
     totalTags: 'Total Tags',
     totalViews: 'Total Views',
     recentPosts: 'Recent Posts',
-    newPost: 'New Post',
+    newPost: 'Add New Post',
     title: 'Title',
     author: 'Author',
-    status: {
-      published: 'Published',
-      draft: 'Draft'
-    },
+    status: 'Status',
     publishedAt: 'Published At',
     actions: 'Actions',
-    edit: 'Edit',
-    login: {
-      title: 'Sign in to your account',
-      email: 'Email address',
-      password: 'Password',
-      submit: 'Sign in',
-      loading: 'Signing in...',
-      success: 'Welcome back!',
-      redirecting: 'Redirecting to dashboard...',
-      error: 'Login failed',
-      invalid_credentials: 'Invalid email or password'
-    },
-    logout: 'Sign out'
+    edit: 'Edit'
   }
 }

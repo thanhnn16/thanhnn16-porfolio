@@ -6,47 +6,116 @@
 
 generator client {
   provider = "prisma-client-js"
+  seed = "node --loader ts-node/esm prisma/seed.ts"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
   password  String
   name      String
   avatar    String?
-  role      String   @default("USER")
   posts     Post[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  projects  Project[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Post {
   id          Int       @id @default(autoincrement())
   slug        String    @unique
   title       String
-  content     String
-  excerpt     String
+  content     String    @db.Text
+  excerpt     String    @db.Text
   thumbnail   String
   views       Int       @default(0)
-  status      String    @default("DRAFT")
+  status      String    @default("DRAFT") // DRAFT, PUBLISHED
+  featured    Boolean   @default(false)
+  seoTitle    String?   // SEO optimization
+  seoDesc     String?   @db.Text // SEO description
   publishedAt DateTime?
   author      User      @relation(fields: [authorId], references: [id])
   authorId    Int
   tags        Tag[]
+  comments    Comment[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
 model Tag {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  slug        String   @unique
+  description String?  @db.Text
+  posts       Post[]
+  projects    Project[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id            Int      @id @default(autoincrement())
+  title         String
+  slug          String   @unique
+  description   String   @db.Text
+  category      String   // Web, Mobile, Desktop, etc.
+  technologies  String[]  // Array of technologies used
+  sourceUrl     String?
+  demoUrl       String?
+  thumbnail     String?
+  images        String[] // Additional project images
+  featured      Boolean  @default(false)
+  status        String   @default("DRAFT") // DRAFT, PUBLISHED
+  startDate     DateTime?
+  endDate       DateTime?
+  views         Int      @default(0)      // Track project views
+  order         Int      @default(0)      // Display order
+  author        User     @relation(fields: [authorId], references: [id])
+  authorId      Int
+  tags          Tag[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Comment {
   id        Int      @id @default(autoincrement())
-  name      String   @unique
-  slug      String   @unique
-  posts     Post[]
+  content   String   @db.Text
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  name      String   // Commenter name
+  email     String   // Commenter email
+  website   String?  // Commenter website
+  status    String   @default("PENDING") // PENDING, APPROVED, SPAM
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  status    String   @default("UNREAD") // UNREAD, READ, REPLIED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Analytics {
+  id           Int      @id @default(autoincrement())
+  pageUrl      String
+  views        Int      @default(0)
+  uniqueViews  Int      @default(0)
+  bounceRate   Float?   // Bounce rate percentage
+  duration     Int?     // Average time on page (seconds)
+  device       String?  // Device type
+  browser      String?  // Browser info
+  country      String?  // Country of visitor
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

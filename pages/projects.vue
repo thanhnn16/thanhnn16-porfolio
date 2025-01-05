@@ -52,7 +52,14 @@
           <ProjectCard
             v-for="(project, index) in filteredProjects"
             :key="project.id"
-            :project="project"
+            :project="{
+              title: project.title,
+              description: project.description,
+              thumbnail: project.thumbnail || undefined,
+              technologies: project.technologies,
+              sourceUrl: project.sourceUrl || undefined,
+              slug: project.slug
+            }"
             v-motion
             :initial="{ opacity: 0, x: 100 }"
             :enter="{ opacity: 1, x: 0, transition: { delay: 200 } }"
@@ -72,51 +79,34 @@
 
       <!-- Error Alert -->
       <ErrorAlert
-        :error="error"
-        @close="clearError"
+        :error="error ? { message: error } : null"
+        @close="error = null"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useErrorHandler } from '../composables/useErrorHandler'
 import { useI18n } from 'vue-i18n'
-import type { Project } from '~/types/project'
 
 const { t } = useI18n()
-const { error, isLoading, withAsync, clearError } = useErrorHandler()
 
-// Simulate API call
-const fetchProjects = async () => {
-  return withAsync(
-    async () => {
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // Simulate API error (uncomment to test)
-      // throw new Error('Failed to fetch projects')
-      
-      return projects
-    },
-    {
-      onError: (err) => {
-        // Handle specific error cases
-        console.error('Failed to fetch projects:', err)
-      }
-    }
-  )
+interface Project {
+  id: number
+  title: string
+  description: string
+  category: string
+  thumbnail: string | null
+  technologies: string[]
+  sourceUrl: string | null
+  demoUrl: string | null
+  slug: string
+  status: string
 }
 
-// Fetch projects on mount
-onMounted(async () => {
-  try {
-    await fetchProjects()
-  } catch {
-    // Error is already handled by withAsync
-  }
-})
-
+const isLoading = ref(true)
+const error = ref<string | null>(null)
+const projects = ref<Project[]>([])
 const selectedCategory = ref('all')
 
 const categories = [
@@ -126,115 +116,23 @@ const categories = [
   { value: 'zalo', label: t('projects.categories.zalo') }
 ]
 
-const projects: Project[] = [
-  // Mobile Applications
-  {
-    id: 1,
-    title: 'Đừng Quên Em',
-    description: t('projects.items.dungquenem.description'),
-    category: 'mobile',
-    image: '/images/projects/dungquenem/thumbnail.jpg',
-    technologies: ['Flutter'],
-    link: 'https://github.com/thanhnn16/dungquenem',
-    github: 'https://github.com/thanhnn16/dungquenem',
-    slug: 'dungquenem'
-  },
-  {
-    id: 2,
-    title: 'Allure Spa',
-    description: t('projects.items.allureSpa.description'),
-    category: 'mobile',
-    image: '/images/projects/allure-spa/thumbnail.jpg',
-    technologies: ['Expo', 'React Native'],
-    link: 'https://github.com/thanhnn16/allure-spa',
-    github: 'https://github.com/thanhnn16/allure-spa',
-    slug: 'allure-spa'
-  },
-
-  // Web Applications
-  {
-    id: 3,
-    title: 'Allure Spa Admin',
-    description: t('projects.items.allureSpaAdmin.description'),
-    category: 'web',
-    image: '/images/projects/allure-spa/admin-thumbnail.jpg',
-    technologies: ['Laravel', 'Inertia', 'Vue.js'],
-    link: 'https://github.com/thanhnn16/allure-spa-admin',
-    github: 'https://github.com/thanhnn16/allure-spa-admin',
-    slug: 'allure-spa-admin'
-  },
-  {
-    id: 4,
-    title: 'SCG VN - Lucky Draw',
-    description: t('projects.items.scgLuckyDraw.description'),
-    category: 'web',
-    image: '/images/projects/scg-lucky-draw/thumbnail.jpg',
-    technologies: ['Vue.js', 'Node.js'],
-    link: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong',
-    github: 'https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong',
-    slug: 'scg-lucky-draw'
-  },
-  {
-    id: 5,
-    title: 'Marine Trace',
-    description: t('projects.items.marineTrace.description'),
-    category: 'web',
-    image: '/images/projects/marine-trace/thumbnail.jpg',
-    technologies: ['Nuxt.js', 'TailwindCSS'],
-    link: 'https://github.com/thanhnn16/marine-trace',
-    github: 'https://github.com/thanhnn16/marine-trace',
-    slug: 'marine-trace'
-  },
-  {
-    id: 6,
-    title: 'Portfolio',
-    description: t('projects.items.portfolio.description'),
-    category: 'web',
-    image: '/images/projects/portfolio/thumbnail.jpg',
-    technologies: ['Nuxt.js', 'TailwindCSS'],
-    link: 'https://github.com/thanhnn16/portfolio',
-    github: 'https://github.com/thanhnn16/portfolio',
-    slug: 'portfolio'
-  },
-
-  // Zalo Mini Apps
-  {
-    id: 7,
-    title: 'Allure Spa Staff',
-    description: t('projects.items.allureSpaStaff.description'),
-    category: 'zalo',
-    image: '/images/projects/allure-spa/staff-thumbnail.jpg',
-    technologies: ['Zalo Mini App'],
-    link: 'https://github.com/thanhnn16/allure-spa-staff',
-    github: 'https://github.com/thanhnn16/allure-spa-staff',
-    slug: 'allure-spa-staff'
-  },
-  {
-    id: 8,
-    title: 'Allure Spa Customer',
-    description: t('projects.items.allureSpaCustomer.description'),
-    category: 'zalo',
-    image: '/images/projects/allure-spa/customer-thumbnail.jpg',
-    technologies: ['Zalo Mini App'],
-    link: 'https://github.com/thanhnn16/allure-spa-customer',
-    github: 'https://github.com/thanhnn16/allure-spa-customer',
-    slug: 'allure-spa-customer'
-  },
-  {
-    id: 9,
-    title: 'Bông Tuyết Trắng',
-    description: t('projects.items.bongtuyettrang.description'),
-    category: 'zalo',
-    image: '/images/projects/bong-tuyet-trang/thumbnail.jpg',
-    technologies: ['Zalo Mini App'],
-    link: 'https://github.com/thanhnn16/bongtuyettrang',
-    github: 'https://github.com/thanhnn16/bongtuyettrang',
-    slug: 'bongtuyettrang'
+// Fetch projects
+onMounted(async () => {
+  try {
+    const response = await $fetch<Project[]>('/api/projects')
+    projects.value = response
+  } catch (err) {
+    error.value = (err as Error).message
+  } finally {
+    isLoading.value = false
   }
-]
+})
 
+// Filter projects by category
 const filteredProjects = computed(() => {
-  if (selectedCategory.value === 'all') return projects
-  return projects.filter(project => project.category === selectedCategory.value)
+  if (selectedCategory.value === 'all') {
+    return projects.value
+  }
+  return projects.value.filter(project => project.category === selectedCategory.value)
 })
 </script>

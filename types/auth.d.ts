@@ -3,9 +3,8 @@ import type { Ref } from 'vue'
 interface AuthUser {
   id: number
   email: string
-  name: string | null
+  name: string
   avatar: string | null
-  role: string
 }
 
 declare module '#auth-utils' {

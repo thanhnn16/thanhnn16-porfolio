@@ -25,7 +25,6 @@ export default defineEventHandler(async (event: H3Event) => {
       password: true,
       name: true,
       avatar: true,
-      role: true
     }
   })
 
@@ -45,8 +44,8 @@ export default defineEventHandler(async (event: H3Event) => {
     })
   }
 
-  // Check admin role
-  if (user.role !== 'ADMIN') {
+  // Check admin by email
+  if (email !== 'thanhnn16.work@gmail.com') {
     throw createError({
       statusCode: 403,
       message: 'Bạn không có quyền truy cập'
@@ -60,7 +59,6 @@ export default defineEventHandler(async (event: H3Event) => {
       email: user.email,
       name: user.name,
       avatar: user.avatar,
-      role: user.role
     }
   })
 
@@ -69,6 +67,5 @@ export default defineEventHandler(async (event: H3Event) => {
     email: user.email,
     name: user.name,
     avatar: user.avatar,
-    role: user.role
   }
 }) 

@@ -1,8 +1,9 @@
 export default defineAppConfig({
   ui: {
-    primary: 'primary',
-    gray: 'gray',
+    primary: 'sky',
+    gray: 'cool',
 
+    strategy: 'merge',
     notifications: {
       position: 'top-right'
     },

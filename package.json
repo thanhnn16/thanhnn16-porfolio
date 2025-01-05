@@ -4,17 +4,14 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --dotenv .env.local",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "prisma:seed": "node prisma/seed.js"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
+    "prisma:seed": "node --env-file .env --loader ts-node/esm prisma/seed.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
@@ -31,7 +28,9 @@
     "@tiptap/starter-kit": "^2.11.0",
     "@tiptap/vue-3": "^2.11.0",
     "@types/lodash-es": "^4.17.12",
+    "@types/quill": "^2.0.14",
     "@vite-pwa/nuxt": "^0.10.6",
+    "@vueup/vue-quill": "^1.2.0",
     "@vueuse/core": "^12.3.0",
     "@vueuse/motion": "^2.2.6",
     "@vueuse/nuxt": "^12.3.0",

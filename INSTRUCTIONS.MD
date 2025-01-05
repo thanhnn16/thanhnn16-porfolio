@@ -119,15 +119,18 @@ Portfolio này được tạo ra nhằm:
 
 ## Project Structure
 ```
-├── assets/               # Static assets
-│   ├── css/             # CSS files
-│   │   └── main.scss    # Main stylesheet
-│   └── images/          # Images
-├── components/          # Reusable components
-│   ├── admin/          # Admin components
-│   ├── blog/           # Blog components
+├── .nuxt/             # Nuxt build files
+├── .output/           # Nuxt output files
+├── .vercel/           # Vercel deployment files
+├── assets/            # Static assets
+│   ├── css/          # CSS files
+│   │   └── main.scss # Main stylesheet
+│   └── images/       # Images
+├── components/        # Reusable components
+│   ├── admin/        # Admin components
+│   ├── blog/         # Blog components
 │   ├── A11ySkipLink.vue
-│   ├── AIChatButton.vue
+│   ├── AIChatButton.vue (10.0KB)
 │   ├── BaseImage.vue
 │   ├── ContactForm.vue
 │   ├── ErrorAlert.vue
@@ -142,7 +145,7 @@ Portfolio này được tạo ra nhằm:
 │   ├── TheFooter.vue
 │   ├── TheHeader.vue
 │   └── TimelineItem.vue
-├── composables/         # Composable functions
+├── composables/       # Composable functions
 │   ├── useAnalytics.ts
 │   ├── useChat.ts
 │   ├── useErrorHandler.ts
@@ -152,54 +155,59 @@ Portfolio này được tạo ra nhằm:
 │   ├── usePWA.ts
 │   ├── useSecurity.ts
 │   └── useUserTracking.ts
-├── i18n/                # Internationalization
+├── i18n/              # Internationalization
 │   ├── i18n.config.ts
 │   └── locales/
 │       ├── en.ts
 │       └── vi.ts
-├── layouts/             # Page layouts
+├── layouts/           # Page layouts
+│   ├── admin.vue
 │   └── default.vue
-├── middleware/          # Middleware functions
+├── middleware/        # Middleware functions
 │   └── auth.ts
-├── pages/              # Application pages
-│   ├── admin/         # Admin pages
-│   ├── blog/          # Blog pages
-│   ├── projects/      # Project details pages
+├── pages/            # Application pages
+│   ├── admin/       # Admin pages
+│   ├── blog/        # Blog pages
+│   ├── projects/    # Project details pages
 │   ├── about.vue
 │   ├── contact.vue
 │   ├── index.vue
 │   ├── projects.vue
 │   └── skills.vue
-├── plugins/            # Nuxt plugins
+├── plugins/          # Nuxt plugins
 │   └── i18n.ts
-├── prisma/             # Prisma database config
-├── public/             # Public assets
-├── server/             # API endpoints
-│   └── api/
-│       ├── admin/     # Admin API routes
-│       ├── auth/      # Auth API routes
-│       ├── blog/      # Blog API routes
-│       ├── chat.post.ts
-│       └── contact.post.ts
-├── stores/             # Pinia stores
+├── prisma/           # Prisma database config
+├── public/           # Public assets
+├── server/           # API endpoints
+│   ├── api/
+│   │   ├── admin/   # Admin API routes
+│   │   ├── auth/    # Auth API routes
+│   │   ├── blog/    # Blog API routes
+│   │   ├── chat.post.ts
+│   │   └── contact.post.ts
+│   └── middleware/
+├── stores/           # Pinia stores
 │   └── theme.ts
-├── test/              # Unit tests
-├── types/             # TypeScript definitions
+├── test/            # Unit tests
+├── types/           # TypeScript definitions
 │   ├── auth.d.ts
 │   ├── config.d.ts
 │   └── ui.d.ts
-├── utils/             # Utility functions
-├── .env              # Environment variables
-├── .env.example      # Example environment variables
-├── .gitignore        # Git ignore rules
-├── app.config.ts     # App configuration
-├── app.vue           # App entry
-├── migration.sql     # Database migration
-├── nuxt.config.ts    # Nuxt configuration
-├── package.json      # Project dependencies
-├── README.md         # Project readme
+├── utils/           # Utility functions
+├── .env            # Environment variables
+├── .env.example    # Example environment variables
+├── .env.local     # Local environment variables
+├── .env.production # Production environment variables
+├── .gitignore      # Git ignore rules
+├── app.config.ts   # App configuration
+├── app.vue         # App entry
+├── bun.lockb       # Bun lock file
+├── INSTRUCTIONS.MD # Project instructions
+├── nuxt.config.ts  # Nuxt configuration
+├── package.json    # Project dependencies
+├── README.md       # Project readme
 ├── tailwind.config.ts # Tailwind configuration
-└── tsconfig.json     # TypeScript configuration
+└── tsconfig.json   # TypeScript configuration
 ```
 
 ## Performance
@@ -330,15 +338,18 @@ This portfolio was created to:
 
 ## Project Structure
 ```
-├── assets/               # Static assets
-│   ├── css/             # CSS files
-│   │   └── main.scss    # Main stylesheet
-│   └── images/          # Images
-├── components/          # Reusable components
-│   ├── admin/          # Admin components
-│   ├── blog/           # Blog components
+├── .nuxt/             # Nuxt build files
+├── .output/           # Nuxt output files
+├── .vercel/           # Vercel deployment files
+├── assets/            # Static assets
+│   ├── css/          # CSS files
+│   │   └── main.scss # Main stylesheet
+│   └── images/       # Images
+├── components/        # Reusable components
+│   ├── admin/        # Admin components
+│   ├── blog/         # Blog components
 │   ├── A11ySkipLink.vue
-│   ├── AIChatButton.vue
+│   ├── AIChatButton.vue (10.0KB)
 │   ├── BaseImage.vue
 │   ├── ContactForm.vue
 │   ├── ErrorAlert.vue
@@ -353,7 +364,7 @@ This portfolio was created to:
 │   ├── TheFooter.vue
 │   ├── TheHeader.vue
 │   └── TimelineItem.vue
-├── composables/         # Composable functions
+├── composables/       # Composable functions
 │   ├── useAnalytics.ts
 │   ├── useChat.ts
 │   ├── useErrorHandler.ts
@@ -363,54 +374,59 @@ This portfolio was created to:
 │   ├── usePWA.ts
 │   ├── useSecurity.ts
 │   └── useUserTracking.ts
-├── i18n/                # Internationalization
+├── i18n/              # Internationalization
 │   ├── i18n.config.ts
 │   └── locales/
 │       ├── en.ts
 │       └── vi.ts
-├── layouts/             # Page layouts
+├── layouts/           # Page layouts
+│   ├── admin.vue
 │   └── default.vue
-├── middleware/          # Middleware functions
+├── middleware/        # Middleware functions
 │   └── auth.ts
-├── pages/              # Application pages
-│   ├── admin/         # Admin pages
-│   ├── blog/          # Blog pages
-│   ├── projects/      # Project details pages
+├── pages/            # Application pages
+│   ├── admin/       # Admin pages
+│   ├── blog/        # Blog pages
+│   ├── projects/    # Project details pages
 │   ├── about.vue
 │   ├── contact.vue
 │   ├── index.vue
 │   ├── projects.vue
 │   └── skills.vue
-├── plugins/            # Nuxt plugins
+├── plugins/          # Nuxt plugins
 │   └── i18n.ts
-├── prisma/             # Prisma database config
-├── public/             # Public assets
-├── server/             # API endpoints
-│   └── api/
-│       ├── admin/     # Admin API routes
-│       ├── auth/      # Auth API routes
-│       ├── blog/      # Blog API routes
-│       ├── chat.post.ts
-│       └── contact.post.ts
-├── stores/             # Pinia stores
+├── prisma/           # Prisma database config
+├── public/           # Public assets
+├── server/           # API endpoints
+│   ├── api/
+│   │   ├── admin/   # Admin API routes
+│   │   ├── auth/    # Auth API routes
+│   │   ├── blog/    # Blog API routes
+│   │   ├── chat.post.ts
+│   │   └── contact.post.ts
+│   └── middleware/
+├── stores/           # Pinia stores
 │   └── theme.ts
-├── test/              # Unit tests
-├── types/             # TypeScript definitions
+├── test/            # Unit tests
+├── types/           # TypeScript definitions
 │   ├── auth.d.ts
 │   ├── config.d.ts
 │   └── ui.d.ts
-├── utils/             # Utility functions
-├── .env              # Environment variables
-├── .env.example      # Example environment variables
-├── .gitignore        # Git ignore rules
-├── app.config.ts     # App configuration
-├── app.vue           # App entry
-├── migration.sql     # Database migration
-├── nuxt.config.ts    # Nuxt configuration
-├── package.json      # Project dependencies
-├── README.md         # Project readme
+├── utils/           # Utility functions
+├── .env            # Environment variables
+├── .env.example    # Example environment variables
+├── .env.local     # Local environment variables
+├── .env.production # Production environment variables
+├── .gitignore      # Git ignore rules
+├── app.config.ts   # App configuration
+├── app.vue         # App entry
+├── bun.lockb       # Bun lock file
+├── INSTRUCTIONS.MD # Project instructions
+├── nuxt.config.ts  # Nuxt configuration
+├── package.json    # Project dependencies
+├── README.md       # Project readme
 ├── tailwind.config.ts # Tailwind configuration
-└── tsconfig.json     # TypeScript configuration
+└── tsconfig.json   # TypeScript configuration
 ```
 
 ## Performance
