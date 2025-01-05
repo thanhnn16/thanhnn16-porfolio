@@ -20,7 +20,7 @@
         <UFormGroup :label="t('admin.blog.form.title')" required>
           <UInput
             v-model="form.title"
-            :placeholder="t('admin.blog.form.title')"
+            :placeholder="t('admin.blog.form.titlePlaceholder')"
             required
           />
         </UFormGroup>
@@ -29,7 +29,7 @@
         <UFormGroup :label="t('admin.blog.form.slug')" required>
           <UInput
             v-model="form.slug"
-            placeholder="url-friendly-slug"
+            :placeholder="t('admin.blog.form.slugPlaceholder')"
             required
           />
         </UFormGroup>
@@ -38,7 +38,7 @@
         <UFormGroup :label="t('admin.blog.form.description')" required>
           <UTextarea
             v-model="form.description"
-            :placeholder="t('admin.blog.form.description')"
+            :placeholder="t('admin.blog.form.descriptionPlaceholder')"
             required
             :rows="3"
           />
@@ -142,10 +142,10 @@ const form = ref<Post>({
 })
 
 const categories = [
-  { label: t('admin.blog.form.category'), value: 'programming' },
-  { label: t('admin.blog.form.category'), value: 'technology' },
-  { label: t('admin.blog.form.category'), value: 'lifestyle' },
-  { label: t('admin.blog.form.category'), value: 'other' }
+  { label: t('admin.blog.categories.programming'), value: 'programming' },
+  { label: t('admin.blog.categories.technology'), value: 'technology' },
+  { label: t('admin.blog.categories.lifestyle'), value: 'lifestyle' },
+  { label: t('admin.blog.categories.other'), value: 'other' }
 ]
 
 const tags = [

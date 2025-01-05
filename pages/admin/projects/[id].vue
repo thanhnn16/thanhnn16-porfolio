@@ -20,7 +20,7 @@
         <UFormGroup :label="t('admin.projects.form.title')" required>
           <UInput
             v-model="form.title"
-            :placeholder="t('admin.projects.form.title')"
+            :placeholder="t('admin.projects.form.titlePlaceholder')"
             required
           />
         </UFormGroup>
@@ -29,7 +29,7 @@
         <UFormGroup :label="t('admin.projects.form.description')" required>
           <UTextarea
             v-model="form.description"
-            :placeholder="t('admin.projects.form.description')"
+            :placeholder="t('admin.projects.form.descriptionPlaceholder')"
             required
             :rows="4"
           />
@@ -59,7 +59,7 @@
         <UFormGroup :label="t('admin.projects.form.sourceUrl')">
           <UInput
             v-model="form.sourceUrl"
-            placeholder="https://github.com/username/repo"
+            :placeholder="t('admin.projects.form.sourceUrlPlaceholder')"
             type="url"
           />
         </UFormGroup>
@@ -68,7 +68,7 @@
         <UFormGroup :label="t('admin.projects.form.demoUrl')">
           <UInput
             v-model="form.demoUrl"
-            placeholder="https://example.com"
+            :placeholder="t('admin.projects.form.demoUrlPlaceholder')"
             type="url"
           />
         </UFormGroup>
@@ -129,10 +129,10 @@ const form = ref<Project>({
 })
 
 const categories = [
-  { label: t('projects.categories.web'), value: 'web' },
-  { label: t('projects.categories.mobile'), value: 'mobile' },
-  { label: t('projects.categories.design'), value: 'design' },
-  { label: t('projects.categories.zalo'), value: 'zalo' }
+  { label: t('admin.projects.categories.web'), value: 'web' },
+  { label: t('admin.projects.categories.mobile'), value: 'mobile' },
+  { label: t('admin.projects.categories.design'), value: 'design' },
+  { label: t('admin.projects.categories.zalo'), value: 'zalo' }
 ]
 
 const technologies = [

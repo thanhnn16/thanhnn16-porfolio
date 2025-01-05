@@ -35,15 +35,15 @@
 
             <div class="grid gap-6 sm:grid-cols-2">
               <UFormGroup
-                :label="t('language.title')"
-                :description="t('language.description')"
+                :label="t('admin.settings.language.title')"
+                :description="t('admin.settings.language.description')"
               >
                 <LanguageSelector />
               </UFormGroup>
 
               <UFormGroup
-                :label="t('theme.title')"
-                :description="t('theme.description')"
+                :label="t('admin.settings.theme.title')"
+                :description="t('admin.settings.theme.description')"
               >
                 <ColorMode />
               </UFormGroup>
@@ -65,44 +65,44 @@
 
             <div class="grid gap-6">
               <UFormGroup
-                :label="t('admin.settings.avatar')"
-                :description="t('admin.settings.avatarDescription')"
+                :label="t('admin.settings.profileSettings.avatar')"
+                :description="t('admin.settings.profileSettings.avatarDescription')"
               >
                 <UFileInput
                   v-model="avatar"
                   accept="image/*"
-                  :placeholder="t('admin.settings.avatarPlaceholder')"
+                  :placeholder="t('admin.settings.profileSettings.avatarPlaceholder')"
                 />
               </UFormGroup>
 
               <div class="grid gap-6 sm:grid-cols-2">
                 <UFormGroup
-                  :label="t('admin.settings.name')"
+                  :label="t('admin.settings.profileSettings.name')"
                 >
                   <UInput
                     v-model="profile.name"
-                    :placeholder="t('admin.settings.namePlaceholder')"
+                    :placeholder="t('admin.settings.profileSettings.namePlaceholder')"
                   />
                 </UFormGroup>
 
                 <UFormGroup
-                  :label="t('admin.settings.email')"
+                  :label="t('admin.settings.profileSettings.email')"
                 >
                   <UInput
                     v-model="profile.email"
                     type="email"
-                    :placeholder="t('admin.settings.emailPlaceholder')"
+                    :placeholder="t('admin.settings.profileSettings.emailPlaceholder')"
                   />
                 </UFormGroup>
               </div>
 
               <UFormGroup
-                :label="t('admin.settings.bio')"
-                :description="t('admin.settings.bioDescription')"
+                :label="t('admin.settings.profileSettings.bio')"
+                :description="t('admin.settings.profileSettings.bioDescription')"
               >
                 <UTextarea
                   v-model="profile.bio"
-                  :placeholder="t('admin.settings.bioPlaceholder')"
+                  :placeholder="t('admin.settings.profileSettings.bioPlaceholder')"
                   :rows="4"
                 />
               </UFormGroup>
@@ -135,33 +135,33 @@
 
             <div class="grid gap-6">
               <UFormGroup
-                :label="t('admin.settings.currentPassword')"
+                :label="t('admin.settings.securitySettings.currentPassword')"
               >
                 <UInput
                   v-model="security.currentPassword"
                   type="password"
-                  :placeholder="t('admin.settings.currentPasswordPlaceholder')"
+                  :placeholder="t('admin.settings.securitySettings.currentPasswordPlaceholder')"
                 />
               </UFormGroup>
 
               <div class="grid gap-6 sm:grid-cols-2">
                 <UFormGroup
-                  :label="t('admin.settings.newPassword')"
+                  :label="t('admin.settings.securitySettings.newPassword')"
                 >
                   <UInput
                     v-model="security.newPassword"
                     type="password"
-                    :placeholder="t('admin.settings.newPasswordPlaceholder')"
+                    :placeholder="t('admin.settings.securitySettings.newPasswordPlaceholder')"
                   />
                 </UFormGroup>
 
                 <UFormGroup
-                  :label="t('admin.settings.confirmPassword')"
+                  :label="t('admin.settings.securitySettings.confirmPassword')"
                 >
                   <UInput
                     v-model="security.confirmPassword"
                     type="password"
-                    :placeholder="t('admin.settings.confirmPasswordPlaceholder')"
+                    :placeholder="t('admin.settings.securitySettings.confirmPasswordPlaceholder')"
                   />
                 </UFormGroup>
               </div>
@@ -173,7 +173,7 @@
                   color="primary"
                   @click="changePassword"
                 >
-                  {{ t('admin.settings.changePassword') }}
+                  {{ t('admin.settings.securitySettings.changePassword') }}
                 </UButton>
               </div>
             </template>

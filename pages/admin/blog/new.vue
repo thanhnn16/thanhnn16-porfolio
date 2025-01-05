@@ -20,12 +20,12 @@
                             <div class="sm:col-span-4">
                                 <label for="title"
                                     class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
-                                    {{ t('admin.blog.title') }}
+                                    {{ t('admin.blog.form.title') }}
                                 </label>
                                 <div class="mt-2">
                                     <input id="title" v-model="form.title" type="text" name="title"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 dark:focus:ring-primary-400 sm:text-sm sm:leading-6 bg-white dark:bg-gray-900"
-                                        :placeholder="t('admin.blog.titlePlaceholder')" />
+                                        :placeholder="t('admin.blog.form.titlePlaceholder')" />
                                 </div>
                             </div>
 
@@ -33,12 +33,12 @@
                             <div class="sm:col-span-4">
                                 <label for="slug"
                                     class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
-                                    {{ t('admin.blog.slug') }}
+                                    {{ t('admin.blog.form.slug') }}
                                 </label>
                                 <div class="mt-2">
                                     <input id="slug" v-model="form.slug" type="text" name="slug"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 dark:focus:ring-primary-400 sm:text-sm sm:leading-6 bg-white dark:bg-gray-900"
-                                        :placeholder="t('admin.blog.slugPlaceholder')" />
+                                        :placeholder="t('admin.blog.form.slugPlaceholder')" />
                                 </div>
                             </div>
 
@@ -46,12 +46,12 @@
                             <div class="sm:col-span-6">
                                 <label for="description"
                                     class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
-                                    {{ t('admin.blog.description') }}
+                                    {{ t('admin.blog.form.description') }}
                                 </label>
                                 <div class="mt-2">
                                     <textarea id="description" v-model="form.description" name="description" rows="3"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 dark:focus:ring-primary-400 sm:text-sm sm:leading-6 bg-white dark:bg-gray-900"
-                                        :placeholder="t('admin.blog.descriptionPlaceholder')" />
+                                        :placeholder="t('admin.blog.form.descriptionPlaceholder')" />
                                 </div>
                             </div>
 
@@ -59,7 +59,7 @@
                             <div class="sm:col-span-6">
                                 <label for="content"
                                     class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
-                                    {{ t('admin.blog.content') }}
+                                    {{ t('admin.blog.form.content') }}
                                 </label>
                                 <div class="mt-2">
                                     <editor-content :editor="editor" class="prose dark:prose-invert max-w-none" />
@@ -70,7 +70,7 @@
                             <div class="sm:col-span-6">
                                 <label for="image"
                                     class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
-                                    {{ t('admin.blog.image') }}
+                                    {{ t('admin.blog.form.featuredImage') }}
                                 </label>
                                 <div class="mt-2 flex items-center gap-x-3">
                                     <input type="file" accept="image/*" @change="handleImageUpload" class="block w-full text-sm text-gray-900 dark:text-white
@@ -139,7 +139,7 @@ const editor = useEditor({
         }),
         Typography,
         Placeholder.configure({
-            placeholder: t('admin.blog.contentPlaceholder')
+            placeholder: t('admin.blog.form.contentPlaceholder')
         })
     ],
     onUpdate: ({ editor }) => {

@@ -98,7 +98,7 @@
             :color="row.status === 'published' ? 'green' : 'yellow'"
             size="sm"
           >
-            {{ t(`admin.status.${row.status}`) }}
+            {{ t(`admin.common.status.${row.status}`) }}
           </UBadge>
         </template>
 
@@ -168,23 +168,23 @@ const recentPosts = ref<Post[]>([])
 const columns = [
   {
     key: 'title',
-    label: t('admin.title')
+    label: t('admin.blog.table.title')
   },
   {
     key: 'author',
-    label: t('admin.author')
+    label: t('admin.blog.table.author')
   },
   {
     key: 'status',
-    label: t('admin.status')
+    label: t('admin.blog.table.status')
   },
   {
     key: 'publishedAt',
-    label: t('admin.publishedAt')
+    label: t('admin.blog.table.publishedAt')
   },
   {
     key: 'actions',
-    label: t('admin.actions')
+    label: t('admin.blog.table.actions')
   }
 ]
 
