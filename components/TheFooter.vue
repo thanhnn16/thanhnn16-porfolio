@@ -15,7 +15,10 @@
                rel="noopener noreferrer"
                class="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors"
                :title="social.name">
-              <Icon :name="social.icon" class="w-6 h-6" />
+              <template v-if="social.name === 'Zalo'">
+                <IconZalo class="w-6 h-6" />
+              </template>
+              <Icon v-else :name="social.icon" class="w-6 h-6" />
             </a>
           </div>
         </div>
@@ -81,7 +84,9 @@ const socials = [
   { name: 'GitHub', url: 'https://github.com/thanhnn16', icon: 'i-simple-icons-github' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/thanhnn16', icon: 'i-simple-icons-linkedin' },
   { name: 'Facebook', url: 'https://facebook.com/thanhnn16', icon: 'i-simple-icons-facebook' },
-  { name: 'Instagram', url: 'https://instagram.com/thanhnn16', icon: 'i-simple-icons-instagram' }
+  { name: 'Instagram', url: 'https://instagram.com/thanhnn16', icon: 'i-simple-icons-instagram' },
+  { name: 'YouTube', url: 'https://youtube.com/@thanhnn16', icon: 'i-simple-icons-youtube' },
+  { name: 'Zalo', url: 'https://zalo.me/0879159499', icon: '' }
 ]
 
 const contacts = [
