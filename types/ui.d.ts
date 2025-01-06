@@ -4,6 +4,7 @@ export interface TimelineItem {
   title: string
   institution: string
   description: string
+  image?: string
 }
 
 export interface Skill {

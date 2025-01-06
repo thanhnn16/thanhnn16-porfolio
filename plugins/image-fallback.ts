@@ -3,7 +3,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const placeholderImage = 'https://placehold.co/800x600?text=Update+soon'
 
   // Global error handler for images
-  nuxtApp.vueApp.config.errorHandler = (err, instance, info) => {
+  nuxtApp.vueApp.config.errorHandler = (err: any, instance: any, info: string) => {
     if (err instanceof Error && err.message.includes('Failed to load image')) {
       // Replace failed image with placeholder
       if (instance?.$el instanceof HTMLImageElement) {
@@ -36,4 +36,4 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
     }
   }
-}) 
+})

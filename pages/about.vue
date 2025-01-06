@@ -83,9 +83,9 @@
       </div>
 
       <!-- Timeline Section -->
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-7xl mx-auto">
         <h2 
-          class="text-3xl font-bold text-center mb-12"
+          class="text-4xl font-bold text-center mb-16"
           v-motion
           :initial="{ opacity: 0, y: 50 }"
           :visible="{ opacity: 1, y: 0 }"
@@ -93,20 +93,10 @@
           {{ t('about.journey') }}
         </h2>
 
-        <div class="relative">
-          <!-- Timeline Line -->
-          <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200 dark:bg-gray-800"></div>
-
-          <!-- Timeline Items -->
-          <div class="space-y-12">
-            <TimelineItem
-              v-for="(item, index) in timelineItems"
-              :key="item.id"
-              :item="item"
-              :position="index % 2 === 0 ? 'left' : 'right'"
-            />
-          </div>
-        </div>
+        <TimelineSection 
+          :items="timelineItems" 
+          class="max-w-7xl mx-auto px-4"
+        />
       </div>
 
       <!-- Interesting Facts Section -->
@@ -212,42 +202,48 @@ const timelineItems = [
     year: '2017',
     title: t('about.timeline.highSchool.title'),
     institution: t('about.timeline.highSchool.institution'),
-    description: t('about.timeline.highSchool.description')
+    description: t('about.timeline.highSchool.description'),
+    image: '/images/timeline/high-school.jpg'
   },
   {
     id: 2,
     year: '2017-2021',
     title: t('about.timeline.university.title'),
     institution: t('about.timeline.university.institution'),
-    description: t('about.timeline.university.description')
+    description: t('about.timeline.university.description'),
+    image: '/images/timeline/university.jpg'
   },
   {
     id: 3,
     year: '2022',
     title: t('about.timeline.fptStart.title'),
     institution: t('about.timeline.fptStart.institution'),
-    description: t('about.timeline.fptStart.description')
+    description: t('about.timeline.fptStart.description'),
+    image: '/images/timeline/fpt.jpg'
   },
   {
     id: 4,
     year: '2023',
     title: t('about.timeline.internship.title'),
     institution: t('about.timeline.internship.institution'),
-    description: t('about.timeline.internship.description')
+    description: t('about.timeline.internship.description'),
+    image: '/images/timeline/internship.jpg'
   },
   {
     id: 5,
     year: t('about.timeline.currentJob.year'),
     title: t('about.timeline.currentJob.title'),
     institution: t('about.timeline.currentJob.institution'),
-    description: t('about.timeline.currentJob.description')
+    description: t('about.timeline.currentJob.description'),
+    image: '/images/timeline/current-job.jpg'
   },
   {
     id: 6,
     year: '2024',
     title: t('about.timeline.graduation.title'),
     institution: t('about.timeline.graduation.institution'),
-    description: t('about.timeline.graduation.description')
+    description: t('about.timeline.graduation.description'),
+    image: '/images/timeline/graduation.jpg'
   }
 ]
 

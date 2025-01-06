@@ -9,12 +9,12 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/image',
     '@vueuse/motion/nuxt',
-    'vue3-carousel-nuxt',
     '@nuxtjs/i18n',
     [
       '@vite-pwa/nuxt',
       {
         registerType: 'autoUpdate',
+        generateManifest: true,
         manifest: {
           name: 'Thanh Nguyen Portfolio',
           short_name: 'Portfolio',
@@ -132,7 +132,7 @@ export default defineNuxtConfig({
         workbox: {
           navigateFallback: '/',
           globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg}'],
-          globDirectory: '.vercel/output/static',
+          globDirectory: process.env.NODE_ENV === 'production' ? '.vercel/output/static' : '.nuxt/dev-sw-dist',
           cleanupOutdatedCaches: true,
           runtimeCaching: [
             {
@@ -260,14 +260,18 @@ export default defineNuxtConfig({
     keepalive: true
   },
   plugins: [
-    { src: '~/plugins/gsap.client.ts', mode: 'client' }
+    { src: '~/plugins/gsap.client', mode: 'client' },
+    '~/plugins/analytics.client.ts',
+    '~/plugins/theme.client.ts',
+    '~/plugins/image-fallback.ts',
+    '~/plugins/error-handler.ts'
   ],
   nitro: {
     preset: 'vercel',
     compressPublicAssets: true,
     prerender: {
-      crawlLinks: false,
-      routes: []
+      crawlLinks: true,
+      routes: ['/']
     }
   },
   motion: {
@@ -286,7 +290,9 @@ export default defineNuxtConfig({
       }
     }
   },
-  css: ['~/assets/css/main.scss'],
+  css: [
+    '~/assets/css/app.scss'
+  ],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -327,7 +333,9 @@ export default defineNuxtConfig({
     }
   },
   experimental: {
-    payloadExtraction: false
+    viewTransition: true,
+    payloadExtraction: false,
+    renderJsonPayloads: false
   },
   runtimeConfig: {
     public: {
@@ -343,7 +351,14 @@ export default defineNuxtConfig({
     typeCheck: true
   },
   vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {}
+      }
+    },
     build: {
+      manifest: true,
+      ssrManifest: true,
       rollupOptions: {
         output: {
           chunkFileNames: '_nuxt/[name]-[hash].js',
@@ -362,7 +377,6 @@ export default defineNuxtConfig({
         }
       }
     },
-    plugins: []
   },
   build: {
     transpile: [

@@ -216,7 +216,7 @@ const security = ref({
 const saveProfile = async () => {
   try {
     // TODO: Implement profile update
-    console.log('Save profile:', profile.value)
+    // console.log('Save profile:', profile.value)
   } catch (error) {
     console.error('Error saving profile:', error)
   }

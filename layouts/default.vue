@@ -74,7 +74,7 @@ const { isLCP, isFID, isCLS } = usePerformance()
 watch([isLCP, isFID, isCLS], ([lcp, fid, cls]) => {
   if (lcp && fid && cls) {
     // All Core Web Vitals are good
-    console.log('Good Core Web Vitals')
+    // console.log('Good Core Web Vitals')
   }
 })
 

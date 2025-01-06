@@ -1,8 +1,6 @@
-import { defineNuxtPlugin } from "#app"
-
 export default defineNuxtPlugin((nuxtApp) => {
   if (import.meta.client) {
-    nuxtApp.vueApp.config.errorHandler = (error, instance, info) => {
+    nuxtApp.vueApp.config.errorHandler = (error: any, instance: any, info: string) => {
       console.error('Global error:', error)
       console.error('Error info:', info)
 
@@ -13,11 +11,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
 
     // Handle unhandled promise rejections
-    if (import.meta.client) {
-      window.addEventListener('unhandledrejection', (event) => {
-        console.error('Unhandled promise rejection:', event.reason)
-        // Sentry.captureException(event.reason)
-      })
-    }
+    window.addEventListener('unhandledrejection', (event: PromiseRejectionEvent) => {
+      console.error('Unhandled promise rejection:', event.reason)
+      // Sentry.captureException(event.reason)
+    })
   }
 })
