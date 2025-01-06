@@ -3,33 +3,29 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    @apply antialiased;
+  }
+  
   body {
-    @apply bg-background-light dark:bg-background-dark;
+    @apply bg-background-light dark:bg-background-dark min-h-screen;
   }
 }
 
-@layer components {
-  .page-enter-active,
-  .page-leave-active {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .page-enter-from {
-    opacity: 0;
-    filter: blur(4px);
-    transform: translateY(10px);
-  }
-  
-  .page-leave-to {
-    opacity: 0;
-    filter: blur(4px);
-    transform: translateY(-10px);
-  }
-  
-  .page-enter-to,
-  .page-leave-from {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
+.page-enter-active,
+.page-leave-active {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.page-enter-from {
+  @apply opacity-0 blur-sm translate-y-2;
+}
+
+.page-leave-to {
+  @apply opacity-0 blur-sm -translate-y-2;
+}
+
+.page-enter-to,
+.page-leave-from {
+  @apply opacity-100 blur-none translate-y-0;
 } 
