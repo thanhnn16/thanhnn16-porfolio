@@ -6,9 +6,10 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "module": "esnext",
     "types": [
       "@pinia/nuxt",
-      "@nuxtjs/i18n",
+      "@nuxtjs/i18n", 
       "@vueuse/nuxt",
       "@nuxt/image",
       "@nuxt/ui"
