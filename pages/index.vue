@@ -28,7 +28,11 @@
             :initial="{ opacity: 0, y: 100 }"
             :enter="{ opacity: 1, y: 0, transition: { delay: 200 } }"
           >
-            {{ t('hero.subtitle') }}
+            <TypewriterText 
+              :text="t('hero.subtitle')"
+              :delay="500"
+              :speed="25"
+            />
           </p>
 
           <div 
