@@ -521,5 +521,37 @@ export default {
     publishedAt: 'Published At',
     actions: 'Actions',
     edit: 'Edit'
+  },
+  blog: {
+    title: "Blog",
+    description: "Thoughts, stories and ideas about technology, development and life",
+    meta: {
+      title: "Blog - Nong Nguyen Thanh",
+      description: "Read my latest blog posts about technology, development, and personal experiences"
+    },
+    searchPlaceholder: "Search articles...",
+    noSearchResults: "No articles found matching your search",
+    tryAnotherSearch: "Try different keywords or browse all articles",
+    empty: "No articles published yet. Check back soon!",
+    categories: {
+      all: "All",
+      tech: "Technology",
+      programming: "Programming",
+      mobile: "Mobile Dev",
+      web: "Web Dev",
+      tutorial: "Tutorials",
+      career: "Career",
+      personal: "Personal"
+    },
+    readMore: "Read More",
+    publishedOn: "Published on",
+    minuteRead: "min read",
+    author: "Author",
+    share: {
+      title: "Share this article",
+      facebook: "Share on Facebook",
+      twitter: "Share on Twitter",
+      linkedin: "Share on LinkedIn"
+    }
   }
 }

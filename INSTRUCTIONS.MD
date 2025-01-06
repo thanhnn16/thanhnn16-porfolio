@@ -1,4 +1,13 @@
-## Vietnamese
+Đây là hướng dẫn cho bạn để bạn có thể hỗ trợ tôi tốt hơn trong việc lập trình:
+- Bước 1. Tiếp nhận thông tin đầu vào.
+- Bước 2. Đọc thật kỹ nội dung file hướng dẫn này.
+- Bước 3. Dựa vào cấu trúc dự án, tìm kiếm những file, folder, dependencies liên quan tới dự án. Nếu có thắc mắc, hãy hỏi tôi. Nếu file, folder, dependencies không tồn tại, hãy tạo mới. Nếu đã tồn tại, hãy sửa đổi.
+- Bước 4. Khi viết code, luôn kiểm tra các key ngôn ngữ trong file en.ts và vi.ts. Nếu những key ngôn ngữ này không tồn tại, hay tạo mới. Nếu đã tồn tại, hay sử dụng những key ngôn ngữ này trong code. Đảm bảo được viết ra luôn là đã ngôn ngữ.
+- Bước 5. Lập kế hoạch trước khi thực hiện thay đổi và lập trình.
+- Bước 6. Thực hiện thay đổi và lập trình.
+- Bước 7. Kiểm tra kết quả thay đổi và lập trình.
+
+## Đây là thông tin về tôi và dự án của tôi
 
 # 🌟 Giới thiệu
 Xin chào! Tôi là Nông Nguyễn Thành, một lập trình viên đam mê công nghệ và sáng tạo. Tôi chuyên về phát triển ứng dụng di động, web và tích hợp AI vào các giải pháp công nghệ.
@@ -22,9 +31,21 @@ Portfolio này được tạo ra nhằm:
 - **2017-2021:** Học ngôn ngữ Nhật tại Đại học Mở TP.HCM, đạt chứng chỉ N3
 - **2021:** Bảo lưu kết quả học tập tại Đại học Mở TP.HCM
 - **2022:** Bắt đầu theo đuổi đam mê lập trình với chuyên ngành Lập trình Mobile tại FPT Polytechnic
-- **06-08/2023:** Thực tập tại Softworld với vị trí Lập trình Mobile
-- **Hiện tại:** Đang làm việc với vị trí IT Web tại Aimmi.vn
-- **2024:** Dự kiến tốt nghiệp FPT Polytechnic chuyên ngành Lập trình Mobile
+- **06-08/2024:** Thực tập tại Softworld với vị trí Lập trình Mobile
+- **Hiện tại:** Đang làm việc với vị trí IT Web tại https://trestleholdings.com/
+- **2024:** Tốt nghiệp FPT Polytechnic chuyên ngành Lập trình Mobile
+
+Dự kiến tương lai 2025:
+- Liên thông Đại học CNTT - Đại học Quốc gia TP.HCM
+- Ôn thi N2 JLPT vào tháng 7/2025
+- Đạt chứng chỉ Aptis Esol English Level B1-2.
+
+# Fun fact
+- Ngày sinh trên khai sinh là ngày âm lịch (01/06/1999). Còn ngày dương lịch lại là 13/07. Vì vậy tôi không biết tính số chủ đạo hay cung hoàng đạo của mình.
+- Tôi thích đọc truyện tu tiên kiếm hiệp
+- Tôi thích nghe nhạc
+- Tôi thích đi du lịch
+- 
 
 # 🔗 Liên kết mạng xã hội
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/thanhnn16/)
@@ -210,228 +231,8 @@ Portfolio này được tạo ra nhằm:
 └── tsconfig.json   # TypeScript configuration
 ```
 
-## Performance
-- Fully Static Site
-- SEO Optimized
-- Mobile Responsive
-- Dark/Light Mode
-- Fast Loading Times
-
-## English
-
-# 🌟 Introduction
-Hello! I'm Nong Nguyen Thanh, a developer passionate about technology and creativity. I specialize in mobile and web development, with expertise in integrating AI into technological solutions.
-
-# 🎯 Portfolio Context
-This portfolio was created to:
-- Showcase my notable projects
-- Demonstrate my skills and professional experience
-- Create connections with potential partners
-
-# 👨‍💻 Personal Information
-- **Full Name:** Nong Nguyen Thanh
-- **Date of Birth:** 01/06/1999
-- **Role:** Mobile & Web Developer | AI Enthusiast
-- **Email:** thanhnn16.work@gmail.com
-- **Phone:** +84 879 159 499
-- **Location:** Go Vap District, Ho Chi Minh City
-
-# 🔗 Education & Career Timeline
-- **2017:** High school graduation and started studying Japanese Language at HCMC Open University
-- **2017-2021:** Studied Japanese Language at HCMC Open University, achieved N3 certification
-- **2021:** Academic reservation at HCMC Open University
-- **2022:** Started pursuing programming passion with Mobile Application Development at FPT Polytechnic
-- **06-08/2023:** Internship at Softworld as Mobile Developer
-- **Present:** Working as IT Web Developer at Aimmi.vn
-- **2024:** Expected graduation from FPT Polytechnic in Mobile Application Development
-
-# 🔗 Social Links
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/thanhnn16/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github)](https://github.com/thanhnn16)
-[![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=flat&logo=facebook)](https://www.facebook.com/thanhnn16)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram)](https://www.instagram.com/thanhnn16)
-[![Youtube](https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube)](https://www.youtube.com/@thanhnn16)
-
-# 💻 Technical Skills
-
-## Mobile Development
-- Flutter, React Native, Kotlin
-- Zalo Mini App Development
-
-## Web Development
-- Frontend: HTML, CSS, JavaScript, TypeScript
-- Frameworks: Next.js, Nuxt.js, React.js
-- Styling: TailwindCSS
-
-## Backend Development
-- Node.js (Express, NestJS)
-- Laravel
-- Databases: MySQL, PostgreSQL, MongoDB
-
-## Other Skills
-- AI Integration & Implementation
-- UI/UX Design: Figma
-- Basic Graphics: Photoshop, Illustrator
-
-# 🤝 Soft Skills
-- Effective teamwork
-- Strong independent work capability
-- Problem-solving mindset
-- Excellent time management
-- Stress resilience
-- Strong communication skills
-- Continuous learning attitude
-
-# 🌏 Languages
-- 🇻🇳 **Vietnamese:** Native
-- 🇬🇧 **English:** Professional (Reading, Writing)
-- 🇯🇵 **Japanese:** N3 (2019) - Target N2 (07/2025)
-
-# 📱 Featured Projects
-
-## Mobile Applications
-- **Don't Forget Me** (Flutter)
-  - [Source Code](https://github.com/thanhnn16/dungquenem)
-- **Allure Spa** (Expo)
-  - [Source Code](https://github.com/thanhnn16/allure-spa)
-
-## Web Applications
-- **Allure Spa Admin** (Laravel Inertia)
-  - [Source Code](https://github.com/thanhnn16/allure-spa-admin)
-- **SCG VN - Lucky Draw** 
-  - [Source Code](https://github.com/thanhnn16/scg-vn-quay-so-trung-thuong)
-- **Marine Trace** (Nuxt.js)
-  - [Source Code](https://github.com/thanhnn16/marine-trace)
-- **Portfolio** (Nuxt.js)
-  - [Source Code](https://github.com/thanhnn16/portfolio)
-
-## Zalo Mini Apps
-- **Allure Spa Staff**
-  - [Source Code](https://github.com/thanhnn16/allure-spa-staff)
-- **Allure Spa Customer**
-  - [Source Code](https://github.com/thanhnn16/allure-spa-customer)
-- **White Snow**
-  - [Source Code](https://github.com/thanhnn16/bongtuyettrang)
-
-# 🛠 Portfolio Technical Details
-## Tech Stack
-- **Framework:** Nuxt 3
-- **Package Manager:** Bun
-- **UI Components:** Nuxt UI
-- **Icons:** Nuxt Icons
-- **Styling:** TailwindCSS
-- **Modules:**
-  - @nuxt/ui
-  - @nuxt/image
-  - @nuxtjs/color-mode
-  - @nuxtjs/google-fonts
-  - nuxt-icon
-
-## Pages in the project
-- Home: General information.
-- Projects: Display project information and details.
-- Skills: My professional and soft skills.
-- About me: Personal information and other information about me.
-- Contact: Contact information and contact form.
-- Blog: Content of the blog I wrote.
-- CMS: Only admin. I can login and manage posts and projects.
-
-## Project Structure
-```
-├── .nuxt/             # Nuxt build files
-├── .output/           # Nuxt output files
-├── .vercel/           # Vercel deployment files
-├── assets/            # Static assets
-│   ├── css/          # CSS files
-│   │   └── main.scss # Main stylesheet
-│   └── images/       # Images
-├── components/        # Reusable components
-│   ├── admin/        # Admin components
-│   ├── blog/         # Blog components
-│   ├── A11ySkipLink.vue
-│   ├── AIChatButton.vue (10.0KB)
-│   ├── BaseImage.vue
-│   ├── ContactForm.vue
-│   ├── ErrorAlert.vue
-│   ├── ErrorBoundary.vue
-│   ├── LanguageSwitch.vue
-│   ├── MobileMenu.vue
-│   ├── ProjectCard.vue
-│   ├── ProjectCardSkeleton.vue
-│   ├── PWAPrompt.vue
-│   ├── ScrollToTop.vue
-│   ├── SkillCard.vue
-│   ├── TheFooter.vue
-│   ├── TheHeader.vue
-│   └── TimelineItem.vue
-├── composables/       # Composable functions
-│   ├── useAnalytics.ts
-│   ├── useChat.ts
-│   ├── useErrorHandler.ts
-│   ├── useHoverEffect.ts
-│   ├── useOptimizedImage.ts
-│   ├── usePerformance.ts
-│   ├── usePWA.ts
-│   ├── useSecurity.ts
-│   └── useUserTracking.ts
-├── i18n/              # Internationalization
-│   ├── i18n.config.ts
-│   └── locales/
-│       ├── en.ts
-│       └── vi.ts
-├── layouts/           # Page layouts
-│   ├── admin.vue
-│   └── default.vue
-├── middleware/        # Middleware functions
-│   └── auth.ts
-├── pages/            # Application pages
-│   ├── admin/       # Admin pages
-│   ├── blog/        # Blog pages
-│   ├── projects/    # Project details pages
-│   ├── about.vue
-│   ├── contact.vue
-│   ├── index.vue
-│   ├── projects.vue
-│   └── skills.vue
-├── plugins/          # Nuxt plugins
-│   └── i18n.ts
-├── prisma/           # Prisma database config
-├── public/           # Public assets
-├── server/           # API endpoints
-│   ├── api/
-│   │   ├── admin/   # Admin API routes
-│   │   ├── auth/    # Auth API routes
-│   │   ├── blog/    # Blog API routes
-│   │   ├── chat.post.ts
-│   │   └── contact.post.ts
-│   └── middleware/
-├── stores/           # Pinia stores
-│   └── theme.ts
-├── test/            # Unit tests
-├── types/           # TypeScript definitions
-│   ├── auth.d.ts
-│   ├── config.d.ts
-│   └── ui.d.ts
-├── utils/           # Utility functions
-├── .env            # Environment variables
-├── .env.example    # Example environment variables
-├── .env.local     # Local environment variables
-├── .env.production # Production environment variables
-├── .gitignore      # Git ignore rules
-├── app.config.ts   # App configuration
-├── app.vue         # App entry
-├── bun.lockb       # Bun lock file
-├── INSTRUCTIONS.MD # Project instructions
-├── nuxt.config.ts  # Nuxt configuration
-├── package.json    # Project dependencies
-├── README.md       # Project readme
-├── tailwind.config.ts # Tailwind configuration
-└── tsconfig.json   # TypeScript configuration
-```
-
-## Performance
-- Fully Static Site
-- SEO Optimized
-- Mobile Responsive
-- Dark/Light Mode
-- Fast Loading Times
+## Hiệu năng
+- Tối ưu SEO
+- Responsive trên các thiết bị
+- Chế độ tối/sáng
+- Tải nhanh

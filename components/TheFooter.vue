@@ -1,96 +1,56 @@
 <template>
   <footer class="bg-white dark:bg-gray-900">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- About -->
         <div>
           <h3 class="text-lg font-semibold mb-4">{{ t('footer.about.title') }}</h3>
-          <p class="text-gray-600 dark:text-gray-400">{{ t('footer.about.description') }}</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">{{ t('footer.about.description') }}</p>
+          <!-- Social Links -->
+          <div class="flex gap-4">
+            <a v-for="social in socials" 
+               :key="social.name"
+               :href="social.url" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors"
+               :title="social.name">
+              <Icon :name="social.icon" class="w-6 h-6" />
+            </a>
+          </div>
         </div>
 
         <!-- Quick Links -->
         <div>
           <h3 class="text-lg font-semibold mb-4">{{ t('footer.quickLinks.title') }}</h3>
-          <ul class="space-y-2">
-            <li>
-              <NuxtLink to="/" class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-                {{ t('nav.home') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/projects" class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-                {{ t('nav.projects') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/skills" class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-                {{ t('nav.skills') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/blog" class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-                {{ t('nav.blog') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/about" class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-                {{ t('nav.about') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/contact" class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-                {{ t('nav.contact') }}
-              </NuxtLink>
-            </li>
-          </ul>
+          <div class="grid grid-cols-2 gap-2">
+            <NuxtLink v-for="link in quickLinks" 
+                     :key="link.path" 
+                     :to="link.path"
+                     class="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors">
+              {{ t(`nav.${link.name.toLowerCase()}`) }}
+            </NuxtLink>
+          </div>
         </div>
 
         <!-- Contact -->
         <div>
           <h3 class="text-lg font-semibold mb-4">{{ t('footer.contact.title') }}</h3>
-          <ul class="space-y-2">
-            <li class="flex items-center gap-2">
-              <Icon name="i-heroicons-envelope" class="w-5 h-5" />
-              <a href="mailto:thanhnn16.work@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-                thanhnn16.work@gmail.com
+          <ul class="space-y-3">
+            <li v-for="contact in contacts" 
+                :key="contact.type" 
+                class="flex items-center gap-2">
+              <Icon :name="contact.icon" class="w-5 h-5 flex-shrink-0" />
+              <a v-if="contact.link" 
+                 :href="contact.link"
+                 class="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors">
+                {{ contact.text }}
               </a>
-            </li>
-            <li class="flex items-center gap-2">
-              <Icon name="i-heroicons-phone" class="w-5 h-5" />
-              <a href="tel:+84879159499" class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-                +84 879 159 499
-              </a>
-            </li>
-            <li class="flex items-center gap-2">
-              <Icon name="i-heroicons-map-pin" class="w-5 h-5" />
-              <span class="text-gray-600 dark:text-gray-400">
-                {{ t('footer.contact.address') }}
+              <span v-else class="text-gray-600 dark:text-gray-400">
+                {{ contact.text }}
               </span>
             </li>
           </ul>
-        </div>
-
-        <!-- Social -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">{{ t('footer.social.title') }}</h3>
-          <div class="flex gap-4">
-            <a href="https://github.com/thanhnn16" target="_blank" rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-              <Icon name="i-simple-icons-github" class="w-6 h-6" />
-            </a>
-            <a href="https://linkedin.com/in/thanhnn16" target="_blank" rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-              <Icon name="i-simple-icons-linkedin" class="w-6 h-6" />
-            </a>
-            <a href="https://facebook.com/thanhnn16" target="_blank" rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-              <Icon name="i-simple-icons-facebook" class="w-6 h-6" />
-            </a>
-            <a href="https://instagram.com/thanhnn16" target="_blank" rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-400 hover:text-primary-500">
-              <Icon name="i-simple-icons-instagram" class="w-6 h-6" />
-            </a>
-          </div>
         </div>
       </div>
 
@@ -108,4 +68,40 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
+const quickLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Skills', path: '/skills' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'About', path: '/about' },
+  { name: 'Contact', path: '/contact' }
+]
+
+const socials = [
+  { name: 'GitHub', url: 'https://github.com/thanhnn16', icon: 'i-simple-icons-github' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/thanhnn16', icon: 'i-simple-icons-linkedin' },
+  { name: 'Facebook', url: 'https://facebook.com/thanhnn16', icon: 'i-simple-icons-facebook' },
+  { name: 'Instagram', url: 'https://instagram.com/thanhnn16', icon: 'i-simple-icons-instagram' }
+]
+
+const contacts = [
+  { 
+    type: 'email',
+    icon: 'i-heroicons-envelope',
+    text: 'thanhnn16.work@gmail.com',
+    link: 'mailto:thanhnn16.work@gmail.com'
+  },
+  {
+    type: 'phone',
+    icon: 'i-heroicons-phone',
+    text: '+84 879 159 499',
+    link: 'tel:+84879159499'
+  },
+  {
+    type: 'address',
+    icon: 'i-heroicons-map-pin',
+    text: t('footer.contact.address'),
+    link: null
+  }
+]
 </script>

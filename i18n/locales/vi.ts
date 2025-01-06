@@ -504,5 +504,37 @@ export default {
     publishedAt: 'Ngày xuất bản',
     actions: 'Thao tác',
     edit: 'Chỉnh sửa'
+  },
+  blog: {
+    title: "Blog",
+    description: "Chia sẻ suy nghĩ, câu chuyện và ý tưởng về công nghệ, phát triển và cuộc sống",
+    meta: {
+      title: "Blog - Nông Nguyễn Thành",
+      description: "Đọc các bài viết mới nhất của tôi về công nghệ, phát triển và trải nghiệm cá nhân"
+    },
+    searchPlaceholder: "Tìm kiếm bài viết...",
+    noSearchResults: "Không tìm thấy bài viết nào phù hợp",
+    tryAnotherSearch: "Thử tìm kiếm với từ khóa khác hoặc xem tất cả bài viết",
+    empty: "Chưa có bài viết nào được đăng. Vui lòng quay lại sau!",
+    categories: {
+      all: "Tất cả",
+      tech: "Công nghệ",
+      programming: "Lập trình",
+      mobile: "Phát triển Mobile",
+      web: "Phát triển Web",
+      tutorial: "Hướng dẫn",
+      career: "Nghề nghiệp",
+      personal: "Cá nhân"
+    },
+    readMore: "Đọc thêm",
+    publishedOn: "Đăng ngày",
+    minuteRead: "phút đọc",
+    author: "Tác giả",
+    share: {
+      title: "Chia sẻ bài viết này",
+      facebook: "Chia sẻ trên Facebook",
+      twitter: "Chia sẻ trên Twitter",
+      linkedin: "Chia sẻ trên LinkedIn"
+    }
   }
 }
