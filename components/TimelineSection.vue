@@ -1,46 +1,52 @@
 <template>
-  <section class="relative">
+  <section ref="timelineSection" class="relative py-20">
     <!-- Timeline line with gradient and progress -->
-    <div class="absolute left-[15%] top-0 bottom-0 w-px">
+    <div class="absolute left-[15%] top-0 bottom-0 w-px z-0">
       <!-- Background line -->
-      <div class="absolute inset-0 bg-gray-200 dark:bg-gray-700"></div>
+      <div class="absolute inset-0 bg-gray-200/50 dark:bg-gray-700/50 backdrop-blur-sm"></div>
       
       <!-- Progress line with gradient -->
       <div 
         ref="progressLine"
-        class="absolute top-0 w-full bg-gradient-to-b from-primary-500 to-primary-400 origin-top transition-transform duration-300 ease-out"
-        style="transform: scaleY(0)"
-      ></div>
+        class="absolute top-0 w-full h-full origin-top timeline-progress"
+        :style="{
+          transform: 'scaleY(0)',
+          background: 'linear-gradient(to bottom, rgb(var(--color-primary-600)), rgb(var(--color-primary-500)), rgb(var(--color-primary-400)))',
+          boxShadow: '0 0 10px rgb(var(--color-primary-500))'
+        }"
+      >
+        <!-- Glow effect -->
+        <div class="absolute inset-0 blur-sm bg-inherit opacity-50"></div>
+        <!-- Moving light effect -->
+        <div class="absolute w-full h-20 moving-light"></div>
+      </div>
     </div>
 
     <!-- Timeline items -->
-    <div>
+    <div class="relative z-10">
       <div 
         v-for="(item, index) in items" 
         :key="item.id"
-        class="relative min-h-[80vh] flex items-center"
-        :ref="(el) => { if (el) timelineRefs[index] = el as HTMLElement }"
+        class="relative min-h-[85vh] flex items-center timeline-item"
       >
         <div class="grid grid-cols-12 gap-8 w-full">
           <!-- Left side (Content) -->
           <div class="col-span-4 col-start-2">
-            <div 
-              class="opacity-0 pr-8"
-              :ref="(el) => { if (el) contentRefs[index] = el as HTMLElement }"
-            >
-              <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 relative overflow-hidden group">
-                <!-- Year marker -->
+            <div class="opacity-0 perspective-1000 timeline-content">
+              <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-8 rounded-2xl shadow-lg transform transition-all duration-300 relative overflow-hidden group hover:shadow-2xl">
+                <!-- Year marker with glowing effect -->
                 <div class="flex items-center gap-4 mb-6">
-                  <span class="text-4xl font-bold bg-gradient-to-r from-primary-500 to-primary-600 dark:from-primary-400 dark:to-primary-500 bg-clip-text text-transparent">
+                  <span class="text-4xl font-bold bg-gradient-to-r from-primary-500 to-primary-600 dark:from-primary-400 dark:to-primary-500 bg-clip-text text-transparent relative year-text">
                     {{ item.year }}
+                    <div class="absolute inset-0 bg-primary-500/20 dark:bg-primary-400/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </span>
                 </div>
 
-                <h3 class="text-2xl font-bold mb-3">{{ item.title }}</h3>
-                <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                <h3 class="text-2xl font-bold mb-3 transform group-hover:translate-x-2 transition-transform duration-300">{{ item.title }}</h3>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-4 transform group-hover:translate-x-1 transition-transform duration-300 delay-75">
                   {{ item.institution }}
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed transform group-hover:translate-x-1 transition-transform duration-300 delay-100">
                   {{ item.description }}
                 </p>
               </div>
@@ -49,26 +55,21 @@
 
           <!-- Timeline dot -->
           <div class="col-span-1 relative">
-            <div 
-              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              :ref="(el) => { if (el) dotRefs[index] = el as HTMLElement }"
-            >
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 timeline-dot">
               <div class="w-6 h-6 rounded-full bg-primary-500 dark:bg-primary-400 relative opacity-0 shadow-lg">
                 <div class="absolute inset-0 rounded-full bg-primary-500/30 dark:bg-primary-400/30 animate-ping"></div>
+                <div class="absolute inset-[-4px] rounded-full border-2 border-primary-500/50 dark:border-primary-400/50"></div>
               </div>
             </div>
           </div>
 
           <!-- Right side (Image) -->
           <div class="col-span-5">
-            <div 
-              class="h-[400px] rounded-2xl overflow-hidden opacity-0 shadow-xl"
-              :ref="(el) => { if (el) imageRefs[index] = el as HTMLElement }"
-            >
+            <div class="h-[400px] rounded-2xl overflow-hidden opacity-0 perspective-1000 timeline-image">
               <BaseImage
                 :src="item.image || ''"
                 :alt="item.title"
-                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                class="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"
                 loading="lazy"
               />
             </div>
@@ -80,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUpdate, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import type { TimelineItem } from '~/types/ui'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -92,199 +93,268 @@ const props = defineProps<{
   items: TimelineItem[]
 }>()
 
-const timelineRefs = ref<(HTMLElement | null)[]>([])
-const contentRefs = ref<(HTMLElement | null)[]>([])
-const imageRefs = ref<(HTMLElement | null)[]>([])
-const dotRefs = ref<(HTMLElement | null)[]>([])
 const progressLine = ref<HTMLElement | null>(null)
-
-// Reset refs before update
-onBeforeUpdate(() => {
-  timelineRefs.value = []
-  contentRefs.value = []
-  imageRefs.value = []
-  dotRefs.value = []
-})
-
-// Optimized animation function with GSAP timeline
-function animateSection(contentRef: HTMLElement, imageRef: HTMLElement, dotRef: HTMLElement, direction: 'enter' | 'leave') {
-  const tl = gsap.timeline({
-    defaults: {
-      duration: 0.8,
-      ease: "power3.out"
-    }
-  })
-
-  if (direction === 'enter') {
-    // Content animation
-    tl.fromTo(contentRef, 
-      { 
-        opacity: 0,
-        x: -100,
-        scale: 0.8,
-        rotateY: -15
-      },
-      {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        rotateY: 0,
-        duration: 1,
-        ease: "elastic.out(1, 0.8)"
-      }
-    )
-    // Dot animation with bounce effect
-    .fromTo(dotRef,
-      {
-        opacity: 0,
-        scale: 0,
-        transformOrigin: 'center'
-      },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "bounce.out",
-        immediateRender: false
-      },
-      "-=0.6"
-    )
-    // Image animation with 3D effect
-    .fromTo(imageRef,
-      {
-        opacity: 0,
-        x: 100,
-        scale: 0.8,
-        rotateY: 15,
-        transformOrigin: 'center'
-      },
-      {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        rotateY: 0,
-        duration: 1,
-        ease: "elastic.out(1, 0.8)"
-      },
-      "-=0.8"
-    )
-  } else {
-    // Leave animation with stagger and 3D effect
-    tl.to([contentRef, dotRef, imageRef], {
-      opacity: 0,
-      y: 30,
-      scale: 0.9,
-      rotateX: -10,
-      stagger: {
-        each: 0.15,
-        from: "start"
-      },
-      ease: "power2.in"
-    })
-  }
-
-  return tl
-}
+const timelineSection = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  // Enhanced progress line animation
-  if (progressLine.value) {
-    const progressTl = gsap.timeline({
+  // Get all timeline elements
+  const timelineItems = gsap.utils.toArray<HTMLElement>('.timeline-item')
+  const timelineContents = gsap.utils.toArray<HTMLElement>('.timeline-content')
+  const timelineDots = gsap.utils.toArray<HTMLElement>('.timeline-dot')
+  const timelineImages = gsap.utils.toArray<HTMLElement>('.timeline-image')
+
+  // Set up ScrollTrigger defaults for smoother animations
+  ScrollTrigger.defaults({
+    toggleActions: 'play resume none reverse',
+    markers: false
+  })
+
+  // Calculate viewport height and total scroll height
+  const viewportHeight = window.innerHeight
+  const totalHeight = timelineItems.reduce((acc, item) => acc + item.offsetHeight, 0)
+
+  // Create individual progress animations for each timeline item
+  timelineItems.forEach((item, index) => {
+    const nextItem = timelineItems[index + 1]
+    const endPosition = nextItem ? 'center center-=200' : 'bottom center'
+
+    gsap.to(progressLine.value, {
+      ease: 'none',
       scrollTrigger: {
-        trigger: progressLine.value.parentElement,
-        start: "top center",
-        end: "bottom center",
-        scrub: true,
+        trigger: item,
+        start: 'top center+=200',
+        end: endPosition,
+        scrub: 0.5,
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
-          // Add pulsing effect based on scroll progress
-          gsap.to(progressLine.value, {
-            scaleX: 1 + Math.sin(self.progress * Math.PI) * 0.1,
-            duration: 0.1,
-            ease: "none"
-          })
+          if (progressLine.value) {
+            // Calculate the overall progress including the gap to next item
+            const progress = Math.min(1, (index + self.progress) / timelineItems.length)
+            const intensity = 5 + progress * 20
+
+            gsap.to(progressLine.value, {
+              scaleY: progress,
+              boxShadow: `0 0 ${intensity}px rgb(var(--color-primary-500))`,
+              background: `linear-gradient(to bottom, 
+                rgb(var(--color-primary-600)), 
+                rgb(var(--color-primary-500)), 
+                rgb(var(--color-primary-400))
+              )`,
+              duration: 0.1
+            })
+          }
         }
       }
     })
+  })
 
-    progressTl
-      .fromTo(progressLine.value, 
+  // Animate each timeline item with faster animations
+  timelineItems.forEach((item, index) => {
+    const content = timelineContents[index]
+    const dot = timelineDots[index]
+    const image = timelineImages[index]
+
+    if (!content || !dot || !image) return
+
+    // Create timeline for each item with optimized trigger points
+    const itemTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: item,
+        start: index === 0 ? 'top 65%' : 'top center+=150', // Adjusted trigger points
+        end: 'center center',
+        toggleActions: 'play reverse play reverse',
+      }
+    })
+
+    // Faster and smoother animations
+    itemTl
+      // Content animation
+      .fromTo(content,
         {
-          scaleY: 0,
-          transformOrigin: "top"
+          opacity: 0,
+          x: -30,
+          rotateY: -10
         },
         {
-          scaleY: 1,
-          ease: "none"
+          opacity: 1,
+          x: 0,
+          rotateY: 0,
+          duration: 0.4, // Faster animation
+          ease: 'power2.out'
         }
       )
-  }
+      // Dot animation
+      .fromTo(dot,
+        {
+          opacity: 0,
+          scale: 0
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.2, // Faster animation
+          ease: 'back.out(2)'
+        },
+        '-=0.2'
+      )
+      // Image animation
+      .fromTo(image,
+        {
+          opacity: 0,
+          x: 30,
+          rotateY: 10
+        },
+        {
+          opacity: 1,
+          x: 0,
+          rotateY: 0,
+          duration: 0.4, // Faster animation
+          ease: 'power2.out'
+        },
+        '-=0.3'
+      )
 
-  // Enhanced timeline item animations
-  timelineRefs.value.forEach((timelineRef, index) => {
-    const contentRef = contentRefs.value[index]
-    const imageRef = imageRefs.value[index]
-    const dotRef = dotRefs.value[index]
+    // Smoother parallax with optimized movement
+    gsap.to(content, {
+      y: 15, // Reduced movement
+      ease: 'none',
+      scrollTrigger: {
+        trigger: item,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.05 // Much faster scrub
+      }
+    })
 
-    if (!timelineRef || !contentRef || !imageRef || !dotRef) return
+    gsap.to(image, {
+      y: -15, // Reduced movement
+      ease: 'none',
+      scrollTrigger: {
+        trigger: item,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.05 // Much faster scrub
+      }
+    })
 
     // Add hover animations
     const hoverTl = gsap.timeline({ paused: true })
+    
     hoverTl
-      .to(contentRef.querySelector('.bg-white'), {
-        scale: 1.02,
-        boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-        duration: 0.3
+      .to(content, {
+        scale: 1.01,
+        duration: 0.2,
+        ease: 'power2.out'
       })
-      .to(dotRef.querySelector('.rounded-full'), {
+      .to(dot, {
         scale: 1.2,
-        boxShadow: "0 0 20px rgba(var(--color-primary-500), 0.4)",
-        duration: 0.3
+        duration: 0.2,
+        ease: 'power2.out'
       }, 0)
-      .to(imageRef, {
-        scale: 1.05,
-        boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-        duration: 0.3
+      .to(image, {
+        scale: 1.03,
+        duration: 0.2,
+        ease: 'power2.out'
       }, 0)
 
-    timelineRef.addEventListener('mouseenter', () => hoverTl.play())
-    timelineRef.addEventListener('mouseleave', () => hoverTl.reverse())
-
-    // Scroll-based animations
-    ScrollTrigger.create({
-      trigger: timelineRef,
-      start: "top center+=100",
-      end: "bottom center",
-      scrub: 1,
-      markers: false,
-      onEnter: () => animateSection(contentRef, imageRef, dotRef, 'enter'),
-      onEnterBack: () => animateSection(contentRef, imageRef, dotRef, 'enter'),
-      onLeave: () => animateSection(contentRef, imageRef, dotRef, 'leave'),
-      onLeaveBack: () => animateSection(contentRef, imageRef, dotRef, 'leave'),
-    })
+    item.addEventListener('mouseenter', () => hoverTl.play())
+    item.addEventListener('mouseleave', () => hoverTl.reverse())
   })
 
   // Cleanup
   onBeforeUnmount(() => {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    timelineRefs.value.forEach(ref => {
-      if (ref) {
-        ref.removeEventListener('mouseenter', () => {})
-        ref.removeEventListener('mouseleave', () => {})
-      }
-    })
+    gsap.killTweensOf('*')
   })
 })
 </script>
 
 <style scoped lang="postcss">
-.bg-gradient-to-r {
-  @apply bg-[length:200%_auto];
-  animation: gradient 5s ease infinite;
+.perspective-1000 {
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.timeline-progress {
+  @apply transition-all duration-200; /* Faster transition */
+  filter: drop-shadow(0 0 3px rgb(var(--color-primary-500)));
+  will-change: transform, box-shadow, background;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.timeline-progress::before {
+  content: '';
+  @apply absolute inset-0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--color-primary-500)) 50%,
+    transparent
+  );
+  opacity: 0.5;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.moving-light {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent
+  );
+  animation: moveLight 3s linear infinite;
+  transform: translateY(-100%);
+}
+
+@keyframes moveLight {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Enhanced hover effects */
+.timeline-item {
+  will-change: transform;
+}
+
+.timeline-item:hover .timeline-content {
+  transform: translateZ(30px) scale(1.02);
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.3);
+}
+
+.timeline-item:hover .timeline-image {
+  transform: translateZ(-30px) scale(0.98);
+}
+
+.year-text {
+  position: relative;
+  background-size: 200% auto;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Smooth transitions */
+.timeline-content,
+.timeline-dot,
+.timeline-image {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
 }
 </style> 
