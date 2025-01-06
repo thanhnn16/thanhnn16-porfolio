@@ -121,7 +121,7 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'vi',
     strategy: 'no_prefix',
-    lazy: true,
+    lazy: false,
     langDir: './locales',
     detectBrowserLanguage: {
       useCookie: true,
@@ -160,8 +160,11 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     minify: true,
     prerender: {
-      crawlLinks: true,
-      routes: ['/']
+      crawlLinks: false,
+      routes: []
+    },
+    future: {
+      nativeSWR: true
     }
   },
   motion: {
@@ -299,12 +302,12 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/': { prerender: true },
-    '/about': { prerender: true },
-    '/projects': { prerender: true },
-    '/contact': { prerender: true },
-    '/skills': { prerender: true },
-    '/blog/**': { swr: 3600 },
+    '/': { ssr: true },
+    '/about': { ssr: true },
+    '/projects': { ssr: true },
+    '/contact': { ssr: true },
+    '/skills': { ssr: true },
+    '/blog/**': { isr: 3600 },
     '/admin/**': { ssr: false }
   }
 })
