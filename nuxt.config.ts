@@ -137,13 +137,16 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans:wght@300;400;500;700&display=swap'
+          href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans:wght@300;400;500;700&display=swap',
+          crossorigin: 'anonymous'
         }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
-    keepalive: true
+    keepalive: {
+      max: 10
+    }
   },
   plugins: [
     { src: '~/plugins/gsap.client', mode: 'client' },
@@ -155,6 +158,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'vercel',
     compressPublicAssets: true,
+    minify: true,
     prerender: {
       crawlLinks: true,
       routes: ['/']
@@ -221,7 +225,9 @@ export default defineNuxtConfig({
   experimental: {
     viewTransition: true,
     payloadExtraction: false,
-    renderJsonPayloads: false
+    renderJsonPayloads: false,
+    asyncContext: true,
+    treeshakeClientOnly: true
   },
   runtimeConfig: {
     public: {
@@ -245,16 +251,30 @@ export default defineNuxtConfig({
     build: {
       manifest: true,
       ssrManifest: true,
+      chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
-          chunkFileNames: '_nuxt/[name]-[hash].js',
-          entryFileNames: '_nuxt/[name]-[hash].js',
-          assetFileNames: '_nuxt/[name]-[hash][extname]'
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('@nuxt/ui')) {
+                return 'ui';
+              }
+              if (id.includes('@vueuse/motion') || id.includes('gsap')) {
+                return 'motion';
+              }
+              if (id.includes('vue') || id.includes('pinia')) {
+                return 'vendor';
+              }
+              if (id.includes('i18n')) {
+                return 'i18n';
+              }
+            }
+          }
         }
       }
     },
     optimizeDeps: {
-      include: ['vue', '@vueuse/core', 'pinia', 'gsap', 'swiper', 'vue-i18n']
+      include: ['vue', '@vueuse/core', 'pinia', 'gsap', 'vue-i18n']
     },
     esbuild: {
       tsconfigRaw: {
@@ -262,12 +282,11 @@ export default defineNuxtConfig({
           experimentalDecorators: true
         }
       }
-    },
+    }
   },
   build: {
-    transpile: [
-      'gsap'
-    ]
+    transpile: ['gsap'],
+    analyze: true
   },
   nodemailer: {
     service: 'gmail',
@@ -278,5 +297,14 @@ export default defineNuxtConfig({
     defaults: {
       from: process.env.GMAIL_USER
     }
+  },
+  routeRules: {
+    '/': { prerender: true },
+    '/about': { prerender: true },
+    '/projects': { prerender: true },
+    '/contact': { prerender: true },
+    '/skills': { prerender: true },
+    '/blog/**': { swr: 3600 },
+    '/admin/**': { ssr: false }
   }
 })
