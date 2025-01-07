@@ -5,13 +5,14 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  seed = "node --loader ts-node/esm prisma/seed.ts"
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["public"]
 }
 
 model User {
@@ -24,6 +25,8 @@ model User {
   projects  Project[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+
+  @@schema("public")
 }
 
 model Post {
@@ -36,7 +39,7 @@ model Post {
   views       Int       @default(0)
   status      String    @default("DRAFT") // DRAFT, PUBLISHED
   featured    Boolean   @default(false)
-  seoTitle    String?   // SEO optimization
+  seoTitle    String? // SEO optimization
   seoDesc     String?   @db.Text // SEO description
   publishedAt DateTime?
   author      User      @relation(fields: [authorId], references: [id])
@@ -45,41 +48,47 @@ model Post {
   comments    Comment[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
+  @@schema("public")
 }
 
 model Tag {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique
-  slug        String   @unique
-  description String?  @db.Text
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  slug        String    @unique
+  description String?   @db.Text
   posts       Post[]
   projects    Project[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@schema("public")
 }
 
 model Project {
-  id            Int      @id @default(autoincrement())
-  title         String
-  slug          String   @unique
-  description   String   @db.Text
-  category      String   // Web, Mobile, Desktop, etc.
-  technologies  String[]  // Array of technologies used
-  sourceUrl     String?
-  demoUrl       String?
-  thumbnail     String?
-  images        String[] // Additional project images
-  featured      Boolean  @default(false)
-  status        String   @default("DRAFT") // DRAFT, PUBLISHED
-  startDate     DateTime?
-  endDate       DateTime?
-  views         Int      @default(0)      // Track project views
-  order         Int      @default(0)      // Display order
-  author        User     @relation(fields: [authorId], references: [id])
-  authorId      Int
-  tags          Tag[]
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id           Int       @id @default(autoincrement())
+  title        String
+  slug         String    @unique
+  description  String    @db.Text
+  category     String // Web, Mobile, Desktop, etc.
+  technologies String[] // Array of technologies used
+  sourceUrl    String?
+  demoUrl      String?
+  thumbnail    String?
+  images       String[] // Additional project images
+  featured     Boolean   @default(false)
+  status       String    @default("DRAFT") // DRAFT, PUBLISHED
+  startDate    DateTime?
+  endDate      DateTime?
+  views        Int       @default(0) // Track project views
+  order        Int       @default(0) // Display order
+  author       User      @relation(fields: [authorId], references: [id])
+  authorId     Int
+  tags         Tag[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@schema("public")
 }
 
 model Comment {
@@ -87,12 +96,14 @@ model Comment {
   content   String   @db.Text
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    Int
-  name      String   // Commenter name
-  email     String   // Commenter email
-  website   String?  // Commenter website
+  name      String // Commenter name
+  email     String // Commenter email
+  website   String? // Commenter website
   status    String   @default("PENDING") // PENDING, APPROVED, SPAM
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@schema("public")
 }
 
 model Contact {
@@ -104,18 +115,22 @@ model Contact {
   status    String   @default("UNREAD") // UNREAD, READ, REPLIED
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@schema("public")
 }
 
 model Analytics {
-  id           Int      @id @default(autoincrement())
-  pageUrl      String
-  views        Int      @default(0)
-  uniqueViews  Int      @default(0)
-  bounceRate   Float?   // Bounce rate percentage
-  duration     Int?     // Average time on page (seconds)
-  device       String?  // Device type
-  browser      String?  // Browser info
-  country      String?  // Country of visitor
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  pageUrl     String
+  views       Int      @default(0)
+  uniqueViews Int      @default(0)
+  bounceRate  Float? // Bounce rate percentage
+  duration    Int? // Average time on page (seconds)
+  device      String? // Device type
+  browser     String? // Browser info
+  country     String? // Country of visitor
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@schema("public")
 }
