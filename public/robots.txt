@@ -1,3 +1,4 @@
+# Allow all crawlers
 User-agent: *
 Allow: /
 
@@ -7,7 +8,7 @@ Disallow: /private/
 Disallow: /*.json$
 Disallow: /*?*
 
-# Allow CSS, JS, and Images
+# Allow static assets
 Allow: /*.css$
 Allow: /*.js$
 Allow: /*.jpg$
@@ -15,9 +16,15 @@ Allow: /*.jpeg$
 Allow: /*.gif$
 Allow: /*.png$
 Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.woff$
+Allow: /*.woff2$
 
-# Crawl delay
-Crawl-delay: 10
+# Optimize crawling
+Crawl-delay: 5
 
 # Sitemaps
 Sitemap: https://thanhnn16.id.vn/sitemap.xml
+
+# Host
+Host: https://thanhnn16.id.vn

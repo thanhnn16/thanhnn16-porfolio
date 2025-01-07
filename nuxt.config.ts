@@ -160,12 +160,42 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'vi'
+      },
       link: [
+        // Preconnect to important domains
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: 'anonymous'
+        },
+        // Fonts
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans:wght@300;400;500;700&display=swap',
           crossorigin: 'anonymous'
         }
+      ],
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'format-detection', content: 'telephone=no' },
+        // Security
+        { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
+        { name: 'referrer', content: 'no-referrer-when-downgrade' },
+        // PWA
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+        // Performance hints
+        { name: 'dns-prefetch', content: 'https://fonts.googleapis.com' },
+        { name: 'dns-prefetch', content: 'https://fonts.gstatic.com' }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -187,8 +217,16 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     minify: true,
     prerender: {
-      crawlLinks: false,
-      routes: []
+      crawlLinks: true,
+      routes: [
+        '/',
+        '/about',
+        '/projects',
+        '/blog',
+        '/contact',
+        '/skills',
+        '/sitemap.xml'
+      ]
     },
     future: {
       nativeSWR: true
@@ -330,12 +368,19 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/': { ssr: true },
-    '/about': { ssr: true },
+    // Static pages
+    '/': { prerender: true },
+    '/about': { prerender: true },
+    '/contact': { prerender: true },
+    '/skills': { prerender: true },
+
+    // Dynamic pages with ISR
     '/projects': { isr: 86400 },
-    '/contact': { ssr: true },
-    '/skills': { ssr: true },
+    '/projects/[slug]': { isr: 86400 },
     '/blog/**': { isr: 86400 },
-    '/admin/**': { ssr: false }
+
+    // Special routes
+    '/admin/**': { ssr: false },
+    '/sitemap.xml': { prerender: true }
   }
 })

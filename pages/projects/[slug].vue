@@ -104,56 +104,101 @@
 </template>
 
 <script setup lang="ts">
+import type { Project } from '~/types/project'
 import { useI18n } from 'vue-i18n'
+import { generateMeta } from '~/utils/seo'
+
 const { t } = useI18n()
-
-// Get route params
 const route = useRoute()
-const slug = route.params.slug as string
 
-// Define project type
-interface Project {
-  id: number
-  title: string
-  description: string
-  category: string
-  thumbnail: string | null
-  technologies: string[]
-  sourceUrl: string | null
-  demoUrl: string | null
-  slug: string
-}
-
+// Project state
 const project = ref<Project | null>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
 
-// Computed property for thumbnail with fallback
+// Get project data
+const { data } = await useFetch<Project>(`/api/projects/${route.params.slug}`)
+if (data.value) {
+  project.value = data.value
+  loading.value = false
+} else {
+  error.value = t('projects.notFound')
+  loading.value = false
+}
+
+// Compute thumbnail source
 const thumbnailSrc = computed(() => {
-  return project.value?.thumbnail || '/images/projects/default-thumbnail.jpg'
+  return project.value?.thumbnail || '/images/project-placeholder.jpg'
 })
 
-// Fetch project data
-onMounted(async () => {
-  try {
-    const response = await $fetch<Project>(`/api/projects/${slug}`)
-    if (response) {
-      project.value = response
-    } else {
-      error.value = t('projects.notFound')
-    }
-  } catch (err) {
-    error.value = (err as Error).message
-  } finally {
-    loading.value = false
+// SEO Meta Tags
+useHead(() => {
+  if (!project.value) return {}
+
+  return {
+    title: project.value.title,
+    meta: [
+      {
+        name: 'description',
+        content: project.value.description
+      },
+      {
+        property: 'og:title',
+        content: project.value.title
+      },
+      {
+        property: 'og:description',
+        content: project.value.description
+      },
+      {
+        property: 'og:image',
+        content: thumbnailSrc.value
+      },
+      {
+        property: 'og:type',
+        content: 'article'
+      },
+      {
+        property: 'og:url',
+        content: `https://thanhnn16.id.vn/projects/${route.params.slug}`
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      {
+        name: 'twitter:title',
+        content: project.value.title
+      },
+      {
+        name: 'twitter:description',
+        content: project.value.description
+      },
+      {
+        name: 'twitter:image',
+        content: thumbnailSrc.value
+      }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Project',
+          name: project.value.title,
+          description: project.value.description,
+          image: thumbnailSrc.value,
+          datePublished: project.value.createdAt,
+          dateModified: project.value.updatedAt,
+          author: {
+            '@type': 'Person',
+            name: 'Thanh Nguyen'
+          },
+          keywords: project.value.technologies?.join(', '),
+          url: `https://thanhnn16.id.vn/projects/${route.params.slug}`,
+        })
+      }
+    ]
   }
 })
-
-// Handle 404
-if (!project.value && !loading.value) {
-  throw createError({
-    statusCode: 404,
-    message: 'Project not found'
-  })
-}
 </script> 

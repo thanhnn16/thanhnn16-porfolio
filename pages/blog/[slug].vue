@@ -99,31 +99,25 @@
 
 <script setup lang="ts">
 import type { Post } from '~/types/blog'
+import { useI18n } from 'vue-i18n'
 
-const route = useRoute()
 const { t } = useI18n()
-const { fetchPostBySlug } = useBlog()
+const route = useRoute()
 
+// Blog post state
 const post = ref<Post | null>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
 
-// Load post data
-onMounted(async () => {
-  try {
-    const slug = route.params.slug as string
-    const fetchedPost = await fetchPostBySlug(slug)
-    if (fetchedPost) {
-      post.value = fetchedPost
-    } else {
-      error.value = t('blog.notFound')
-    }
-  } catch (err) {
-    error.value = (err as Error).message
-  } finally {
-    loading.value = false
-  }
-})
+// Get post data
+const { data } = await useFetch<Post>(`/api/blog/posts/${route.params.slug}`)
+if (data.value) {
+  post.value = data.value
+  loading.value = false
+} else {
+  error.value = t('blog.notFound')
+  loading.value = false
+}
 
 // Format date
 const formatDate = (date: string) => {
@@ -134,7 +128,7 @@ const formatDate = (date: string) => {
   })
 }
 
-// Share functionality
+// Share post
 const share = async () => {
   if (navigator.share) {
     try {
@@ -146,33 +140,105 @@ const share = async () => {
     } catch (err) {
       console.error('Error sharing:', err)
     }
-  } else {
-    // Fallback: copy URL to clipboard
-    await navigator.clipboard.writeText(window.location.href)
-    // Show toast notification (implement your own toast system)
   }
 }
 
-// Meta tags
-useHead(() => ({
-  title: post.value?.title,
-  meta: [
-    {
-      name: 'description',
-      content: post.value?.excerpt
-    },
-    {
-      property: 'og:title',
-      content: post.value?.title
-    },
-    {
-      property: 'og:description',
-      content: post.value?.excerpt
-    },
-    {
-      property: 'og:image',
-      content: post.value?.thumbnail
-    }
-  ]
-}))
+// SEO Meta Tags
+useHead(() => {
+  if (!post.value) return {}
+
+  return {
+    title: post.value.title,
+    meta: [
+      {
+        name: 'description',
+        content: post.value.excerpt
+      },
+      {
+        property: 'og:title',
+        content: post.value.title
+      },
+      {
+        property: 'og:description',
+        content: post.value.excerpt
+      },
+      {
+        property: 'og:image',
+        content: post.value.thumbnail
+      },
+      {
+        property: 'og:type',
+        content: 'article'
+      },
+      {
+        property: 'og:url',
+        content: `https://thanhnn16.id.vn/blog/${route.params.slug}`
+      },
+      {
+        property: 'article:published_time',
+        content: post.value.publishedAt
+      },
+      {
+        property: 'article:modified_time',
+        content: post.value.updatedAt
+      },
+      {
+        property: 'article:author',
+        content: post.value.author.name
+      },
+      {
+        property: 'article:tag',
+        content: post.value.tags.join(',')
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      {
+        name: 'twitter:title',
+        content: post.value.title
+      },
+      {
+        name: 'twitter:description',
+        content: post.value.excerpt
+      },
+      {
+        name: 'twitter:image',
+        content: post.value.thumbnail
+      }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.value.title,
+          description: post.value.excerpt,
+          image: post.value.thumbnail,
+          datePublished: post.value.publishedAt,
+          dateModified: post.value.updatedAt,
+          author: {
+            '@type': 'Person',
+            name: post.value.author.name
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Thanh Nguyen Portfolio',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://thanhnn16.id.vn/images/logo.png'
+            }
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `https://thanhnn16.id.vn/blog/${route.params.slug}`
+          },
+          keywords: post.value.tags.join(', '),
+          articleBody: post.value.content
+        })
+      }
+    ]
+  }
+})
 </script> 
