@@ -93,7 +93,7 @@ export default {
   },
   projects: {
     title: "Dự án của tôi",
-    description: "Bộ sưu tập các dự án cá nhân và công việc của tôi",
+    description: "Bộ sưu tập các dự án cá nhân và công việc",
     categories: {
       all: "Tất cả",
       web: "Web",
@@ -101,11 +101,48 @@ export default {
       design: "Thiết kế",
       zalo: "Zalo"
     },
+    pagination: {
+      prev: "Trước",
+      next: "Sau",
+      showing: "Hiển thị",
+      of: "trong số",
+      results: "kết quả"
+    },
     noResults: "Không tìm thấy dự án nào trong danh mục này.",
     featured: "Dự án nổi bật",
     learnMore: "Tìm hiểu thêm",
     viewProject: "Xem dự án",
     viewDetails: "Xem chi tiết",
+    backToProjects: "Quay lại dự án",
+    overview: "Tổng quan",
+    technologies: "Công nghệ sử dụng",
+    viewLive: "Xem Demo trực tiếp",
+    viewSource: "Xem mã nguồn",
+    notFound: "Không tìm thấy dự án",
+    error: {
+      title: "Lỗi",
+      notFound: {
+        title: "Không tìm thấy dự án",
+        message: "Dự án bạn đang tìm kiếm không tồn tại hoặc đã bị xóa."
+      },
+      draft: {
+        title: "Dự án chưa được công bố",
+        message: "Dự án này hiện đang ở trạng thái nháp và chưa được công bố."
+      },
+      server: {
+        title: "Lỗi máy chủ",
+        message: "Đã xảy ra lỗi khi tải dự án. Vui lòng thử lại sau."
+      },
+      slug: {
+        title: "Đường dẫn không hợp lệ",
+        message: "URL của dự án không hợp lệ hoặc bị sai định dạng."
+      }
+    },
+    status: {
+      draft: "Bản nháp",
+      published: "Đã công bố",
+      archived: "Đã lưu trữ"
+    },
     items: {
       allureSpa: {
         title: "Allure Spa",
@@ -118,30 +155,6 @@ export default {
       allureSpaAdmin: {
         title: "Allure Spa Admin",
         description: "Trang quản trị cho hệ thống Allure Spa với các tính năng quản lý toàn diện."
-      },
-      dungquenem: {
-        title: "Đừng Quên Em",
-        description: "Ứng dụng di động giúp người dùng ghi nhớ và quản lý các công việc, sự kiện quan trọng."
-      },
-      scgLuckyDraw: {
-        title: "SCG VN - Lucky Draw",
-        description: "Ứng dụng web quay số trúng thưởng cho sự kiện của công ty SCG Việt Nam."
-      },
-      portfolio: {
-        title: "Portfolio",
-        description: "Website portfolio cá nhân được xây dựng bằng Nuxt.js và TailwindCSS."
-      },
-      allureSpaStaff: {
-        title: "Allure Spa Staff",
-        description: "Ứng dụng Zalo Mini App dành cho nhân viên Allure Spa, quản lý lịch hẹn và dịch vụ."
-      },
-      allureSpaCustomer: {
-        title: "Allure Spa Customer",
-        description: "Ứng dụng Zalo Mini App dành cho khách hàng Allure Spa, đặt lịch và xem thông tin dịch vụ."
-      },
-      bongtuyettrang: {
-        title: "Bông Tuyết Trắng",
-        description: "Ứng dụng Zalo Mini App cho cửa hàng Bông Tuyết Trắng, quản lý đơn hàng và khách hàng."
       }
     }
   },

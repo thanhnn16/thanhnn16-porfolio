@@ -5,13 +5,12 @@
   "scripts": {
     "build": "prisma generate && nuxt build",
     "dev": "nuxt prepare && nuxt dev --dotenv .env.local",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "prisma:seed": "node --env-file .env --loader ts-node/esm prisma/seed.ts",
+    "prisma:studio": "prisma studio",
     "reinstall": "powershell Remove-Item -Recurse -Path .nuxt,node_modules && bun i && nuxt prepare"
   },
   "dependencies": {

@@ -27,17 +27,11 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import type { ProjectCardProps } from '~/types/project'
 
 const { t } = useI18n()
 
 defineProps<{
-  project: {
-    title: string
-    description: string
-    thumbnail?: string
-    technologies: string[]
-    sourceUrl?: string
-    slug: string
-  }
+  project: ProjectCardProps
 }>()
 </script>

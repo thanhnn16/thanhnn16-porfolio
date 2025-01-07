@@ -101,47 +101,60 @@ export default {
       design: "Design",
       zalo: "Zalo"
     },
+    pagination: {
+      prev: "Previous",
+      next: "Next",
+      showing: "Showing",
+      of: "of",
+      results: "results"
+    },
     noResults: "No projects found in this category.",
     featured: "Featured Projects",
     learnMore: "Learn More",
     viewProject: "View Project",
     viewDetails: "View Details",
+    backToProjects: "Back to Projects",
+    overview: "Overview",
+    technologies: "Technologies Used",
+    viewLive: "View Live Demo",
+    viewSource: "View Source Code",
+    notFound: "Project not found",
+    error: {
+      title: "Error",
+      notFound: {
+        title: "Project Not Found",
+        message: "The project you're looking for doesn't exist or has been removed."
+      },
+      draft: {
+        title: "Project Not Published",
+        message: "This project is currently in draft status and not available for public viewing."
+      },
+      server: {
+        title: "Server Error",
+        message: "An error occurred while fetching the project. Please try again later."
+      },
+      slug: {
+        title: "Invalid Slug",
+        message: "The project URL is invalid or malformed."
+      }
+    },
+    status: {
+      draft: "Draft",
+      published: "Published",
+      archived: "Archived"
+    },
     items: {
       allureSpa: {
         title: "Allure Spa",
-        description: "A modern spa management system with booking and service management features."
+        description: "Modern spa management system with appointment booking and service management features."
       },
       marineTrace: {
         title: "Marine Trace",
-        description: "A tracking system for marine products with QR code integration."
+        description: "Seafood traceability system with QR code integration."
       },
       allureSpaAdmin: {
         title: "Allure Spa Admin",
         description: "Admin dashboard for Allure Spa system with comprehensive management features."
-      },
-      dungquenem: {
-        title: "Don't Forget Me",
-        description: "A mobile application helping users remember and manage important tasks and events."
-      },
-      scgLuckyDraw: {
-        title: "SCG VN - Lucky Draw",
-        description: "A web-based lucky draw application for SCG Vietnam's events."
-      },
-      portfolio: {
-        title: "Portfolio",
-        description: "Personal portfolio website built with Nuxt.js and TailwindCSS."
-      },
-      allureSpaStaff: {
-        title: "Allure Spa Staff",
-        description: "Zalo Mini App for Allure Spa staff, managing appointments and services."
-      },
-      allureSpaCustomer: {
-        title: "Allure Spa Customer",
-        description: "Zalo Mini App for Allure Spa customers, booking appointments and viewing service information."
-      },
-      bongtuyettrang: {
-        title: "White Snow",
-        description: "Zalo Mini App for White Snow store, managing orders and customers."
       }
     }
   },
