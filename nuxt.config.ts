@@ -138,16 +138,18 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
-        file: 'en.ts'
+        file: 'en.ts',
+        iso: 'en-US'
       },
       {
         code: 'vi',
-        file: 'vi.ts'
+        file: 'vi.ts',
+        iso: 'vi-VN'
       }
     ],
     defaultLocale: 'vi',
-    strategy: 'no_prefix',
-    lazy: false,
+    strategy: 'prefix_except_default',
+    lazy: true,
     langDir: './locales',
     detectBrowserLanguage: {
       useCookie: true,
@@ -217,20 +219,11 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     minify: true,
     prerender: {
-      crawlLinks: true,
-      routes: [
-        '/',
-        '/about',
-        '/projects',
-        '/blog',
-        '/contact',
-        '/skills',
-        '/sitemap.xml'
+      crawlLinks: false,
+      ignore: [
+        '/admin/**'
       ]
     },
-    future: {
-      nativeSWR: true
-    }
   },
   motion: {
     directives: {
@@ -368,11 +361,11 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    // Static pages
-    '/': { prerender: true },
-    '/about': { prerender: true },
-    '/contact': { prerender: true },
-    '/skills': { prerender: true },
+    // Static pages with SSR
+    '/': { ssr: true },
+    '/about': { ssr: true },
+    '/contact': { ssr: true },
+    '/skills': { ssr: true },
 
     // Dynamic pages with ISR
     '/projects': { isr: 86400 },
@@ -381,6 +374,6 @@ export default defineNuxtConfig({
 
     // Special routes
     '/admin/**': { ssr: false },
-    '/sitemap.xml': { prerender: true }
+    '/sitemap.xml': { isr: 604800 }
   }
 })
