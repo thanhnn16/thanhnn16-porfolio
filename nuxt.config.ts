@@ -2,6 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
+  debug: true,
+  sourcemap: true,
   ssr: true,
   modules: [
     '@pinia/nuxt',
@@ -314,26 +316,6 @@ export default defineNuxtConfig({
       manifest: true,
       ssrManifest: true,
       chunkSizeWarningLimit: 1000,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('@nuxt/ui')) {
-                return 'ui';
-              }
-              if (id.includes('@vueuse/motion') || id.includes('gsap')) {
-                return 'motion';
-              }
-              if (id.includes('vue') || id.includes('pinia')) {
-                return 'vendor';
-              }
-              if (id.includes('i18n')) {
-                return 'i18n';
-              }
-            }
-          }
-        }
-      }
     },
     optimizeDeps: {
       include: ['vue', '@vueuse/core', 'pinia', 'gsap', 'vue-i18n']
