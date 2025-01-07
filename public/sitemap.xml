@@ -8,7 +8,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://thanhnn16.id.vn/en"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/vi"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://thanhnn16.id.vn"/>
   </url>
 
@@ -19,7 +19,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://thanhnn16.id.vn/en/projects"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/vi/projects"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/projects"/>
   </url>
 
   <!-- About Page -->
@@ -29,7 +29,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://thanhnn16.id.vn/en/about"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/vi/about"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/about"/>
   </url>
 
   <!-- Contact Page -->
@@ -39,7 +39,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://thanhnn16.id.vn/en/contact"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/vi/contact"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/contact"/>
   </url>
 
   <!-- Skills Page -->
@@ -49,6 +49,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://thanhnn16.id.vn/en/skills"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/vi/skills"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://thanhnn16.id.vn/skills"/>
   </url>
 </urlset> 

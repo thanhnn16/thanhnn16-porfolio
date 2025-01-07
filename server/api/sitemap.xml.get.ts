@@ -1,52 +1,106 @@
-import { serverQueryContent } from '#content/server'
 import { SitemapStream, streamToPromise } from 'sitemap'
 import { Readable } from 'stream'
+import { PrismaClient } from '@prisma/client'
+
+const HOSTNAME = 'https://thanhnn16.id.vn'
+const LANGUAGES = ['vi', 'en']
 
 export default defineEventHandler(async (event) => {
-  // Fetch all documents
-  const docs = await Promise.all([
-    $fetch('/api/projects'),
-    $fetch('/api/blog/posts')
-  ])
+  const prisma = new PrismaClient()
 
-  const [projects, posts] = docs
+  try {
+    // Fetch data directly from database
+    const [projects, posts] = await Promise.all([
+      prisma.project.findMany({
+        where: { status: 'PUBLISHED' },
+        select: {
+          slug: true,
+          updatedAt: true
+        }
+      }),
+      prisma.post.findMany({
+        where: { status: 'PUBLISHED' },
+        select: {
+          slug: true,
+          updatedAt: true
+        }
+      })
+    ])
 
-  // Create a stream to write to
-  const stream = new SitemapStream({
-    hostname: 'https://thanhnn16.id.vn'
-  })
+    // Create a stream to write to
+    const stream = new SitemapStream({
+      hostname: HOSTNAME
+    })
 
-  const links = [
-    // Static pages
-    { url: '/', changefreq: 'weekly', priority: 1.0 },
-    { url: '/about', changefreq: 'monthly', priority: 0.8 },
-    { url: '/projects', changefreq: 'weekly', priority: 0.8 },
-    { url: '/blog', changefreq: 'daily', priority: 0.8 },
-    { url: '/contact', changefreq: 'monthly', priority: 0.7 },
-    { url: '/skills', changefreq: 'monthly', priority: 0.8 },
+    const links = []
 
-    // Dynamic project pages
-    ...projects.map((project: any) => ({
-      url: `/projects/${project.slug}`,
-      lastmod: project.updatedAt,
-      changefreq: 'weekly',
-      priority: 0.7
-    })),
+    // Add static pages with language alternates
+    const staticPages = ['', 'about', 'projects', 'blog', 'contact', 'skills']
+    for (const page of staticPages) {
+      const url = page === '' ? '/' : `/${page}`
+      const link = {
+        url,
+        changefreq: page === '' ? 'weekly' : 'monthly',
+        priority: page === '' ? 1.0 : 0.8,
+        links: LANGUAGES.map(lang => ({
+          lang,
+          url: lang === 'vi' ? url : `/${lang}${url}`
+        }))
+      }
+      links.push(link)
+    }
 
-    // Dynamic blog posts
-    ...posts.map((post: any) => ({
-      url: `/blog/${post.slug}`,
-      lastmod: post.updatedAt,
-      changefreq: 'weekly',
-      priority: 0.7
-    }))
-  ]
+    // Add dynamic project pages
+    if (projects?.length) {
+      for (const project of projects) {
+        const link = {
+          url: `/projects/${project.slug}`,
+          lastmod: project.updatedAt.toISOString(),
+          changefreq: 'weekly',
+          priority: 0.7,
+          links: LANGUAGES.map(lang => ({
+            lang,
+            url: lang === 'vi' ? `/projects/${project.slug}` : `/${lang}/projects/${project.slug}`
+          }))
+        }
+        links.push(link)
+      }
+    }
 
-  // Add all links to the stream
-  const sitemapContent = await streamToPromise(
-    Readable.from(links).pipe(stream)
-  ).then((data) => data.toString())
+    // Add dynamic blog posts
+    if (posts?.length) {
+      for (const post of posts) {
+        const link = {
+          url: `/blog/${post.slug}`,
+          lastmod: post.updatedAt.toISOString(),
+          changefreq: 'weekly',
+          priority: 0.7,
+          links: LANGUAGES.map(lang => ({
+            lang,
+            url: lang === 'vi' ? `/blog/${post.slug}` : `/${lang}/blog/${post.slug}`
+          }))
+        }
+        links.push(link)
+      }
+    }
 
-  event.node.res.setHeader('content-type', 'application/xml')
-  return sitemapContent
+    // Add all links to the stream
+    const sitemapContent = await streamToPromise(
+      Readable.from(links).pipe(stream)
+    ).then((data: Buffer) => data.toString())
+
+    // Set headers
+    setHeader(event, 'content-type', 'application/xml')
+    setHeader(event, 'cache-control', 'max-age=3600, must-revalidate')
+    
+    return sitemapContent
+  } catch (error) {
+    console.error('Error generating sitemap:', error)
+    throw createError({
+      statusCode: 500,
+      message: 'Error generating sitemap'
+    })
+  } finally {
+    await prisma.$disconnect()
+  }
 }) 
