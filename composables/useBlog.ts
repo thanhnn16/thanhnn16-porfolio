@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { Author, Post, BlogResponse, PostResponse } from '~/types/blog'
+import type { User, Post, BlogResponse, PostResponse } from '~/types/blog'
 
 export const useBlogStore = defineStore('blog', {
   state: () => ({
@@ -14,8 +14,8 @@ export const useBlogStore = defineStore('blog', {
       this.error = null
       
       try {
-        const { data } = await useFetch<BlogResponse>('/api/blog/posts')
-        this.posts = data.value?.posts || []
+        const data = await $fetch<BlogResponse>('/api/blog/posts')
+        this.posts = data.posts
       } catch (err) {
         console.error('Error fetching posts:', err)
         this.error = 'Failed to load blog posts'
@@ -26,8 +26,8 @@ export const useBlogStore = defineStore('blog', {
 
     async fetchPostBySlug(slug: string) {
       try {
-        const { data } = await useFetch<PostResponse>(`/api/blog/posts/${slug}`)
-        return data.value?.post
+        const data = await $fetch<PostResponse>(`/api/blog/posts/${slug}`)
+        return data.post
       } catch (err) {
         console.error('Error fetching post:', err)
         throw new Error('Failed to load blog post')
@@ -53,4 +53,4 @@ export const useBlog = () => {
     error: computed(() => store.error),
     fetchPostBySlug: store.fetchPostBySlug
   }
-} 
+}

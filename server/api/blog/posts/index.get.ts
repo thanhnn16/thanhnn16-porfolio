@@ -1,14 +1,32 @@
-import { defineEventHandler } from 'h3'
+import { defineEventHandler, createError } from 'h3'
 import { PrismaClient } from '@prisma/client'
+import type { Post, BlogResponse } from '~/types/blog'
 
 const prisma = new PrismaClient()
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<BlogResponse> => {
   try {
     const posts = await prisma.post.findMany({
+      where: {
+        status: 'PUBLISHED'
+      },
       include: {
-        author: true,
-        tags: true
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            avatar: true
+          }
+        },
+        tags: {
+          select: {
+            id: true,
+            name: true,
+            slug: true,
+            description: true
+          }
+        }
       },
       orderBy: {
         publishedAt: 'desc'
@@ -16,10 +34,13 @@ export default defineEventHandler(async (event) => {
     })
 
     return {
-      posts: posts.map((post: any) => ({
+      posts: posts.map((post) => ({
         ...post,
-        tags: post.tags.map((tag: any) => tag.name)
-      }))
+        tags: post.tags.map(tag => tag.name),
+        publishedAt: post.publishedAt?.toISOString() || null,
+        createdAt: post.createdAt.toISOString(),
+        updatedAt: post.updatedAt.toISOString()
+      })) as unknown as Post[]
     }
   } catch (error) {
     console.error('Error fetching posts:', error)

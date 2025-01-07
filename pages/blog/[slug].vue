@@ -18,17 +18,20 @@
         <div class="flex items-center justify-between text-gray-500 dark:text-gray-400">
           <div class="flex items-center gap-3">
             <img 
+              v-if="post.author.avatar"
               :src="post.author.avatar" 
               :alt="post.author.name"
               class="w-10 h-10 rounded-full"
             />
+            <Icon v-else name="heroicons:user-circle" class="w-10 h-10" />
             <div>
               <div class="font-medium text-gray-900 dark:text-gray-100">
                 {{ post.author.name }}
               </div>
-              <time :datetime="post.publishedAt" class="text-sm">
+              <time v-if="post.publishedAt" :datetime="post.publishedAt" class="text-sm">
                 {{ formatDate(post.publishedAt) }}
               </time>
+              <span v-else class="text-sm">{{ t('blog.draft') }}</span>
             </div>
           </div>
 
@@ -95,25 +98,11 @@
 </template>
 
 <script setup lang="ts">
+import type { Post } from '~/types/blog'
+
 const route = useRoute()
 const { t } = useI18n()
 const { fetchPostBySlug } = useBlog()
-
-interface Post {
-  id: number
-  slug: string
-  title: string
-  content: string
-  excerpt: string
-  thumbnail: string
-  tags: string[]
-  publishedAt: string
-  author: {
-    id: number
-    name: string
-    avatar: string
-  }
-}
 
 const post = ref<Post | null>(null)
 const loading = ref(true)

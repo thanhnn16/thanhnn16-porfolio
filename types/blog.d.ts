@@ -1,7 +1,26 @@
-export interface Author {
+export interface User {
+  id: number
+  email: string
+  name: string
+  avatar: string | null
+}
+
+export interface Tag {
   id: number
   name: string
-  avatar: string
+  slug: string
+  description: string | null
+}
+
+export interface Comment {
+  id: number
+  content: string
+  name: string
+  email: string
+  website: string | null
+  status: 'PENDING' | 'APPROVED' | 'SPAM'
+  createdAt: string
+  updatedAt: string
 }
 
 export interface Post {
@@ -11,9 +30,16 @@ export interface Post {
   content: string
   excerpt: string
   thumbnail: string
+  views: number
+  status: 'DRAFT' | 'PUBLISHED'
+  featured: boolean
+  seoTitle: string | null
+  seoDesc: string | null
   tags: string[]
-  publishedAt: string
-  author: Author
+  publishedAt: string | null
+  author: User
+  createdAt: string
+  updatedAt: string
 }
 
 export interface BlogResponse {

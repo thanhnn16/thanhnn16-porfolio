@@ -15,32 +15,21 @@
         <!-- Search -->
         <div class="max-w-xl mx-auto mb-6">
           <div class="relative">
-            <input 
-              type="search" 
-              v-model="searchQuery"
-              :placeholder="t('blog.searchPlaceholder')"
-              class="w-full px-4 py-2 pl-10 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            />
-            <Icon 
-              name="heroicons:magnifying-glass" 
-              class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-            />
+            <input type="search" v-model="searchQuery" :placeholder="t('blog.searchPlaceholder')"
+              class="w-full px-4 py-2 pl-10 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+            <Icon name="heroicons:magnifying-glass"
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           </div>
         </div>
 
         <!-- Categories/Tags Filter -->
         <div class="flex flex-wrap justify-center gap-2">
-          <button 
-            v-for="category in categories"
-            :key="category.id"
-            @click="toggleCategory(category.id)"
-            class="px-4 py-1.5 rounded-full text-sm transition-colors"
-            :class="[
+          <button v-for="category in categories" :key="category.id" @click="toggleCategory(category.id)"
+            class="px-4 py-1.5 rounded-full text-sm transition-colors" :class="[
               selectedCategories.includes(category.id)
                 ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-            ]"
-          >
+            ]">
             {{ category.name }}
           </button>
         </div>
@@ -48,12 +37,7 @@
 
       <!-- Posts Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <BlogPostCard
-          v-for="post in filteredPosts"
-          :key="post.id"
-          :post="post"
-          class="h-full"
-        />
+        <BlogPostCard v-for="post in filteredPosts" :key="post.id" :post="post" class="h-full" />
       </div>
 
       <!-- Loading State -->
@@ -76,23 +60,8 @@
 </template>
 
 <script setup lang="ts">
-interface Post {
-  id: number
-  slug: string
-  title: string
-  content: string
-  excerpt: string
-  description: string
-  thumbnail: string
-  categories: string[]
-  tags: string[]
-  publishedAt: string
-  author: {
-    id: number
-    name: string
-    avatar: string
-  }
-}
+import type { Post } from '~/types/blog'
+import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 const { posts, loading } = useBlog()
@@ -114,7 +83,7 @@ const toggleCategory = (categoryId: string) => {
     selectedCategories.value = []
     return
   }
-  
+
   const index = selectedCategories.value.indexOf(categoryId)
   if (index === -1) {
     selectedCategories.value.push(categoryId)
@@ -129,15 +98,15 @@ const filteredPosts = computed(() => {
   // Apply search filter
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
-    filtered = filtered.filter(post => 
-      post.title.toLowerCase().includes(query) || 
+    filtered = filtered.filter(post =>
+      post.title.toLowerCase().includes(query) ||
       post.excerpt.toLowerCase().includes(query)
     )
   }
 
   // Apply category filter
   if (selectedCategories.value.length > 0) {
-    filtered = filtered.filter(post => 
+    filtered = filtered.filter(post =>
       post.tags.some((tag: string) => selectedCategories.value.includes(tag))
     )
   }
@@ -169,4 +138,4 @@ useHead({
 .search-input:focus {
   box-shadow: 0 0 0 2px rgba(var(--color-primary-500), 0.2);
 }
-</style> 
+</style>

@@ -14,54 +14,78 @@ export default defineNuxtConfig({
       '@vite-pwa/nuxt',
       {
         registerType: 'autoUpdate',
-        manifest: false,
+        includeAssets: [
+          'favicon.ico',
+          'apple-touch-icon.png',
+          'mask-icon.svg'
+        ],
+        manifest: {
+          name: 'Thanh Nguyen Portfolio',
+          short_name: 'ThanhNN16',
+          theme_color: '#ffffff',
+          icons: [
+            {
+              src: 'pwa-192x192.png',
+              sizes: '192x192',
+              type: 'image/png'
+            },
+            {
+              src: 'pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png'
+            },
+            {
+              src: 'pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any maskable'
+            }
+          ]
+        },
         workbox: {
           navigateFallback: '/',
-          globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg}'],
-          globDirectory: process.env.NODE_ENV === 'production' ? '.vercel/output/static' : '.nuxt/dev-sw-dist',
+          globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg}'],
           cleanupOutdatedCaches: true,
           runtimeCaching: [
             {
               urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-              handler: 'StaleWhileRevalidate',
+              handler: 'CacheFirst',
               options: {
                 cacheName: 'google-fonts-cache',
                 expiration: {
-                  maxEntries: 5,
-                  maxAgeSeconds: 60 * 60 * 24 * 30
+                  maxEntries: 10,
+                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
                 }
               }
             },
             {
               urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-              handler: 'StaleWhileRevalidate',
+              handler: 'CacheFirst',
               options: {
                 cacheName: 'gstatic-fonts-cache',
                 expiration: {
-                  maxEntries: 5,
-                  maxAgeSeconds: 60 * 60 * 24 * 30
+                  maxEntries: 10,
+                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
                 }
               }
             },
             {
               urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
-              handler: 'StaleWhileRevalidate',
+              handler: 'CacheFirst',
               options: {
                 cacheName: 'image-cache',
                 expiration: {
-                  maxEntries: 30,
-                  maxAgeSeconds: 60 * 60 * 24 * 7
-                }
-              }
-            },
-            {
-              urlPattern: /\.(js|css)$/,
-              handler: 'StaleWhileRevalidate',
-              options: {
-                cacheName: 'static-resources',
-                expiration: {
-                  maxEntries: 30,
-                  maxAgeSeconds: 60 * 60 * 24 * 7 // 7 days
+                  maxEntries: 50,
+                  maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
                 }
               }
             }
@@ -69,7 +93,9 @@ export default defineNuxtConfig({
         },
         client: {
           installPrompt: true,
-          periodicSyncForUpdates: 3600 // check for updates every hour
+          periodicSyncForUpdates: 3600,
+          registerPlugin: true,
+          autoRegister: true
         },
         devOptions: {
           enabled: true,
@@ -153,7 +179,8 @@ export default defineNuxtConfig({
     '~/plugins/analytics.client.ts',
     '~/plugins/theme.client.ts',
     '~/plugins/image-fallback.ts',
-    '~/plugins/error-handler.ts'
+    '~/plugins/error-handler.ts',
+    '~/plugins/ssr-fix.ts'
   ],
   nitro: {
     preset: 'vercel',
@@ -230,7 +257,8 @@ export default defineNuxtConfig({
     payloadExtraction: false,
     renderJsonPayloads: false,
     asyncContext: true,
-    treeshakeClientOnly: true
+    treeshakeClientOnly: true,
+    componentIslands: true
   },
   runtimeConfig: {
     public: {
@@ -304,10 +332,10 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { ssr: true },
     '/about': { ssr: true },
-    '/projects': { ssr: true },
+    '/projects': { isr: 86400 },
     '/contact': { ssr: true },
     '/skills': { ssr: true },
-    '/blog/**': { isr: 3600 },
+    '/blog/**': { isr: 86400 },
     '/admin/**': { ssr: false }
   }
 })
