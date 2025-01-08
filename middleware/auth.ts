@@ -1,11 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to) => {
   const { loggedIn, user } = useUserSession()
 
-  // Set admin layout for authenticated users in admin routes
-  if (loggedIn.value && to.path.startsWith('/admin')) {
-    setPageLayout('admin')
-  }
-
   // Kiểm tra nếu route yêu cầu xác thực
   if (to.path.startsWith('/admin') && to.path !== '/admin/login') {
     if (!loggedIn.value) {
@@ -19,6 +14,11 @@ export default defineNuxtRouteMiddleware(async (to) => {
         message: 'Bạn không có quyền truy cập'
       })
     }
+  }
+
+  // Set admin layout for authenticated users in admin routes
+  if (loggedIn.value && to.path.startsWith('/admin')) {
+    setPageLayout('admin')
   }
 
   // Nếu đã đăng nhập và cố gắng truy cập trang login
