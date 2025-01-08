@@ -26,6 +26,13 @@ Portfolio này được tạo ra nhằm:
 - **Điện thoại:** +84 879 159 499
 - **Địa chỉ:** Gò Vấp, TP.HCM
 
+# 👩‍❤️‍👨 Thông tin người yêu
+- **Họ và tên:** Nguyễn Diễm Kiều
+- **Ngày sinh:** 21/10/2001
+- **Chuyên ngành:** Logistics
+- **Trình độ tiếng Anh:** TOEIC 850, Bằng giảng dạy TESOL
+- **Tốt nghiệp:** Giỏi, Đại học Sài Gòn
+
 # 🔗 Hành trình học tập và làm việc
 - **2017:** Tốt nghiệp THPT và bắt đầu học ngôn ngữ Nhật tại Đại học Mở TP.HCM
 - **2017-2021:** Học ngôn ngữ Nhật tại Đại học Mở TP.HCM, đạt chứng chỉ N3
