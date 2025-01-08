@@ -32,6 +32,8 @@
               :text="t('hero.subtitle')"
               :delay="500"
               :speed="25"
+              :pauseTime="2000"
+              :infinite="true"
             />
           </p>
 
