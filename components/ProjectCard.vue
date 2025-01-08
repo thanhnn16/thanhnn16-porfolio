@@ -14,7 +14,7 @@
         </span>
       </div>
       <div class="flex justify-between items-center">
-        <NuxtLink :to="`/projects/${project.slug}`" class="text-primary-500 hover:text-primary-600">
+        <NuxtLink :to="localePath(`/projects/${project.slug}`)" class="text-primary-500 hover:text-primary-600">
           {{ t('projects.learnMore') }} →
         </NuxtLink>
         <a v-if="project.sourceUrl" :href="project.sourceUrl" target="_blank" class="text-gray-500 hover:text-primary-500">
@@ -30,6 +30,7 @@ import { useI18n } from 'vue-i18n'
 import type { ProjectCardProps } from '~/types/project'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 defineProps<{
   project: ProjectCardProps

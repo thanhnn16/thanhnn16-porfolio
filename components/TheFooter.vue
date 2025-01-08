@@ -29,7 +29,7 @@
           <div class="grid grid-cols-2 gap-2">
             <NuxtLink v-for="link in quickLinks" 
                      :key="link.path" 
-                     :to="link.path"
+                     :to="localePath(link.path)"
                      class="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors">
               {{ t(`nav.${link.name.toLowerCase()}`) }}
             </NuxtLink>
@@ -70,6 +70,7 @@
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const quickLinks = [
   { name: 'Home', path: '/' },

@@ -10,33 +10,28 @@ export default {
     journey: "Hành trình của tôi",
     skillsAndTech: "Kỹ năng & Công nghệ",
     interestingFacts: "Thông tin thú vị",
-    numerology: {
-      title: "Thần số học",
-      lifePathNumber: "Con số đường đời: 8 - Quyền lực & Thành công",
-      destinyNumber: "Con số vận mệnh: 3 - Sáng tạo & Biểu đạt",
-      soulUrgeNumber: "Con số linh hồn: 6 - Tình yêu & Trách nhiệm"
-    },
     languages: {
       title: "Ngôn ngữ",
       vietnamese: "Tiếng Việt",
       english: "Tiếng Anh",
       japanese: "Tiếng Nhật",
       native: "Bản ngữ",
-      advanced: "Nâng cao"
+      advanced: "Nâng cao",
+      n3: "N3 (2019)",
+      n2Target: "Mục tiêu N2 (07/2025)"
     },
     hobbies: {
       title: "Sở thích",
-      coding: "Lập trình",
-      reading: "Đọc sách",
-      gaming: "Chơi game",
-      traveling: "Du lịch"
+      reading: "Đọc truyện tu tiên kiếm hiệp",
+      music: "Nghe nhạc",
+      traveling: "Du lịch",
+      coding: "Lập trình"
     },
     funFacts: {
       title: "Sự thật thú vị",
-      fact1: "Tôi bắt đầu lập trình từ năm 16 tuổi",
-      fact2: "Tôi có thể gõ 120+ từ mỗi phút",
-      fact3: "Tôi là một người hướng nội INTJ-T",
-      fact4: "Tôi thích màu xanh dương và tím"
+      birthdate: "Ngày sinh trên khai sinh là ngày âm lịch (01/06/1999), còn ngày dương lịch là 13/07",
+      numerology: "Vì có hai ngày sinh khác nhau nên tôi không biết số chủ đạo hay cung hoàng đạo của mình",
+      wuxia: "Tôi thích đọc truyện tu tiên kiếm hiệp",
     },
     timeline: {
       highSchool: {

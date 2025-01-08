@@ -42,13 +42,13 @@
             :visible="{ opacity: 1, transition: { delay: 400 } }"
           >
             <NuxtLink 
-              to="/projects"
+              :to="localePath('/projects')"
               class="px-6 py-3 bg-primary-500 dark:bg-primary-600 text-primary-contrast rounded-lg hover:bg-primary-600 dark:hover:bg-primary-700 transition-colors"
             >
               {{ t('hero.viewWork') }}
             </NuxtLink>
             <NuxtLink 
-              to="/contact"
+              :to="localePath('/contact')"
               class="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:border-primary-500 text-gray-900 dark:text-gray-100 hover:text-primary-500 dark:hover:text-primary-500 transition-colors"
             >
               {{ t('hero.contactMe') }}
@@ -85,7 +85,7 @@
               <h3 class="text-xl font-bold mb-2">{{ project.title }}</h3>
               <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description }}</p>
               <div class="flex justify-between items-center">
-                <NuxtLink :to="project.link" class="text-primary-500 hover:text-primary-600">
+                <NuxtLink :to="localePath(project.link)" class="text-primary-500 hover:text-primary-600">
                   {{ t('projects.learnMore') }} →
                 </NuxtLink>
                 <a :href="project.github" target="_blank" class="text-gray-500 hover:text-primary-500">
@@ -104,6 +104,7 @@
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const featuredProjects = [
   {

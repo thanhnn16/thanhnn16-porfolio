@@ -3,15 +3,65 @@
     <div class="container mx-auto px-4">
       <!-- Back Button -->
       <NuxtLink 
-        to="/projects"
+        :to="localePath('/projects')"
         class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-primary-500 mb-8"
       >
         <Icon name="heroicons:arrow-left" class="w-5 h-5" />
         {{ t('projects.backToProjects') }}
       </NuxtLink>
 
-      <template v-if="project && !loading">
-        <!-- Project Header -->
+      <!-- Loading Skeleton -->
+      <div v-if="loading" class="max-w-4xl mx-auto">
+        <!-- Title Skeleton -->
+        <div 
+          class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg w-3/4 mb-6 animate-pulse"
+        ></div>
+
+        <!-- Image Skeleton -->
+        <div 
+          class="aspect-video rounded-xl bg-gray-200 dark:bg-gray-700 mb-8 animate-pulse"
+        ></div>
+
+        <!-- Content Skeleton -->
+        <div class="space-y-8">
+          <!-- Overview Section -->
+          <div class="space-y-4">
+            <div class="h-8 bg-gray-200 dark:bg-gray-700 rounded w-32 animate-pulse"></div>
+            <div class="space-y-3">
+              <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full animate-pulse"></div>
+              <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6 animate-pulse"></div>
+              <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-4/6 animate-pulse"></div>
+            </div>
+          </div>
+
+          <!-- Technologies Section -->
+          <div class="space-y-4">
+            <div class="h-8 bg-gray-200 dark:bg-gray-700 rounded w-32 animate-pulse"></div>
+            <div class="flex flex-wrap gap-2">
+              <div 
+                v-for="i in 4" 
+                :key="i" 
+                class="h-8 w-24 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Links Section -->
+          <div class="flex gap-4 mt-8">
+            <div 
+              v-for="i in 2" 
+              :key="i"
+              class="h-10 w-32 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse flex items-center justify-center gap-2"
+            >
+              <div class="w-5 h-5 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+              <div class="w-16 h-4 bg-gray-300 dark:bg-gray-600 rounded"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Content -->
+      <template v-else-if="project">
         <div class="max-w-4xl mx-auto">
           <h1 
             class="text-4xl font-bold mb-6"
@@ -80,17 +130,6 @@
         </div>
       </template>
 
-      <!-- Loading state -->
-      <div v-else-if="loading" class="animate-pulse max-w-4xl mx-auto">
-        <div class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg w-3/4 mb-6"></div>
-        <div class="aspect-video rounded-xl bg-gray-200 dark:bg-gray-700 mb-8"></div>
-        <div class="space-y-4">
-          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/4"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
-        </div>
-      </div>
-
       <!-- Error state -->
       <template v-else>
         <div class="text-center py-12">
@@ -110,21 +149,46 @@ import { generateMeta } from '~/utils/seo'
 
 const { t } = useI18n()
 const route = useRoute()
+const localePath = useLocalePath()
 
 // Project state
 const project = ref<Project | null>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
 
-// Get project data
-const { data } = await useFetch<Project>(`/api/projects/${route.params.slug}`)
-if (data.value) {
-  project.value = data.value
-  loading.value = false
-} else {
-  error.value = t('projects.notFound')
-  loading.value = false
+// Sử dụng composable riêng để fetch data
+const fetchProject = async () => {
+  loading.value = true
+  error.value = null
+  
+  try {
+    const response = await $fetch<Project>(`/api/projects/${route.params.slug}`)
+    
+    if (response && response.id) {
+      project.value = response
+    } else {
+      error.value = t('projects.notFound')
+    }
+  } catch (err) {
+    console.error('Error fetching project:', err)
+    error.value = t('projects.notFound')
+  } finally {
+    loading.value = false
+  }
 }
+
+// Fetch data khi component được mount
+onMounted(() => {
+  fetchProject()
+})
+
+// Watch route changes để fetch lại data khi URL thay đổi 
+watch(() => route.params.slug, (newSlug) => {
+  if (newSlug) {
+    project.value = null
+    fetchProject()
+  }
+})
 
 // Compute thumbnail source
 const thumbnailSrc = computed(() => {
@@ -201,4 +265,4 @@ useHead(() => {
     ]
   }
 })
-</script> 
+</script>

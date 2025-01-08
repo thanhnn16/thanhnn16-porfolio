@@ -73,7 +73,7 @@
               {{ t('about.downloadCV') }}
             </a>
             <NuxtLink 
-              to="/contact"
+              :to="localePath('/contact')"
               class="px-6 py-3 bg-primary-500 text-primary-contrast rounded-lg hover:bg-primary-600 transition-colors"
             >
               {{ t('contact.title') }}
@@ -100,7 +100,7 @@
       </div>
 
       <!-- Interesting Facts Section -->
-      <div class="max-w-4xl mx-auto mt-20">
+      <div class="max-w-6xl mx-auto mt-20">
         <h2 
           class="text-3xl font-bold text-center mb-12"
           v-motion
@@ -110,8 +110,8 @@
           {{ t('about.interestingFacts') }}
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Numerology -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Languages -->
           <div 
             class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
             v-motion
@@ -119,31 +119,25 @@
             :visible="{ opacity: 1, x: 0 }"
           >
             <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Icon name="heroicons:sparkles" class="w-6 h-6 text-primary-500" />
-              {{ t('about.numerology.title') }}
-            </h3>
-            <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-              <li>{{ t('about.numerology.lifePathNumber') }}</li>
-              <li>{{ t('about.numerology.destinyNumber') }}</li>
-              <li>{{ t('about.numerology.soulUrgeNumber') }}</li>
-            </ul>
-          </div>
-
-          <!-- Languages -->
-          <div 
-            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-            v-motion
-            :initial="{ opacity: 0, x: 50 }"
-            :visible="{ opacity: 1, x: 0 }"
-          >
-            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
               <Icon name="heroicons:language" class="w-6 h-6 text-primary-500" />
               {{ t('about.languages.title') }}
             </h3>
             <ul class="space-y-3">
-              <li v-for="lang in languages" :key="lang.name" class="flex items-center justify-between">
-                <span>{{ lang.name }}</span>
-                <span class="text-primary-500">{{ lang.level }}</span>
+              <li class="flex items-center justify-between">
+                <span>{{ t('about.languages.vietnamese') }}</span>
+                <span class="text-primary-500">{{ t('about.languages.native') }}</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>{{ t('about.languages.english') }}</span>
+                <span class="text-primary-500">{{ t('about.languages.advanced') }}</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>{{ t('about.languages.japanese') }}</span>
+                <span class="text-primary-500">{{ t('about.languages.n3') }}</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>{{ t('about.languages.japanese') }}</span>
+                <span class="text-primary-500">{{ t('about.languages.n2Target') }}</span>
               </li>
             </ul>
           </div>
@@ -195,6 +189,7 @@
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const timelineItems = [
   {
@@ -250,20 +245,19 @@ const timelineItems = [
 const languages = [
   { name: '🇻🇳 ' + t('about.languages.vietnamese'), level: t('about.languages.native') },
   { name: '🇬🇧 ' + t('about.languages.english'), level: t('about.languages.advanced') },
-  { name: '🇯🇵 ' + t('about.languages.japanese'), level: 'N3 (2019)' }
+  { name: '🇯🇵 ' + t('about.languages.japanese'), level: t('about.languages.n3') }
 ]
 
 const hobbies = [
-  t('about.hobbies.coding'),
   t('about.hobbies.reading'),
-  t('about.hobbies.gaming'),
-  t('about.hobbies.traveling')
+  t('about.hobbies.music'),
+  t('about.hobbies.traveling'),
+  t('about.hobbies.coding')
 ]
 
 const funFacts = [
-  t('about.funFacts.fact1'),
-  t('about.funFacts.fact2'),
-  t('about.funFacts.fact3'),
-  t('about.funFacts.fact4')
+  t('about.funFacts.birthdate'),
+  t('about.funFacts.numerology'),
+  t('about.funFacts.wuxia'),
 ]
 </script>

@@ -160,6 +160,7 @@ import { useI18n } from 'vue-i18n'
 import type { ContactForm, FormErrors, ContactInfo, SocialLink } from '~/types/form'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const form = reactive<ContactForm>({
   name: '',

@@ -10,33 +10,28 @@ export default {
     journey: "My Journey",
     skillsAndTech: "Skills & Technologies",
     interestingFacts: "Interesting Facts",
-    numerology: {
-      title: "Numerology",
-      lifePathNumber: "Life Path Number: 8 - Power & Success",
-      destinyNumber: "Destiny Number: 3 - Creativity & Expression",
-      soulUrgeNumber: "Soul Urge Number: 6 - Love & Responsibility"
-    },
     languages: {
       title: "Languages",
       vietnamese: "Vietnamese",
       english: "English",
       japanese: "Japanese",
       native: "Native",
-      advanced: "Advanced"
+      advanced: "Advanced",
+      n3: "N3 (2019)",
+      n2Target: "Aiming for N2 (07/2025)"
     },
     hobbies: {
       title: "Hobbies",
-      coding: "Coding",
-      reading: "Reading",
-      gaming: "Gaming",
-      traveling: "Traveling"
+      reading: "Reading Wuxia & Cultivation Novels",
+      music: "Listening to Music",
+      traveling: "Traveling",
+      coding: "Programming"
     },
     funFacts: {
       title: "Fun Facts",
-      fact1: "I started programming at age 16",
-      fact2: "I can type 120+ words per minute",
-      fact3: "I am an INTJ-T personality type",
-      fact4: "I love blue and purple colors"
+      birthdate: "My birth date on ID is lunar calendar (01/06/1999), but the solar date is 13/07",
+      numerology: "Due to having two different birth dates, I don't know my life path number or zodiac sign",
+      wuxia: "I love reading Wuxia & Cultivation novels",
     },
     timeline: {
       highSchool: {
