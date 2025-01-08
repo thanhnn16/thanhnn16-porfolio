@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-16">
+  <div class="pt-20">
     <!-- Hero Section -->
     <section class="bg-gradient-to-b from-primary-50 to-white dark:from-primary-950 dark:to-gray-900 py-16">
       <div class="container mx-auto px-4">
