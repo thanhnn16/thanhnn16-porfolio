@@ -96,7 +96,7 @@
             </h3>
             <div class="grid grid-cols-2 gap-3">
               <div 
-                v-for="tool in tools" 
+                v-for="tool in tools"
                 :key="tool"
                 class="flex items-center gap-2 text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
@@ -119,7 +119,7 @@
             </h3>
             <div class="grid grid-cols-2 gap-3">
               <div 
-                v-for="software in softwares" 
+                v-for="software in softwares"
                 :key="software"
                 class="flex items-center gap-2 text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
@@ -136,11 +136,9 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-
-const tools = t('skills.toolsAndSoftware.tools.tools')
-const softwares = t('skills.toolsAndSoftware.software.software')
+import { computed } from 'vue';
+const { t, locale } = useI18n()
+const lang = computed(() => locale.value)
 
 const skills = [
   {
@@ -278,5 +276,36 @@ const softSkills = [
     icon: 'heroicons:clipboard-document-list',
     level: 80
   }
+]
+
+const tools = [
+    "Visual Studio Code",
+    "IntelliJ IDEA",
+    "Android Studio",
+    "Xcode",
+    "Git & GitHub",
+    "GitLab",
+    "Docker",
+    "Postman",
+    "Datagrip",
+    "Firebase Console",
+    "Google Cloud Platform",
+    "AWS Console",
+    "Terminal",
+]
+
+const softwares = [
+    "Microsoft Office",
+    "Google Workspace",
+    "Adobe Creative Suite",
+    "Figma",
+    "Notion",
+    "Trello",
+    "Zoom",
+    "Microsoft Teams",
+    "Adobe XD",
+    "Canva",
+    "Discord",
+    "Skype",
 ]
 </script>
