@@ -144,7 +144,7 @@ const skills = [
   {
     name: 'Flutter',
     icon: 'logos:flutter',
-    level: 85,
+    level: 90,
     description: t('skills.flutterDescription')
   },
   {
@@ -162,7 +162,7 @@ const skills = [
   {
     name: 'Next.js',
     icon: 'logos:nextjs-icon',
-    level: 85,
+    level: 60,
     description: t('skills.nextjsDescription')
   },
   {
@@ -174,13 +174,13 @@ const skills = [
   {
     name: 'React.js',
     icon: 'logos:react',
-    level: 80,
+    level: 75,
     description: t('skills.reactjsDescription')
   },
   {
     name: 'Laravel',
     icon: 'logos:laravel',
-    level: 80,
+    level: 85,
     description: t('skills.laravelDescription')
   },
   {
@@ -210,7 +210,7 @@ const skills = [
   {
     name: 'TailwindCSS',
     icon: 'logos:tailwindcss-icon',
-    level: 90,
+    level: 85,
     description: t('skills.tailwindDescription')
   }
 ]
@@ -280,8 +280,7 @@ const softSkills = [
 
 const tools = [
     "Visual Studio Code",
-    "IntelliJ IDEA",
-    "Android Studio",
+    "JetBrains IDEs",
     "Xcode",
     "Git & GitHub",
     "GitLab",
