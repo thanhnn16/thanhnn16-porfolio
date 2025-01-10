@@ -210,6 +210,7 @@ export default defineNuxtConfig({
   },
   plugins: [
     { src: '~/plugins/gsap.client', mode: 'client' },
+    { src: '~/plugins/auth', mode: 'client' },
     '~/plugins/analytics.client.ts',
     '~/plugins/theme.client.ts',
     '~/plugins/image-fallback.ts',

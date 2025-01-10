@@ -1,5 +1,14 @@
 export default defineNuxtRouteMiddleware(async (to) => {
-  const { loggedIn, user } = useUserSession()
+  const { loggedIn, user, fetch: refreshSession } = useUserSession()
+
+  // Refresh session on client side
+  if (import.meta.client) {
+    try {
+      await refreshSession()
+    } catch (error) {
+      console.error('Failed to refresh session:', error)
+    }
+  }
 
   // Kiểm tra nếu route yêu cầu xác thực
   if (to.path.startsWith('/admin') && to.path !== '/admin/login') {
