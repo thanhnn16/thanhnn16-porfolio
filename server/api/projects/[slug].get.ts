@@ -15,7 +15,6 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    console.log(`Fetching project with slug: ${slug}`)
     const project = await prisma.project.findUnique({
       where: {
         slug
@@ -50,8 +49,6 @@ export default defineEventHandler(async (event) => {
         }
       }
     })
-
-    console.log('Project query result:', JSON.stringify(project, null, 2))
 
     // Handle project not found
     if (!project) {

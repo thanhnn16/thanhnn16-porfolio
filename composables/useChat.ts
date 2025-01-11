@@ -13,9 +13,6 @@ export function useChat() {
     error.value = null
 
     try {
-      console.log('Sending message to server:', message)
-      console.log('Current chat history:', chatHistory.value)
-      
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -24,9 +21,7 @@ export function useChat() {
         body: JSON.stringify({ message, chatHistory: chatHistory.value }),
       })
 
-      console.log('Server response status:', response.status)
       const responseText = await response.text()
-      console.log('Server response text:', responseText)
 
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`)
@@ -40,8 +35,6 @@ export function useChat() {
         throw new Error('Invalid JSON response from server')
       }
 
-      console.log('Parsed server response:', data)
-      
       if (data.response && data.response.trim() !== '') {
         chatHistory.value.push({ text: data.response, isUser: false })
         return data.response

@@ -8,13 +8,9 @@ export default defineEventHandler(async (event) => {
     const category = query.category as string
     const skip = (page - 1) * limit
 
-    console.log('Query params:', { page, limit, category, skip })
-
     const where = {
       ...(category && category !== 'all' ? { category } : {})
     }
-
-    console.log('Where condition:', where)
 
     const [projects, total] = await Promise.all([
       prisma.project.findMany({
@@ -46,9 +42,6 @@ export default defineEventHandler(async (event) => {
       prisma.project.count({ where })
     ])
 
-    console.log('Found projects:', projects.length)
-    console.log('Total count:', total)
-
     return {
       projects,
       pagination: {
@@ -65,4 +58,4 @@ export default defineEventHandler(async (event) => {
       message: 'Internal Server Error'
     })
   }
-}) 
+})

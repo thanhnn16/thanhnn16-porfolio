@@ -65,12 +65,10 @@ const emit = defineEmits<{
 }>()
 
 const onAction = () => {
-  console.log('PWAPrompt: Action clicked')
   emit('action')
 }
 
 const onClose = () => {
-  console.log('PWAPrompt: Close clicked')
   emit('close')
 }
 </script> 
