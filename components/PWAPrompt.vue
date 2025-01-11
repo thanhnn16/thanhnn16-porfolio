@@ -59,8 +59,18 @@ defineProps<{
   showPrompt: boolean
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'action'): void
   (e: 'close'): void
 }>()
+
+const onAction = () => {
+  console.log('PWAPrompt: Action clicked')
+  emit('action')
+}
+
+const onClose = () => {
+  console.log('PWAPrompt: Close clicked')
+  emit('close')
+}
 </script> 
