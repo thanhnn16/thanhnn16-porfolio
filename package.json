@@ -5,7 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt prepare && nuxt dev --dotenv .env.local",
-    "postinstall": "nuxt prepare",
+    "postinstall": "nuxt prepare && prisma generate",
     "preview": "nuxt preview",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
