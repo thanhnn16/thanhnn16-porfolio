@@ -10,7 +10,7 @@
     <PWAPrompt type="install" :show-prompt="canInstall" @action="install" @close="canInstall = false" />
 
     <!-- PWA Update Prompt -->
-    <!-- <PWAPrompt type="update" :show-prompt="needRefresh" @action="update" @close="needRefresh = false" /> -->
+    <PWAPrompt type="update" :show-prompt="needRefresh" @action="update" @close="needRefresh = false" />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ import { usePWA } from '~/composables/usePWA'
 
 const themeStore = useThemeStore()
 const langStore = useLangStore()
-const { canInstall, install } = usePWA()
+const { canInstall, needRefresh, install, update } = usePWA()
 
 // Initialize theme and language on mount
 onMounted(() => {

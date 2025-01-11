@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@vueuse/motion/nuxt',
     '@nuxtjs/i18n',
+    '@nuxtjs/google-fonts',
     [
       '@vite-pwa/nuxt',
       {
@@ -22,8 +23,8 @@ export default defineNuxtConfig({
           'mask-icon.svg'
         ],
         manifest: {
-          name: 'Thanh Nguyen Portfolio',
-          short_name: 'ThanhNN16',
+          name: 'Nong Nguyen Thanh - Portfolio',
+          short_name: 'thanhnn16',
           theme_color: '#ffffff',
           icons: [
             {
@@ -49,34 +50,6 @@ export default defineNuxtConfig({
           globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg}'],
           cleanupOutdatedCaches: true,
           runtimeCaching: [
-            {
-              urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'google-fonts-cache',
-                expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-                },
-                cacheableResponse: {
-                  statuses: [0, 200]
-                }
-              }
-            },
-            {
-              urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'gstatic-fonts-cache',
-                expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-                },
-                cacheableResponse: {
-                  statuses: [0, 200]
-                }
-              }
-            },
             {
               urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
               handler: 'CacheFirst',
@@ -118,6 +91,18 @@ export default defineNuxtConfig({
       }
     ]
   ],
+  googleFonts: {
+    families: {
+      Roboto: [300, 400, 500, 700],
+      'Noto+Sans': [300, 400, 500, 700]
+    },
+    display: 'swap',
+    prefetch: true,
+    preconnect: true,
+    preload: true,
+    download: false,
+    base64: false
+  },
   ui: {
     global: true,
     safelistColors: ['primary', 'gray', 'green', 'yellow', 'red', 'blue', 'sky', 'brand']
@@ -196,10 +181,7 @@ export default defineNuxtConfig({
         // PWA
         { name: 'mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-        // Performance hints
-        { name: 'dns-prefetch', content: 'https://fonts.googleapis.com' },
-        { name: 'dns-prefetch', content: 'https://fonts.gstatic.com' }
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -297,7 +279,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID || '',
-      name: process.env.AUTHOR_NAME || 'Thanh Nguyen',
+      name: process.env.AUTHOR_NAME || 'thanhnn16',
       email: process.env.AUTHOR_EMAIL || 'thanhnn16@gmail.com',
       github: process.env.GITHUB_URL || 'https://github.com/thanhnn16',
       linkedin: process.env.LINKEDIN_URL || 'https://linkedin.com/in/thanhnn16'

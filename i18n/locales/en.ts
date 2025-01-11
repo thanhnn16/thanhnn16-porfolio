@@ -201,7 +201,7 @@ export default {
       general: "Failed to send message. Please try again.",
       email: {
         autoReply: {
-          subject: "Thank you for contacting Thanh Nguyen",
+          subject: "Thank you for contacting Thanh Nong Nguyen",
           greeting: "Dear",
           thankYou: "Thank you for your message!",
           received: "I have received your message and will get back to you as soon as possible.",

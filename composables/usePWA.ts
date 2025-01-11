@@ -4,11 +4,13 @@ import type { PWAInstallPrompt } from '~/types/pwa'
 export const usePWA = () => {
   // Only create refs if we're on the client side
   const canInstall = ref(false)
+  const needRefresh = ref(false)
   const deferredPrompt = ref<PWAInstallPrompt | null>(null)
 
   // Initialize PWA listeners only on client side
   onMounted(() => {
     console.log('PWA: Initializing listeners')
+
     window.addEventListener('beforeinstallprompt', (e: Event) => {
       console.log('PWA: beforeinstallprompt event triggered')
       // Don't prevent default here to allow the browser to show its own prompt
@@ -24,6 +26,16 @@ export const usePWA = () => {
       canInstall.value = false
       console.log('PWA: canInstall set to false')
     })
+
+    // Handle PWA updates if service worker is available
+    if ('serviceWorker' in navigator) {
+      const wb = navigator.serviceWorker
+      
+      wb.addEventListener('controllerchange', () => {
+        console.log('PWA: Service Worker controller changed')
+        needRefresh.value = true
+      })
+    }
   })
 
   const install = async () => {
@@ -53,8 +65,16 @@ export const usePWA = () => {
     }
   }
 
+  const update = () => {
+    console.log('PWA: Updating application')
+    needRefresh.value = false
+    window.location.reload()
+  }
+
   return {
     canInstall: computed(() => canInstall.value),
-    install
+    needRefresh: computed(() => needRefresh.value),
+    install,
+    update
   }
 } 

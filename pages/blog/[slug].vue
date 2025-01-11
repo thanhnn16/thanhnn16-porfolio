@@ -224,7 +224,7 @@ useHead(() => {
           },
           publisher: {
             '@type': 'Organization',
-            name: 'Thanh Nguyen Portfolio',
+            name: 'Nong Nguyen Thanh - Portfolio',
             logo: {
               '@type': 'ImageObject',
               url: 'https://thanhnn16.id.vn/images/logo.png'

@@ -51,12 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePerformance } from '~/composables/usePerformance'
 import { useRoute, useRouter } from 'vue-router'
-import { usePageTransition } from '~/composables/usePageTransition'
-import TheHeader from '~/components/TheHeader.vue'
-import TheFooter from '~/components/TheFooter.vue'
-import ScrollToTop from '~/components/ScrollToTop.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {

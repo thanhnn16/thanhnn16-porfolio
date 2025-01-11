@@ -201,7 +201,7 @@ export default {
       general: "Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại.",
       email: {
         autoReply: {
-          subject: "Cảm ơn bạn đã liên hệ với Thanh Nguyen",
+          subject: "Cảm ơn bạn đã liên hệ với Thành",
           greeting: "Xin chào",
           thankYou: "Cảm ơn bạn đã gửi tin nhắn!",
           received: "Tôi đã nhận được tin nhắn của bạn và sẽ phản hồi trong thời gian sớm nhất.",
