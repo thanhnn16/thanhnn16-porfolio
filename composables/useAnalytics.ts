@@ -1,12 +1,11 @@
-import type { GtagEvent, TrackingEvent, PageView } from '~/types/analytics'
+import type { TrackingEvent, PageView } from '~/types/analytics'
 
 export const useAnalytics = () => {
-  const nuxtApp = useNuxtApp()
-  const $gtag = nuxtApp.$gtag as GtagEvent
+  const { gtag } = useGtag()
 
   const trackEvent = (event: TrackingEvent) => {
     if (import.meta.client) {
-      $gtag.event(event.action, {
+      gtag('event', event.action, {
         event_category: event.category,
         event_label: event.label,
         value: event.value
@@ -16,7 +15,7 @@ export const useAnalytics = () => {
 
   const trackPageView = (pageView: PageView) => {
     if (import.meta.client) {
-      $gtag.pageview({
+      gtag('event', 'page_view', {
         page_path: pageView.path,
         page_title: pageView.title
       })

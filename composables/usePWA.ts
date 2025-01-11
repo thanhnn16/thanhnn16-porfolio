@@ -10,7 +10,7 @@ export const usePWA = () => {
   // Initialize PWA listeners only on client side
   onMounted(() => {
     window.addEventListener('beforeinstallprompt', (e: Event) => {
-      // Don't prevent default here to allow the browser to show its own prompt
+      e.preventDefault() // Prevent default browser prompt
       deferredPrompt.value = e as PWAInstallPrompt
       canInstall.value = true
     })

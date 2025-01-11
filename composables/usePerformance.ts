@@ -1,18 +1,18 @@
 import type { FirstInputEntry, LayoutShiftEntry } from '~/types/performance'
 
 export const usePerformance = () => {
-  const isLCP = ref(false) // Largest Contentful Paint
-  const isFID = ref(false) // First Input Delay
-  const isCLS = ref(false) // Cumulative Layout Shift
+  const isLCP = ref(false)
+  const isFID = ref(false)
+  const isCLS = ref(false)
 
-  onMounted(() => {
-    if ('PerformanceObserver' in window) {
+  const initializeObservers = () => {
+    if (process.client && 'PerformanceObserver' in window) {
       // Observe LCP
       const lcpObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries()
         const lastEntry = entries[entries.length - 1]
         const lcp = lastEntry.startTime
-        isLCP.value = lcp < 2500 // Good LCP is under 2.5s
+        isLCP.value = lcp < 2500
       })
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
 
@@ -20,7 +20,7 @@ export const usePerformance = () => {
       const fidObserver = new PerformanceObserver((entryList) => {
         const firstInput = entryList.getEntries()[0] as FirstInputEntry
         const delay = firstInput.processingStart - firstInput.startTime
-        isFID.value = delay < 100 // Good FID is under 100ms
+        isFID.value = delay < 100
       })
       fidObserver.observe({ entryTypes: ['first-input'] })
 
@@ -33,11 +33,15 @@ export const usePerformance = () => {
             clsScore += entry.value
           }
         })
-        isCLS.value = clsScore < 0.1 // Good CLS is under 0.1
+        isCLS.value = clsScore < 0.1
       })
       clsObserver.observe({ entryTypes: ['layout-shift'] })
     }
-  })
+  }
+
+  if (process.client) {
+    initializeObservers()
+  }
 
   return {
     isLCP,

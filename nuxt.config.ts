@@ -5,92 +5,67 @@ export default defineNuxtConfig({
   debug: true,
   sourcemap: true,
   ssr: true,
-  modules: [
-    '@pinia/nuxt',
-    '@vueuse/nuxt',
-    '@nuxtjs/color-mode',
-    '@nuxt/image',
-    '@vueuse/motion/nuxt',
-    '@nuxtjs/i18n',
-    '@nuxtjs/google-fonts',
-    [
-      '@vite-pwa/nuxt',
-      {
-        registerType: 'autoUpdate',
-        includeAssets: [
-          'favicon.ico',
-          'apple-touch-icon.png',
-          'mask-icon.svg'
-        ],
-        manifest: {
-          name: 'Nong Nguyen Thanh - Portfolio',
-          short_name: 'thanhnn16',
-          theme_color: '#ffffff',
-          icons: [
-            {
-              src: 'pwa-192x192.png',
-              sizes: '192x192',
-              type: 'image/png'
-            },
-            {
-              src: 'pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png'
-            },
-            {
-              src: 'pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any maskable'
-            }
-          ]
-        },
-        workbox: {
-          navigateFallback: '/',
-          globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg}'],
-          cleanupOutdatedCaches: true,
-          runtimeCaching: [
-            {
-              urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'image-cache',
-                expiration: {
-                  maxEntries: 50,
-                  maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
-                },
-                cacheableResponse: {
-                  statuses: [0, 200]
-                }
+  modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxtjs/color-mode', '@nuxt/image', '@vueuse/motion/nuxt', '@nuxtjs/i18n', '@nuxtjs/google-fonts', [
+    '@vite-pwa/nuxt',
+    {
+      registerType: 'autoUpdate',
+      includeAssets: [
+        'favicon.ico',
+        'apple-touch-icon.png',
+        'mask-icon.svg',
+        'android-icon-*.png',
+        'apple-icon-*.png',
+        'ms-icon-*.png'
+      ],
+      manifest: false,
+      workbox: {
+        navigateFallback: '/',
+        globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg}'],
+        cleanupOutdatedCaches: true,
+        runtimeCaching: [
+          {
+            urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'image-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
               }
             }
-          ]
-        },
-        client: {
-          installPrompt: true,
-          periodicSyncForUpdates: 3600,
-          registerPlugin: true,
-          autoRegister: true
-        },
-        devOptions: {
-          enabled: true,
-          type: 'module'
-        }
+          }
+        ]
+      },
+      client: {
+        installPrompt: true,
+        periodicSyncForUpdates: 3600,
+        registerPlugin: true,
+        autoRegister: true
+      },
+      devOptions: {
+        enabled: true,
+        type: 'module'
       }
-    ],
-    'nuxt-nodemailer',
-    '@nuxt/ui',
-    '@nuxt/icon',
-    [
-      'nuxt-auth-utils',
-      {
-        session: {
-          name: 'nuxt-session',
-          password: process.env.SESSION_PASSWORD || 'your-secret-password'
-        }
+    }
+  ], 'nuxt-nodemailer', '@nuxt/ui', '@nuxt/icon', [
+    'nuxt-auth-utils',
+    {
+      session: {
+        name: 'nuxt-session',
+        password: process.env.SESSION_PASSWORD || 'your-secret-password'
       }
-    ]
-  ],
+    }
+  ], ['nuxt-gtag', {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    config: {
+      send_page_view: true,
+      allow_google_signals: true,
+      allow_ad_personalization_signals: false
+    }
+  }]],
   googleFonts: {
     families: {
       Roboto: [300, 400, 500, 700],
@@ -184,7 +159,11 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }
       ]
     },
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { 
+      name: 'page', 
+      mode: 'out-in',
+      duration: 200
+    },
     layoutTransition: { name: 'layout', mode: 'out-in' },
     keepalive: {
       max: 10
@@ -193,7 +172,6 @@ export default defineNuxtConfig({
   plugins: [
     { src: '~/plugins/gsap.client', mode: 'client' },
     { src: '~/plugins/auth', mode: 'client' },
-    '~/plugins/analytics.client.ts',
     '~/plugins/theme.client.ts',
     '~/plugins/image-fallback.ts',
     '~/plugins/error-handler.ts',
@@ -209,6 +187,13 @@ export default defineNuxtConfig({
         '/admin/**'
       ]
     },
+    timing: true,
+    storage: {
+      fs: {
+        driver: 'fs',
+        base: './.data/storage'
+      }
+    }
   },
   motion: {
     directives: {
