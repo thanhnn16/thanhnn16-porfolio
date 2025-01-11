@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '~/server/utils/prisma'
 import { H3Event } from 'h3'
 import { compare } from 'bcrypt'
-
-const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event: H3Event) => {
   // Get request body

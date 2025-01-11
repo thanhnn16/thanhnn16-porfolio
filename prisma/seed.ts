@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '~/server/utils/prisma'
 import { hash } from 'bcrypt'
-
-const prisma = new PrismaClient()
 
 async function main() {
   const password = await hash('admin123', 10)

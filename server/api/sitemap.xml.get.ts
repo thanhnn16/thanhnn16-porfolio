@@ -1,13 +1,11 @@
 import { SitemapStream, streamToPromise } from 'sitemap'
 import { Readable } from 'stream'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '~/server/utils/prisma'
 
 const HOSTNAME = 'https://thanhnn16.id.vn'
 const LANGUAGES = ['vi', 'en']
 
 export default defineEventHandler(async (event) => {
-  const prisma = new PrismaClient()
-
   try {
     // Fetch data directly from database
     const [projects, posts] = await Promise.all([
@@ -100,7 +98,5 @@ export default defineEventHandler(async (event) => {
       statusCode: 500,
       message: 'Error generating sitemap'
     })
-  } finally {
-    await prisma.$disconnect()
   }
 }) 
